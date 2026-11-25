@@ -1,0 +1,36 @@
+{
+  "name": "Continue",
+  "slug": "continue",
+  "tagline": "Open-source IDE extension for VS Code and JetBrains that connects local LLMs for autocomplete and inline code edits.",
+  "category": "Coding",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Cursor",
+    "GitHub Copilot"
+  ],
+  "official_url": "https://www.continue.dev",
+  "github_repo": "continuedev/continue",
+  "real_test_summary": "Tested connecting Ollama models inside VS Code for tab autocomplete and inline refactoring. Delivers low-latency local code suggestions without sending proprietary files to external servers.",
+  "pros": [
+    "Native extensions for both VS Code and JetBrains IDEs",
+    "Supports separate local models for fast tab autocomplete and deep chat",
+    "Apache-2.0 open-source license with granular context providers"
+  ],
+  "cons": [
+    "Requires configuring an external local runner like Ollama or LM Studio",
+    "Large codebase indexing increases background RAM usage"
+  ],
+  "last_verified": "2026-11-26"
+}

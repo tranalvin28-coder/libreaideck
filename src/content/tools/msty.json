@@ -4,7 +4,7 @@
   "tagline": "Privacy-focused local AI desktop client supporting Ollama, local models, RAG knowledge stacks, and split chat.",
   "category": "LLM",
   "pricing_model": "Open-Source",
-  "license": "MIT",
+  "license": "Proprietary",
   "requires_signup": false,
   "has_watermark": false,
   "commercial_use": true,

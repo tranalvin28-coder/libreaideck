@@ -1,0 +1,36 @@
+{
+  "name": "Aider",
+  "slug": "aider",
+  "tagline": "Terminal-based AI pair programming tool that edits local git repositories directly using local or cloud LLMs.",
+  "category": "Coding",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Cursor",
+    "GitHub Copilot"
+  ],
+  "official_url": "https://aider.chat",
+  "github_repo": "Aider-AI/aider",
+  "real_test_summary": "Tested running multi-file code refactors inside a local Git repository connected to an Ollama endpoint. Automatically maps repository structure and creates clean git commits per change.",
+  "pros": [
+    "Automatic git commits with descriptive messages for every AI edit",
+    "Repository map tracks cross-file dependencies without manual file tagging",
+    "Works cleanly in any terminal alongside existing editors"
+  ],
+  "cons": [
+    "Command-line workflow has a steeper learning curve than GUI editors",
+    "Smaller local models under 14B parameters can struggle with strict diff formats"
+  ],
+  "last_verified": "2026-11-26"
+}
