@@ -1,0 +1,36 @@
+{
+  "name": "Msty",
+  "slug": "msty",
+  "tagline": "Privacy-focused local AI desktop client supporting Ollama, local models, RAG knowledge stacks, and split chat.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://msty.app",
+  "github_repo": "cloudphilosophies/msty",
+  "real_test_summary": "Tested running local models side-by-side in split chat panes with offline knowledge stacks. Keeps prompts and local document context on device without cloud accounts.",
+  "pros": [
+    "Side-by-side split chat comparison and offline knowledge stacks",
+    "Works smoothly with local Ollama and on-device models",
+    "Clean desktop workflow with zero mandatory sign-up"
+  ],
+  "cons": [
+    "Some advanced team features target desktop power workflows",
+    "Requires downloading local GGUF models for offline use"
+  ],
+  "last_verified": "2026-11-26"
+}

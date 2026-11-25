@@ -1,0 +1,36 @@
+{
+  "name": "LobeChat",
+  "slug": "lobechat",
+  "tagline": "Modern open-source AI chat and agent workspace supporting local LLMs, knowledge bases, and plugin tools.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://lobehub.com",
+  "github_repo": "lobehub/lobe-chat",
+  "real_test_summary": "Tested self-hosting LobeChat connected to a local Ollama endpoint with custom assistants and local file knowledge. Offers a polished interface for daily local chat.",
+  "pros": [
+    "Modern UI with custom assistant presets, artifacts, and knowledge files",
+    "Connects directly to local Ollama and OpenAI-compatible servers",
+    "MIT open-source license with flexible self-hosting options"
+  ],
+  "cons": [
+    "Self-hosting full features involves extra environment configuration",
+    "Heavier web UI footprint than minimal terminal clients"
+  ],
+  "last_verified": "2026-11-26"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "LMDeploy",
+  "slug": "lmdeploy",
+  "tagline": "High-throughput local LLM serving and compression toolkit with TurboMind engine and OpenAI-compatible API.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Linux",
+    "Windows"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "OpenAI API"
+  ],
+  "official_url": "https://github.com/InternLM/lmdeploy",
+  "github_repo": "InternLM/lmdeploy",
+  "real_test_summary": "Tested serving quantized chat models locally via lmdeploy serve api_server with persistent KV cache. Delivers strong tokens-per-second throughput for local inference.",
+  "pros": [
+    "TurboMind inference engine with efficient KV cache and quantization",
+    "Drop-in OpenAI-compatible server for local apps and agents",
+    "Apache-2.0 open-source license with Python and CLI tools"
+  ],
+  "cons": [
+    "Best performance targets Linux and supported GPU setups",
+    "More oriented toward local serving than casual desktop chat"
+  ],
+  "last_verified": "2026-11-26"
+}
