@@ -1,0 +1,36 @@
+{
+  "name": "MLC LLM",
+  "slug": "mlc-llm",
+  "tagline": "Universal machine learning compiler and local LLM runtime deploying models across GPUs, mobile, and web.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "OpenAI API",
+    "ChatGPT"
+  ],
+  "official_url": "https://mlc.ai/llm",
+  "github_repo": "mlc-ai/mlc-llm",
+  "real_test_summary": "Tested running compiled local chat models offline with an OpenAI-compatible REST server and CLI. Targets cross-platform hardware acceleration including Metal, Vulkan, and CUDA.",
+  "pros": [
+    "Cross-platform runtime supporting CUDA, Metal, and Vulkan backends",
+    "Exposes a local OpenAI-compatible server for drop-in integration",
+    "Apache-2.0 open-source license with CLI and Python/REST interfaces"
+  ],
+  "cons": [
+    "Model compilation and prebuilt weights require matching runtime versions",
+    "Fewer one-click desktop chat polish features than dedicated GUIs"
+  ],
+  "last_verified": "2026-11-26"
+}

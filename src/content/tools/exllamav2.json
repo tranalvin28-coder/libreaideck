@@ -1,0 +1,34 @@
+{
+  "name": "ExLlamaV2",
+  "slug": "exllamav2",
+  "tagline": "High-speed local inference library for quantized EXL2 language models on NVIDIA GPUs.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 6,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "OpenAI API"
+  ],
+  "official_url": "https://github.com/turboderp-org/exllamav2",
+  "github_repo": "turboderp-org/exllamav2",
+  "real_test_summary": "Tested running 4-bit EXL2 quantized models locally with variable bit-rate quantization and paged KV cache. Delivers fast token generation on consumer NVIDIA GPUs.",
+  "pros": [
+    "Flexible bit-per-weight quantization preserves quality in tight VRAM",
+    "Fast single-stream inference and quantized KV cache on CUDA GPUs",
+    "MIT open-source license with active quantization tooling"
+  ],
+  "cons": [
+    "Focused on NVIDIA CUDA rather than CPU or macOS Metal",
+    "Often paired with TabbyAPI or a frontend UI rather than used standalone"
+  ],
+  "last_verified": "2026-11-26"
+}

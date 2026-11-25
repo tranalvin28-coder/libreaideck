@@ -1,0 +1,35 @@
+{
+  "name": "Faster-Whisper",
+  "slug": "faster-whisper",
+  "tagline": "Fast local speech-to-text transcription engine built on CTranslate2 for offline audio and video subtitles.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 2,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "OpenAI API"
+  ],
+  "official_url": "https://github.com/SYSTRAN/faster-whisper",
+  "github_repo": "SYSTRAN/faster-whisper",
+  "real_test_summary": "Tested transcribing recorded speech and meeting audio offline with int8 quantization. Runs significantly faster with lower memory footprint than standard PyTorch Whisper pipelines.",
+  "pros": [
+    "High transcription speed and lower memory usage via CTranslate2",
+    "Supports int8 and fp16 quantization for offline CPU or GPU runs",
+    "MIT license with clean Python API for local batch workflows"
+  ],
+  "cons": [
+    "Requires Python setup or a wrapper UI for non-CLI users",
+    "Long audio files still benefit from GPU acceleration for speed"
+  ],
+  "last_verified": "2026-11-26"
+}
