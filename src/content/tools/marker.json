@@ -1,0 +1,35 @@
+{
+  "name": "Marker",
+  "slug": "marker",
+  "tagline": "Fast open-source PDF-to-Markdown and JSON converter with strong table, equation, and layout accuracy.",
+  "category": "OCR",
+  "pricing_model": "Open-Source",
+  "license": "GPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Adobe Acrobat OCR"
+  ],
+  "official_url": "https://github.com/VikParuchuri/marker",
+  "github_repo": "VikParuchuri/marker",
+  "real_test_summary": "Tested converting research papers and technical manuals into Markdown locally with equations and tables intact. Runs offline in batch mode across local document folders.",
+  "pros": [
+    "Strong conversion accuracy for tables, math equations, and code blocks",
+    "Supports batch folder processing completely offline",
+    "Outputs clean Markdown ready for local knowledge bases"
+  ],
+  "cons": [
+    "GPU acceleration speeds up large PDF batches significantly",
+    "GPL-3.0 license requires careful review for closed-source embedding"
+  ],
+  "last_verified": "2026-11-26"
+}

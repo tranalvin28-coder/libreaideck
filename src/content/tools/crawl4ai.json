@@ -1,0 +1,35 @@
+{
+  "name": "Crawl4AI",
+  "slug": "crawl4ai",
+  "tagline": "Open-source LLM-friendly web crawler and scraper that outputs clean Markdown locally for agents and RAG.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "Perplexity"
+  ],
+  "official_url": "https://github.com/unclecode/crawl4ai",
+  "github_repo": "unclecode/crawl4ai",
+  "real_test_summary": "Tested crawling documentation pages and extracting clean Markdown without boilerplate menus or ads. Integrates smoothly with local LLMs and vector stores.",
+  "pros": [
+    "Produces clean, structured Markdown tailored for local LLM context",
+    "Handles dynamic pages via headless browser automation locally",
+    "Apache-2.0 license with Python async API and CLI"
+  ],
+  "cons": [
+    "Requires Playwright/browser binaries installed locally",
+    "Rate limits and site blocks still apply when crawling external targets"
+  ],
+  "last_verified": "2026-11-26"
+}

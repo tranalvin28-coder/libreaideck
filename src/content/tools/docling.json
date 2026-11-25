@@ -1,0 +1,35 @@
+{
+  "name": "Docling",
+  "slug": "docling",
+  "tagline": "Open-source document parsing toolkit that converts PDFs, DOCX, and PPTX into structured Markdown and JSON for local RAG.",
+  "category": "OCR",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Adobe Acrobat OCR"
+  ],
+  "official_url": "https://github.com/docling-project/docling",
+  "github_repo": "docling-project/docling",
+  "real_test_summary": "Tested parsing multi-column technical PDFs and tables locally into clean Markdown chunks without cloud uploads. Preserves headings and table rows reliably for downstream RAG indexing.",
+  "pros": [
+    "Clean Markdown and structured JSON output tailored for local RAG pipelines",
+    "Handles complex tables, formulas, and multi-page layouts offline",
+    "Permissive MIT license with active Python CLI and library support"
+  ],
+  "cons": [
+    "First run downloads layout and table models locally",
+    "Scanned image-heavy PDFs take longer on CPU-only hardware"
+  ],
+  "last_verified": "2026-11-26"
+}
