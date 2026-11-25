@@ -1,0 +1,35 @@
+{
+  "name": "LTX-Video",
+  "slug": "ltx-video",
+  "tagline": "Real-time DiT-based local video generation model producing 24fps clips faster than playback duration on consumer GPUs.",
+  "category": "Video",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Runway",
+    "Kling AI"
+  ],
+  "official_url": "https://github.com/Lightricks/LTX-Video",
+  "github_repo": "Lightricks/LTX-Video",
+  "real_test_summary": "Tested quantized LTX-Video workflows locally inside ComfyUI for both text-to-video and image-to-video prompts. Generates 5-second 24fps drafts rapidly for fast visual iteration.",
+  "pros": [
+    "Significantly faster generation speed than competing open-weight video diffusion models",
+    "Supports text-to-video, image-to-video, and video extension in ComfyUI",
+    "FP8 quantized checkpoints fit comfortably within 8GB-12GB consumer VRAM"
+  ],
+  "cons": [
+    "Fine details can soften during fast camera motion compared to larger models",
+    "Prompt adherence benefits from detailed descriptive scene phrasing"
+  ],
+  "last_verified": "2026-11-26"
+}

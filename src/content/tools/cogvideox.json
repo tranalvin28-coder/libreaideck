@@ -1,0 +1,35 @@
+{
+  "name": "CogVideoX",
+  "slug": "cogvideox",
+  "tagline": "Open-source text-to-video and image-to-video diffusion transformer supporting 6-second coherent motion clips locally.",
+  "category": "Video",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Runway",
+    "Kling AI"
+  ],
+  "official_url": "https://github.com/THUDM/CogVideo",
+  "github_repo": "THUDM/CogVideo",
+  "real_test_summary": "Tested running the quantized CogVideoX-2B and 5B pipelines locally via Diffusers and ComfyUI with CPU offloading enabled. Generates smooth 48-frame clips completely offline.",
+  "pros": [
+    "2B and quantized 5B variants run on consumer 8GB-12GB VRAM GPUs with offloading",
+    "Strong temporal consistency across 6-second action sequences",
+    "Apache-2.0 license for the 2B model with native ComfyUI and Diffusers support"
+  ],
+  "cons": [
+    "Sequential CPU offloading noticeably increases per-clip render times",
+    "5B model requires higher VRAM or aggressive quantization to avoid memory limits"
+  ],
+  "last_verified": "2026-11-26"
+}

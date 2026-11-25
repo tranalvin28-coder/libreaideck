@@ -1,0 +1,35 @@
+{
+  "name": "Kokoro TTS",
+  "slug": "kokoro-tts",
+  "tagline": "Ultra-lightweight 82M-parameter open-weight text-to-speech model delivering fast, natural voices on CPU or modest GPUs.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "ElevenLabs"
+  ],
+  "official_url": "https://huggingface.co/hexgrad/Kokoro-82M",
+  "github_repo": "hexgrad/kokoro",
+  "real_test_summary": "Tested generating multi-paragraph narration offline via Python and ONNX runtime on CPU. Produces clear, natural pacing at faster-than-realtime speeds with minimal memory overhead.",
+  "pros": [
+    "82M parameter footprint runs fast on CPU and low-end GPUs without latency",
+    "Apache-2.0 license permits unrestricted commercial voiceover and content creation",
+    "Multiple built-in voice presets with clean pronunciation and pacing"
+  ],
+  "cons": [
+    "Does not support zero-shot voice cloning from custom reference audio",
+    "Smaller language coverage compared to massive multilingual speech models"
+  ],
+  "last_verified": "2026-11-26"
+}
