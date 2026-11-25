@@ -1,0 +1,36 @@
+{
+  "name": "Dify",
+  "slug": "dify",
+  "tagline": "Open-source LLM app development platform for building visual RAG pipelines, workflows, and local AI agents.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 6,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "ChatGPT",
+    "Notion AI"
+  ],
+  "official_url": "https://dify.ai",
+  "github_repo": "langgenius/dify",
+  "real_test_summary": "Tested building a local document Q&A workflow wired to a local Ollama model and knowledge base. Visual node orchestration makes testing retrieval chunks and prompt steps straightforward.",
+  "pros": [
+    "Visual workflow builder for RAG pipelines, tools, and agents",
+    "Connects easily to local Ollama and OpenAI-compatible backends",
+    "Apache-2.0 open-source license with self-hosting support"
+  ],
+  "cons": [
+    "Self-hosted stack uses multiple containers and background workers",
+    "More complex than lightweight single-file chat clients"
+  ],
+  "last_verified": "2026-11-26"
+}

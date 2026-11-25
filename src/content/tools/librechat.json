@@ -1,0 +1,36 @@
+{
+  "name": "LibreChat",
+  "slug": "librechat",
+  "tagline": "Open-source AI chat workspace supporting local endpoints, custom presets, code interpreter, and plugins.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://www.librechat.ai",
+  "github_repo": "danny-avila/LibreChat",
+  "real_test_summary": "Tested self-hosting LibreChat connected to a local OpenAI-compatible inference endpoint with saved prompt presets and conversation branching. Keeps chat history and configurations under local control.",
+  "pros": [
+    "Supports local endpoints, multi-chat branching, and reusable presets",
+    "Permissive MIT license with active open-source development",
+    "Clean multi-model chat UI with artifact and code rendering"
+  ],
+  "cons": [
+    "Full self-hosted deployment relies on Docker and database services",
+    "Initial setup takes more steps than a single desktop binary"
+  ],
+  "last_verified": "2026-11-26"
+}

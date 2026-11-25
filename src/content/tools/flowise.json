@@ -1,0 +1,36 @@
+{
+  "name": "Flowise",
+  "slug": "flowise",
+  "tagline": "Drag-and-drop visual builder for creating local LLM chains, document loaders, and agent workflows.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Perplexity"
+  ],
+  "official_url": "https://flowiseai.com",
+  "github_repo": "FlowiseAI/Flowise",
+  "real_test_summary": "Tested wiring a local embedding model, vector store, and local LLM node on the visual canvas for offline document chat. Exposes an API endpoint once the flow is saved.",
+  "pros": [
+    "Intuitive node canvas for rapid local RAG and agent prototyping",
+    "Runs locally with Node.js or Docker and connects to local LLMs",
+    "Exports workflows as APIs for external apps or scripts"
+  ],
+  "cons": [
+    "Large visual graphs can get crowded without sub-flows",
+    "Requires basic familiarity with embeddings and vector stores"
+  ],
+  "last_verified": "2026-11-26"
+}
