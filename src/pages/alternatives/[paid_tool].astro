@@ -2,31 +2,44 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-function toSlug(input: string) {
-  return input.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+function toSlug(input: unknown): string {
+  return String(input ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 export async function getStaticPaths() {
   const tools = await getCollection("tools");
-  const map = new Map<string, { label: string; items: typeof tools }>();
+  const paidToolMap = new Map<string, string>();
 
-  for (const tool of tools) {
-    for (const alt of tool.data.alternative_to) {
-      const slug = toSlug(alt);
-      if (!map.has(slug)) {
-        map.set(slug, { label: alt, items: [] });
+  for (const entry of tools) {
+    const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
+    if (Array.isArray(alts)) {
+      for (const alt of alts) {
+        const slug = toSlug(alt);
+        if (slug && !paidToolMap.has(slug)) {
+          paidToolMap.set(slug, String(alt));
+        }
       }
-      map.get(slug)!.items.push(tool);
     }
   }
 
-  return Array.from(map.entries()).map(([paid_tool, group]) => ({
-    params: { paid_tool },
-    props: { label: group.label, tools: group.items },
-  }));
+  return Array.from(paidToolMap.entries()).map(([paid_tool, paidToolName]) => {
+    const matchingTools = tools.filter((entry) => {
+      const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
+      return Array.isArray(alts) && alts.some((alt) => toSlug(alt) === paid_tool);
+    });
+
+    return {
+      params: { paid_tool },
+      props: { paidToolName, matchingTools },
+    };
+  });
 }
 
-const { label, tools } = Astro.props;
+const { paidToolName, matchingTools } = Astro.props;
 ---
 
 <BaseLayout
