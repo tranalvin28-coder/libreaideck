@@ -1,0 +1,35 @@
+{
+  "name": "Piper",
+  "slug": "piper",
+  "tagline": "Fast, lightweight local text-to-speech engine designed for offline voice synthesis on modest hardware.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 2,
+  "alternative_to": [
+    "ElevenLabs"
+  ],
+  "official_url": "https://github.com/rhasspy/piper",
+  "github_repo": "rhasspy/piper",
+  "real_test_summary": "Tested synthesizing speech locally from text offline with very low memory overhead. Responds quickly on lightweight hardware without requiring a dedicated GPU or cloud API calls.",
+  "pros": [
+    "Extremely lightweight and fast even on CPU-only or low-RAM systems",
+    "Permissive MIT license with zero cloud usage limits or watermarks",
+    "Well-suited for offline assistants, notifications, and local scripts"
+  ],
+  "cons": [
+    "Voice expressiveness is more utilitarian than heavy cloud expressive voice models",
+    "Voice quality varies noticeably between individual voice checkpoints"
+  ],
+  "last_verified": "2026-11-25"
+}

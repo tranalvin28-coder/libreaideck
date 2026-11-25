@@ -1,0 +1,35 @@
+{
+  "name": "Fooocus",
+  "slug": "fooocus",
+  "tagline": "Streamlined local image generation interface focused on clean prompt results without complex node wiring.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "GPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Midjourney"
+  ],
+  "official_url": "https://github.com/lllyasviel/Fooocus",
+  "github_repo": "lllyasviel/Fooocus",
+  "real_test_summary": "Tested generating images locally with minimal slider adjustments and built-in style presets. Produces consistent high-detail outputs offline with far less setup friction than complex node graphs.",
+  "pros": [
+    "Simple, focused UI avoids overwhelming node graphs for everyday image generation",
+    "Runs offline with no subscriptions, image limits, or watermarks",
+    "Includes built-in refinement, inpainting, and style options"
+  ],
+  "cons": [
+    "Less granular custom workflow control than node-based tools like ComfyUI",
+    "First-time model downloads are large"
+  ],
+  "last_verified": "2026-11-25"
+}

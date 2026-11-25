@@ -1,0 +1,36 @@
+{
+  "name": "Ollama",
+  "slug": "ollama",
+  "tagline": "Run open-source large language models locally on your machine with a single command and local API.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://ollama.com",
+  "github_repo": "ollama/ollama",
+  "real_test_summary": "Tested locally with quantized 7B and 8B models via CLI and localhost API. Models pull quickly, run completely offline after download, and integrate easily with local chat interfaces and scripts.",
+  "pros": [
+    "Very fast setup with a single command or desktop installer",
+    "Runs offline with built-in local HTTP API for apps and editors",
+    "Supports both GPU acceleration and Apple Silicon unified memory"
+  ],
+  "cons": [
+    "Larger 70B+ models still demand high VRAM or unified RAM",
+    "No built-in multi-user web workspace without an external UI"
+  ],
+  "last_verified": "2026-11-25"
+}

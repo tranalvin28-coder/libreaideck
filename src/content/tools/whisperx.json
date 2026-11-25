@@ -1,0 +1,35 @@
+{
+  "name": "WhisperX",
+  "slug": "whisperx",
+  "tagline": "Fast offline speech-to-text transcription with word-level timestamps and speaker diarization.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "BSD-2-Clause",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "OpenAI Whisper API"
+  ],
+  "official_url": "https://github.com/m-bain/whisperX",
+  "github_repo": "m-bain/whisperX",
+  "real_test_summary": "Tested transcribing local audio files offline with batched processing and word-level timestamp alignment. Delivers accurate transcripts and subtitle timings without per-minute cloud transcription fees.",
+  "pros": [
+    "Accurate word-level timestamps helpful for captions, subtitles, and editing",
+    "Batched local processing speeds up longer audio recordings",
+    "Runs offline with no cloud audio uploads or usage billing"
+  ],
+  "cons": [
+    "Requires Python environment setup and dependencies",
+    "Speaker labels may need extra model weights or tokens depending on setup"
+  ],
+  "last_verified": "2026-11-25"
+}

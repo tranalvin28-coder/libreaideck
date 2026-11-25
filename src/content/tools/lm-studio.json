@@ -1,0 +1,36 @@
+{
+  "name": "LM Studio",
+  "slug": "lm-studio",
+  "tagline": "Desktop application for discovering, running, and testing local GGUF language models offline.",
+  "category": "LLM",
+  "pricing_model": "Freeware",
+  "license": "Proprietary",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": false,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://lmstudio.ai",
+  "github_repo": "lmstudio-ai/lmstudio-bug-tracker",
+  "real_test_summary": "Tested running quantized local models on desktop hardware with real-time token speed and memory usage indicators. Offline chat and local server mode work smoothly without account sign-in.",
+  "pros": [
+    "Visual desktop interface makes model management and hardware tuning approachable",
+    "Shows clear memory offload and generation speed metrics during runs",
+    "Exposes a local server endpoint for developer tools and scripts"
+  ],
+  "cons": [
+    "Not open-source licensed and commercial use terms differ from MIT/Apache tools",
+    "Model files require substantial local SSD space"
+  ],
+  "last_verified": "2026-11-25"
+}
