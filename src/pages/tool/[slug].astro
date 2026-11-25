@@ -30,18 +30,62 @@ const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replac
 const siteUrl = (Astro.site ?? new URL("https://libreaideck.com")).toString().replace(/\/$/, "");
 const pageUrl = `${siteUrl}/tool/${tool.slug}`;
 const primaryAlt = tool.alternative_to[0];
+const allAlts = tool.alternative_to.join(", ");
+
+const vramText = tool.min_vram_gb === 0
+  ? `CPU-Only (${tool.min_ram_gb}GB RAM)`
+  : `${tool.min_vram_gb}GB VRAM`;
+
+const seoTitle = tool.min_vram_gb === 0
+  ? `${tool.name} (2026): CPU-Only Offline ${tool.category} AI (${tool.min_ram_gb}GB RAM)`
+  : `${tool.name} (2026): ${tool.min_vram_gb}GB VRAM Offline ${tool.category} AI`;
+
+const seoDescription = `${tool.tagline} Runs 100% offline (${vramText}, ${tool.license}). Free local alternative to ${allAlts || "cloud AI"} with real test notes.`;
+
+const faqList = [
+  {
+    q: `How much VRAM and RAM does ${tool.name} require?`,
+    a: tool.min_vram_gb === 0
+      ? `${tool.name} runs on CPU without a dedicated GPU and requires at least ${tool.min_ram_gb} GB of system RAM.`
+      : `${tool.name} requires a minimum of ${tool.min_vram_gb} GB VRAM and ${tool.min_ram_gb} GB of system RAM for local inference.`,
+  },
+  {
+    q: `Does ${tool.name} work completely offline without an account?`,
+    a: `${tool.runs_offline ? "Yes" : "No"}, ${tool.name} operates ${tool.runs_offline ? "100% offline on local hardware" : "with network access"} and ${tool.requires_signup ? "requires account sign-up" : "requires no sign-up or cloud API keys"}.`,
+  },
+  {
+    q: `Can I use ${tool.name} commercially as a free alternative to ${primaryAlt || "paid AI"}?`,
+    a: `${tool.name} is licensed under ${tool.license}${tool.commercial_use ? " and allows commercial use" : ""}. It serves as a self-hosted alternative to ${allAlts || "subscription AI tools"}.`,
+  },
+];
 
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: tool.name,
   description: tool.tagline,
-  applicationCategory: tool.category,
+  applicationCategory: `${tool.category}Application`,
   operatingSystem: tool.platforms.join(", "),
   license: tool.license,
+  memoryRequirements: `${tool.min_ram_gb} GB RAM${tool.min_vram_gb > 0 ? `, ${tool.min_vram_gb} GB VRAM` : " (CPU supported)"}`,
+  dateModified: tool.last_verified,
   url: pageUrl,
-  sameAs: tool.official_url,
+  sameAs: [tool.official_url, tool.github_repo ? `https://github.com/${tool.github_repo}` : null].filter(Boolean),
+  featureList: tool.pros,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqList.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
 };
 
 const breadcrumbItems = [
@@ -84,12 +128,13 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout
-  title={`${tool.name} — Hardware Specs, Offline Test & Review | LibreAIDeck`}
-  description={tool.tagline}
+  title={seoTitle}
+  description={seoDescription}
   ogType="article"
 >
   <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <nav aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-400">
     <a href="/" class="text-emerald-400 hover:text-emerald-300">Directory</a>
@@ -202,6 +247,20 @@ const breadcrumbSchema = {
       </div>
     </section>
   </article>
+
+  <section class="mt-10 bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+    <h2 class="text-lg font-semibold text-white mb-4">
+      {tool.name} Hardware &amp; Licensing FAQ
+    </h2>
+    <div class="space-y-4">
+      {faqList.map((item) => (
+        <div class="border-b border-slate-800/80 last:border-none pb-3 last:pb-0">
+          <h3 class="text-sm font-semibold text-slate-200 mb-1">{item.q}</h3>
+          <p class="text-sm text-slate-400">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 
   {relatedTools.length > 0 && (
     <section class="mt-10">
