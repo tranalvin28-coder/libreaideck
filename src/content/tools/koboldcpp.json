@@ -1,0 +1,36 @@
+{
+  "name": "KoboldCpp",
+  "slug": "koboldcpp",
+  "tagline": "Single-file offline GGUF inference engine with built-in chat, writing, and OpenAI-compatible local API.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://github.com/LostRuins/koboldcpp",
+  "github_repo": "LostRuins/koboldcpp",
+  "real_test_summary": "Tested running a quantized 8B GGUF model via the standalone executable with hybrid CPU and GPU layer offloading. Launches directly with an integrated browser UI and local API without Python environment setup.",
+  "pros": [
+    "Single self-contained executable requires no complex Python or Docker installation",
+    "Supports hybrid CPU + GPU layer offloading for low-VRAM machines",
+    "Includes built-in chat/story UI alongside an OpenAI-compatible local endpoint"
+  ],
+  "cons": [
+    "Interface looks more utilitarian than modern desktop chat clients",
+    "Requires manual GGUF model file downloads from Hugging Face"
+  ],
+  "last_verified": "2026-11-26"
+}

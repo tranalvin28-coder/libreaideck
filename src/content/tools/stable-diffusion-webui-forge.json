@@ -1,0 +1,35 @@
+{
+  "name": "Stable Diffusion WebUI Forge",
+  "slug": "stable-diffusion-webui-forge",
+  "tagline": "Memory-optimized fork of Automatic1111 designed for faster image generation on lower-VRAM GPUs.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Midjourney",
+    "DALL-E 3"
+  ],
+  "official_url": "https://github.com/lllyasviel/stable-diffusion-webui-forge",
+  "github_repo": "lllyasviel/stable-diffusion-webui-forge",
+  "real_test_summary": "Tested generating SDXL and Flux checkpoints locally on an 8GB VRAM GPU. Custom memory management noticeably reduces out-of-memory errors and speeds up batch sampling compared to stock WebUI setups.",
+  "pros": [
+    "Improved VRAM management enables heavier models on 4GB–8GB GPUs",
+    "Familiar Automatic1111-style layout with built-in ControlNet and sampler upgrades",
+    "Runs completely offline with zero watermarks or generation limits"
+  ],
+  "cons": [
+    "Some legacy Automatic1111 third-party extensions may have compatibility issues",
+    "Initial Python dependency and checkpoint setup takes several gigabytes of storage"
+  ],
+  "last_verified": "2026-11-26"
+}

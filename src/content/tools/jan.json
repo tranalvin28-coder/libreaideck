@@ -1,0 +1,36 @@
+{
+  "name": "Jan",
+  "slug": "jan",
+  "tagline": "Open-source offline desktop AI assistant with built-in model hub, local chat workspace, and localhost API.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "official_url": "https://jan.ai",
+  "github_repo": "janhq/jan",
+  "real_test_summary": "Tested as a local desktop replacement for cloud chat apps with downloaded GGUF models. Stores conversations locally on disk, works completely offline, and exposes an OpenAI-compatible local server.",
+  "pros": [
+    "Clean desktop app with one-click model downloads and local conversation storage",
+    "Fully open-source under AGPL-3.0 with no account sign-up required",
+    "Includes a local OpenAI-compatible API server for external developer tools"
+  ],
+  "cons": [
+    "Desktop Electron shell uses more background RAM than CLI-only runners",
+    "Large local models still require substantial disk space and memory"
+  ],
+  "last_verified": "2026-11-26"
+}
