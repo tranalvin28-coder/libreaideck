@@ -1,0 +1,36 @@
+{
+  "name": "Tabby",
+  "slug": "tabby",
+  "tagline": "Self-hosted AI coding assistant server delivering low-latency inline code completion for teams and solo developers.",
+  "category": "Coding",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "GitHub Copilot",
+    "Cursor"
+  ],
+  "official_url": "https://tabby.tabbyml.com",
+  "github_repo": "TabbyML/tabby",
+  "real_test_summary": "Tested running the Tabby server locally paired with StarCoder and Qwen2.5-Coder models in VS Code. Delivers fast ghost-text autocomplete with repository-level context indexing.",
+  "pros": [
+    "Dedicated fill-in-the-middle autocomplete server with low latency",
+    "Extensions available for VS Code, JetBrains, Vim, and Neovim",
+    "Single binary or Docker deployment with built-in repo context indexing"
+  ],
+  "cons": [
+    "Focused primarily on autocomplete rather than autonomous multi-file agent edits",
+    "Requires running a persistent background server process"
+  ],
+  "last_verified": "2026-11-26"
+}

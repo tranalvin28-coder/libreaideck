@@ -1,0 +1,35 @@
+{
+  "name": "YuE",
+  "slug": "yue",
+  "tagline": "Open-source full-song music generation model producing structured verse-chorus tracks with expressive vocals offline.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Suno",
+    "Udio"
+  ],
+  "official_url": "https://github.com/multimodal-art-projection/YuE",
+  "github_repo": "multimodal-art-projection/YuE",
+  "real_test_summary": "Tested quantized YuE checkpoints locally to generate full-length vocal tracks from structured lyrics. Separates vocal and instrumental stems cleanly offline.",
+  "pros": [
+    "Produces coherent full-song structure with distinct verse and chorus sections",
+    "Outputs separate vocal and accompaniment stems for easy mixing",
+    "Apache-2.0 open-source license with no generation limits"
+  ],
+  "cons": [
+    "Slower generation speed than diffusion-based audio models",
+    "Requires 8GB-12GB VRAM with quantization for practical runtimes"
+  ],
+  "last_verified": "2026-11-26"
+}

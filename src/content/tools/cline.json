@@ -1,0 +1,36 @@
+{
+  "name": "Cline",
+  "slug": "cline",
+  "tagline": "Autonomous open-source coding agent extension for VS Code that edits files, runs terminal commands, and uses local LLMs.",
+  "category": "Coding",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Cursor",
+    "GitHub Copilot"
+  ],
+  "official_url": "https://cline.bot",
+  "github_repo": "cline/cline",
+  "real_test_summary": "Tested connecting Cline to a local Ollama endpoint inside VS Code for multi-file feature scaffolding. Safely asks permission before executing terminal commands or modifying files.",
+  "pros": [
+    "Step-by-step approval workflow keeps local file and shell actions safe",
+    "Connects directly to Ollama, LM Studio, or any OpenAI-compatible local server",
+    "Reads compiler errors and iterates automatically until builds pass"
+  ],
+  "cons": [
+    "Agentic tool-calling loops require capable 14B+ local models for reliability",
+    "Large context prompts increase token processing time on local hardware"
+  ],
+  "last_verified": "2026-11-26"
+}

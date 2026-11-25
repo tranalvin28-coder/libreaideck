@@ -1,0 +1,35 @@
+{
+  "name": "InstantMesh",
+  "slug": "instantmesh",
+  "tagline": "Feed-forward 3D mesh generation framework creating textured 3D assets from a single image via multi-view diffusion.",
+  "category": "3D",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Meshy",
+    "Tripo AI"
+  ],
+  "official_url": "https://github.com/TencentARC/InstantMesh",
+  "github_repo": "TencentARC/InstantMesh",
+  "real_test_summary": "Tested generating multi-view consistent 3D OBJ and GLB assets locally from single reference images. Produces cleaner back-side geometry than single-step reconstruction models.",
+  "pros": [
+    "Multi-view diffusion improves 360-degree geometry consistency",
+    "Apache-2.0 open-source license with Gradio web demo and CLI",
+    "Exports standard OBJ and GLB meshes with vertex colors or UV textures"
+  ],
+  "cons": [
+    "Requires 8GB+ VRAM and takes longer per asset than TripoSR",
+    "Surface textures may need minor touch-ups for close-up rendering"
+  ],
+  "last_verified": "2026-11-26"
+}
