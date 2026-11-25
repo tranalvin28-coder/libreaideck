@@ -13,7 +13,9 @@ const {
   ogType = 'website',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://libreaideck.com').toString();
+const siteOrigin = (Astro.site ?? new URL('https://libreaideck.com')).toString().replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).toString();
+const ogImageURL = `${siteOrigin}/og-image.svg`;
 ---
 
 <!doctype html>
@@ -24,16 +26,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://libreaid
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:site_name" content="LibreAIDeck" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
     <header class="border-b border-slate-800 bg-slate-900/70 backdrop-blur">
@@ -43,6 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://libreaid
         </a>
         <nav class="flex items-center gap-5 text-sm text-slate-300">
           <a href="/" class="hover:text-white transition">Directory</a>
+          <a href="/alternatives/chatgpt" class="hover:text-white transition">ChatGPT Alternatives</a>
           <a href="/alternatives/midjourney" class="hover:text-white transition">Midjourney Alternatives</a>
           <a href="/alternatives/openai-api" class="hover:text-white transition">OpenAI Alternatives</a>
         </nav>
