@@ -1,0 +1,36 @@
+{
+  "name": "FLUX.1 Schnell",
+  "slug": "flux-1-schnell",
+  "tagline": "Fast 12B-parameter rectified-flow image generation model delivering sharp prompts and clean typography in 1 to 4 steps.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Midjourney",
+    "DALL-E 3"
+  ],
+  "official_url": "https://blackforestlabs.ai",
+  "github_repo": "black-forest-labs/flux",
+  "real_test_summary": "Tested the NF4 quantized checkpoint locally inside ComfyUI and Forge on an 8GB VRAM GPU. Renders crisp 1024x1024 images with accurate embedded text in 4 steps completely offline.",
+  "pros": [
+    "Generates crisp 1024x1024 images in just 1 to 4 inference steps",
+    "Apache-2.0 license allows unrestricted commercial artwork and product use",
+    "Quantized GGUF and NF4 weights run smoothly on 8GB VRAM GPUs"
+  ],
+  "cons": [
+    "Full FP16 weights require 24GB+ VRAM without quantization",
+    "Less responsive to negative prompts than traditional SDXL pipelines"
+  ],
+  "last_verified": "2026-11-26"
+}

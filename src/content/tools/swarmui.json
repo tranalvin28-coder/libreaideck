@@ -1,0 +1,36 @@
+{
+  "name": "SwarmUI",
+  "slug": "swarmui",
+  "tagline": "Modular local image and video generation web interface powered by a ComfyUI backend with clean presets and grid tools.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Midjourney",
+    "Adobe Firefly"
+  ],
+  "official_url": "https://github.com/mcmonkeyprojects/SwarmUI",
+  "github_repo": "mcmonkeyprojects/SwarmUI",
+  "real_test_summary": "Tested running Flux and SDXL workflows locally through SwarmUI with its built-in ComfyUI engine. Combines prompt parameter grids and model presets without forcing raw node wiring.",
+  "pros": [
+    "Combines beginner-friendly prompt controls with a full ComfyUI node backend",
+    "Built-in parameter grid generator simplifies testing seeds, samplers, and LoRAs",
+    "Supports local multi-GPU distribution and Flux, SDXL, and video models"
+  ],
+  "cons": [
+    "Initial installer downloads both .NET runtime and Python dependencies",
+    "Interface exposes dense settings panels that take time to customize"
+  ],
+  "last_verified": "2026-11-26"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Hunyuan3D-2",
+  "slug": "hunyuan3d-2",
+  "tagline": "High-resolution open-source 3D asset generation system synthesizing detailed geometry and PBR textures from images or text.",
+  "category": "3D",
+  "pricing_model": "Open-Source",
+  "license": "Tencent Hunyuan Community License",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Meshy",
+    "Tripo AI"
+  ],
+  "official_url": "https://github.com/Tencent/Hunyuan3D-2",
+  "github_repo": "Tencent/Hunyuan3D-2",
+  "real_test_summary": "Tested the shape-only and textured 3D generation pipelines locally via Gradio and ComfyUI. Produces clean manifold meshes with sharp surface detail suitable for 3D printing or scenes.",
+  "pros": [
+    "Produces sharper mesh topology and higher-resolution textures than early 3D models",
+    "Available in mini and turbo variants that run on 8GB to 12GB VRAM GPUs",
+    "Native Gradio UI, Blender add-on, and ComfyUI node support"
+  ],
+  "cons": [
+    "Full texture synthesis stage requires higher VRAM than shape-only generation",
+    "Custom community license has commercial usage thresholds for large enterprises"
+  ],
+  "last_verified": "2026-11-26"
+}

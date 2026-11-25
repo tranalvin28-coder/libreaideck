@@ -1,0 +1,35 @@
+{
+  "name": "TripoSR",
+  "slug": "triposr",
+  "tagline": "Fast feed-forward 3D reconstruction model that converts a single 2D image into a textured 3D mesh in under a second.",
+  "category": "3D",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 6,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Meshy",
+    "Tripo AI"
+  ],
+  "official_url": "https://github.com/VAST-AI-Research/TripoSR",
+  "github_repo": "VAST-AI-Research/TripoSR",
+  "real_test_summary": "Tested converting single product and character PNG images into textured OBJ and GLB meshes locally on a 6GB VRAM GPU. Exports usable base 3D geometry in a few seconds offline.",
+  "pros": [
+    "Reconstructs textured 3D meshes from a single image in seconds",
+    "Fits within 6GB VRAM GPUs and also supports slower CPU fallback mode",
+    "Permissive MIT license with clean OBJ and GLB export for Blender"
+  ],
+  "cons": [
+    "Back-side geometry inferred from single views can look soft or low-detail",
+    "Generated textures require cleanup for production game or film assets"
+  ],
+  "last_verified": "2026-11-26"
+}
