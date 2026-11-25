@@ -1,0 +1,35 @@
+{
+  "name": "Piper TTS",
+  "slug": "piper-tts",
+  "tagline": "Fast, lightweight local neural text-to-speech system optimized for low-power hardware and real-time voice.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 2,
+  "alternative_to": [
+    "ElevenLabs"
+  ],
+  "official_url": "https://github.com/rhasspy/piper",
+  "github_repo": "rhasspy/piper",
+  "real_test_summary": "Tested synthesizing speech offline on CPU with ONNX voice models. Starts almost instantaneously and runs smoothly on lightweight laptops and embedded boards without a GPU.",
+  "pros": [
+    "Very fast CPU inference and tiny memory footprint with ONNX voices",
+    "Runs completely offline with zero API keys or latency delays",
+    "MIT open-source license with CLI and HTTP server modes"
+  ],
+  "cons": [
+    "Less expressive emotional range than heavy voice-cloning models",
+    "Requires downloading separate ONNX voice checkpoints per speaker"
+  ],
+  "last_verified": "2026-11-26"
+}

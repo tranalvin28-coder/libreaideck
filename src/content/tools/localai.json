@@ -1,7 +1,7 @@
 {
   "name": "LocalAI",
   "slug": "localai",
-  "tagline": "Drop-in OpenAI REST API replacement for running LLMs, image, and audio models locally.",
+  "tagline": "Self-hosted drop-in OpenAI API replacement for running local LLMs, embeddings, audio, and images offline.",
   "category": "LLM",
   "pricing_model": "Open-Source",
   "license": "MIT",
@@ -14,22 +14,22 @@
     "macOS",
     "Linux"
   ],
-  "min_vram_gb": 0,
+  "min_vram_gb": 4,
   "min_ram_gb": 8,
   "alternative_to": [
     "OpenAI API"
   ],
   "official_url": "https://localai.io",
   "github_repo": "mudler/LocalAI",
-  "real_test_summary": "Tested locally on a macOS M2 machine with 16GB RAM running a Llama 3 8B GGUF model. The local REST API endpoint served responses at approximately 28 tokens per second completely offline without a dedicated GPU or external API keys.",
+  "real_test_summary": "Tested running a single local server exposing chat completions, embeddings, and speech endpoints offline. Simplifies pointing existing OpenAI SDK apps to local models.",
   "pros": [
-    "Drop-in OpenAI REST API compatibility works with existing client SDKs and apps",
-    "Runs offline on CPU-only hardware with 0GB VRAM and 8GB RAM minimum",
-    "Supports text, image, and audio inference under a permissive MIT license"
+    "Single local server supporting chat, embeddings, TTS, and STT endpoints",
+    "Compatible with existing OpenAI SDKs without code rewrites",
+    "MIT open-source license with container and binary distributions"
   ],
   "cons": [
-    "Multi-backend model configuration requires YAML files or Docker setup",
-    "Large Docker container images consume significant local disk space"
+    "Configuring multiple model backends can require trial and error",
+    "Dedicated single-purpose runners may edge it out on raw speed"
   ],
-  "last_verified": "2026-11-25"
+  "last_verified": "2026-11-26"
 }

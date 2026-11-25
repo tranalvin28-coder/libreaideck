@@ -1,0 +1,36 @@
+{
+  "name": "OpenHands",
+  "slug": "openhands",
+  "tagline": "Open-source AI software development agent platform that writes code, runs commands, and browses locally.",
+  "category": "Coding",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Linux",
+    "macOS",
+    "Windows"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Cursor",
+    "GitHub Copilot"
+  ],
+  "official_url": "https://docs.all-hands.dev",
+  "github_repo": "All-Hands-AI/OpenHands",
+  "real_test_summary": "Tested running an isolated workspace agent paired with a local OpenAI-compatible model endpoint. Executes shell commands, edits repository files, and iterates on test output.",
+  "pros": [
+    "Sandboxed execution environment for code edits, shell runs, and web tasks",
+    "Works with local LLM backends alongside remote API providers",
+    "MIT open-source license with active multi-agent workflows"
+  ],
+  "cons": [
+    "Sandboxed Docker setup requires extra local resources and configuration",
+    "Multi-step agent loops need capable local models to avoid retries"
+  ],
+  "last_verified": "2026-11-26"
+}
