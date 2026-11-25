@@ -1,0 +1,35 @@
+{
+  "name": "FramePack",
+  "slug": "framepack",
+  "tagline": "Next-frame prediction video diffusion architecture that generates long local videos on 6GB VRAM laptops.",
+  "category": "Video",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 6,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Runway",
+    "Kling AI"
+  ],
+  "official_url": "https://github.com/lllyasviel/FramePack",
+  "github_repo": "lllyasviel/FramePack",
+  "real_test_summary": "Tested progressive image-to-video generation locally on a 6GB VRAM GPU. Constant context-length packing keeps memory flat regardless of target video duration.",
+  "pros": [
+    "Generates multi-second 30fps video clips within 6GB VRAM limits",
+    "Constant memory footprint prevents out-of-memory crashes on longer clips",
+    "Built-in Gradio interface previews frames progressively during generation"
+  ],
+  "cons": [
+    "Primarily focused on image-to-video animation rather than pure text-to-video",
+    "Requires NVIDIA GPU with CUDA support for practical generation speeds"
+  ],
+  "last_verified": "2026-11-26"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "AnythingLLM",
+  "slug": "anythingllm",
+  "tagline": "All-in-one desktop and self-hosted workspace for chatting with local documents using built-in RAG and vector storage.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Notion AI"
+  ],
+  "official_url": "https://anythingllm.com",
+  "github_repo": "Mintplex-Labs/anythingllm",
+  "real_test_summary": "Tested ingesting PDF manuals and markdown notes into isolated local workspaces using the bundled LanceDB vector store. Answers stay grounded in uploaded documents completely offline.",
+  "pros": [
+    "Includes built-in embedder and LanceDB vector database out of the box",
+    "Desktop installer eliminates Docker setup for local document chat",
+    "Supports multi-user workspaces and custom local agent skills"
+  ],
+  "cons": [
+    "Desktop bundle consumes noticeable disk space when downloading built-in models",
+    "Advanced multi-user permission controls require self-hosted Docker mode"
+  ],
+  "last_verified": "2026-11-26"
+}

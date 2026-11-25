@@ -1,0 +1,35 @@
+{
+  "name": "Surya",
+  "slug": "surya",
+  "tagline": "Multilingual document OCR and layout analysis toolkit supporting over 90 languages with line-level text detection.",
+  "category": "OCR",
+  "pricing_model": "Open-Source",
+  "license": "GPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Adobe Acrobat OCR"
+  ],
+  "official_url": "https://github.com/VikParuchuri/surya",
+  "github_repo": "VikParuchuri/surya",
+  "real_test_summary": "Tested running multilingual page layout detection and line-by-line OCR on scanned documents offline. Accurately separates headers, tables, and reading order without cloud APIs.",
+  "pros": [
+    "Supports 90+ languages with strong layout and reading-order detection",
+    "Runs locally via CLI or Python API with no external calls",
+    "Pairs cleanly with Marker for structured PDF extraction"
+  ],
+  "cons": [
+    "Requires a dedicated GPU for fast batch processing of long documents",
+    "GPL-3.0 license requires compliance for proprietary redistribution"
+  ],
+  "last_verified": "2026-11-26"
+}

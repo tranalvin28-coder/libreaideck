@@ -1,0 +1,35 @@
+{
+  "name": "Wan2.1",
+  "slug": "wan2-1",
+  "tagline": "Open-source text-to-video and image-to-video diffusion model family capable of running on consumer 8GB VRAM GPUs.",
+  "category": "Video",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Runway",
+    "Kling AI"
+  ],
+  "official_url": "https://github.com/Wan-Video/Wan2.1",
+  "github_repo": "Wan-Video/Wan2.1",
+  "real_test_summary": "Tested the 1.3B parameter text-to-video checkpoint locally via ComfyUI on consumer hardware. Generates clean, watermark-free vertical and landscape clips completely offline.",
+  "pros": [
+    "1.3B variant runs locally on 8GB VRAM consumer graphics cards",
+    "Permissive Apache-2.0 license allows unrestricted commercial video output",
+    "Native integration into ComfyUI workflows for image-to-video control"
+  ],
+  "cons": [
+    "14B high-resolution model requires 24GB+ VRAM or heavy quantization",
+    "Rendering multi-second clips takes several minutes per generation"
+  ],
+  "last_verified": "2026-11-26"
+}
