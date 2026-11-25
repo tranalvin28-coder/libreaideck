@@ -1,0 +1,36 @@
+{
+  "name": "PrivateGPT",
+  "slug": "privategpt",
+  "tagline": "Production-ready local document Q&A and ingestion pipeline built for 100% private offline RAG workflows.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Notion AI"
+  ],
+  "official_url": "https://docs.privategpt.dev",
+  "github_repo": "zylon-ai/private-gpt",
+  "real_test_summary": "Tested ingesting local PDF and text documents using Ollama as the local backend. Exposes both a Gradio chat UI and OpenAI-compatible RAG API with zero external network traffic.",
+  "pros": [
+    "Strict offline-first architecture designed for sensitive local documents",
+    "Provides both a built-in Gradio UI and OpenAI-compatible REST API",
+    "Modular support for Ollama, Llama.cpp, and local Qdrant vector storage"
+  ],
+  "cons": [
+    "Python environment setup requires careful dependency version matching",
+    "Slower document ingestion on CPU-only machines without GPU embeddings"
+  ],
+  "last_verified": "2026-11-26"
+}

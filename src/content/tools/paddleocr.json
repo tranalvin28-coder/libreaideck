@@ -1,0 +1,35 @@
+{
+  "name": "PaddleOCR",
+  "slug": "paddleocr",
+  "tagline": "Lightweight multilingual OCR toolkit supporting 80+ languages, table recognition, and fast CPU deployment.",
+  "category": "OCR",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "Adobe Acrobat OCR"
+  ],
+  "official_url": "https://github.com/PaddlePaddle/PaddleOCR",
+  "github_repo": "PaddlePaddle/PaddleOCR",
+  "real_test_summary": "Tested extracting text and structured tables from scanned receipts and multi-language documents on CPU. Ultra-compact mobile models run fast without a dedicated graphics card.",
+  "pros": [
+    "Ultra-lightweight models run accurately on CPU with minimal RAM",
+    "Supports over 80 languages plus table structure and key-value extraction",
+    "Apache-2.0 license with CLI, Python API, and ONNX export support"
+  ],
+  "cons": [
+    "PaddlePaddle framework installation can be heavier than pure ONNX tools",
+    "Complex multi-column layouts require tuning detection thresholds"
+  ],
+  "last_verified": "2026-11-26"
+}

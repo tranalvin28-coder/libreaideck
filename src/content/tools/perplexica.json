@@ -1,0 +1,36 @@
+{
+  "name": "Perplexica",
+  "slug": "perplexica",
+  "tagline": "Open-source self-hosted AI search engine combining local LLMs with SearxNG for cited web answers.",
+  "category": "RAG",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Perplexity",
+    "ChatGPT"
+  ],
+  "official_url": "https://github.com/ItzCrazyKns/Perplexica",
+  "github_repo": "ItzCrazyKns/Perplexica",
+  "real_test_summary": "Tested running Perplexica with local Ollama models and a local SearxNG instance. Retrieves real-time web sources and summarizes cited answers without tracking search history.",
+  "pros": [
+    "Replicates Perplexity-style cited research using local Ollama models",
+    "Includes focus modes for academic papers, YouTube, Reddit, and web search",
+    "MIT license with straightforward Docker Compose deployment"
+  ],
+  "cons": [
+    "Requires internet access for live web search queries even when LLM runs locally",
+    "Answer synthesis speed depends on local model size and context length"
+  ],
+  "last_verified": "2026-11-26"
+}

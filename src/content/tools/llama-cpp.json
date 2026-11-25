@@ -1,0 +1,36 @@
+{
+  "name": "llama.cpp",
+  "slug": "llama-cpp",
+  "tagline": "Core C/C++ LLM inference engine powering GGUF quantization across CPUs, Apple Silicon, and consumer GPUs.",
+  "category": "LLM",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "OpenAI API",
+    "ChatGPT"
+  ],
+  "official_url": "https://github.com/ggml-org/llama.cpp",
+  "github_repo": "ggml-org/llama.cpp",
+  "real_test_summary": "Tested compiling and running quantized GGUF models via llama-server on Apple Silicon and CPU-only systems. Delivers maximum hardware efficiency with zero external runtime dependencies.",
+  "pros": [
+    "Runs quantized LLMs on pure CPU, Apple Metal, CUDA, Vulkan, and ROCm",
+    "Zero-dependency C/C++ binary with built-in OpenAI-compatible HTTP server",
+    "Reference implementation for GGUF quantization and split CPU/GPU offloading"
+  ],
+  "cons": [
+    "Command-line flags require manual tuning for optimal layer offloading",
+    "Built-in web chat interface is minimal compared to Open WebUI"
+  ],
+  "last_verified": "2026-11-26"
+}

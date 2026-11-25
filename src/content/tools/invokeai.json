@@ -1,0 +1,36 @@
+{
+  "name": "InvokeAI",
+  "slug": "invokeai",
+  "tagline": "Professional open-source creative studio for Stable Diffusion and Flux featuring an infinite canvas and unified layer editing.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Midjourney",
+    "Adobe Firefly"
+  ],
+  "official_url": "https://www.invoke.com",
+  "github_repo": "invoke-ai/InvokeAI",
+  "real_test_summary": "Tested inpainting, outpainting, and ControlNet composition locally on the unified canvas. Offers a polished layer-based workflow tailored for illustrators and designers.",
+  "pros": [
+    "Unified infinite canvas makes local inpainting and outpainting intuitive",
+    "Supports Flux, SDXL, and SD 1.5 models with clean model management",
+    "Apache-2.0 open-source license with polished desktop installer"
+  ],
+  "cons": [
+    "Higher system memory overhead than minimal CLI or lightweight web UIs",
+    "Advanced node workflows have fewer community templates than ComfyUI"
+  ],
+  "last_verified": "2026-11-26"
+}
