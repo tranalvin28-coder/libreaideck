@@ -1,14 +1,19 @@
 ---
 import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title,
   description = "Open-source and local AI tools directory tested for offline runs, hardware specs, and privacy.",
+  ogType = 'website',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://libreaideck.com').toString();
 ---
 
 <!doctype html>
@@ -18,6 +23,17 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:site_name" content="LibreAIDeck" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
   </head>
   <body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
     <header class="border-b border-slate-800 bg-slate-900/70 backdrop-blur">
