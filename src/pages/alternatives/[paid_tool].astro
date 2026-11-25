@@ -10,6 +10,11 @@ function toSlug(input: unknown): string {
     .replace(/^-+|-+$/g, "");
 }
 
+function getAlts(data: Record<string, unknown>): unknown[] {
+  const raw = data.alternative_to ?? data.alternatives_to ?? data.replaces ?? [];
+  return Array.isArray(raw) ? raw : [];
+}
+
 export async function getStaticPaths() {
   const slugify = (input: unknown): string =>
     String(input ?? "")
@@ -22,21 +27,23 @@ export async function getStaticPaths() {
   const paidToolMap = new Map<string, string>();
 
   for (const entry of tools) {
-    const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
-    if (Array.isArray(alts)) {
-      for (const alt of alts) {
-        const slug = slugify(alt);
-        if (slug && !paidToolMap.has(slug)) {
-          paidToolMap.set(slug, String(alt));
-        }
+    const alts = Array.isArray(entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+      ? (entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+      : [];
+    for (const alt of alts) {
+      const slug = slugify(alt);
+      if (slug && !paidToolMap.has(slug)) {
+        paidToolMap.set(slug, String(alt));
       }
     }
   }
 
   return Array.from(paidToolMap.entries()).map(([paid_tool, paidToolName]) => {
     const matchingTools = tools.filter((entry) => {
-      const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
-      return Array.isArray(alts) && alts.some((alt) => slugify(alt) === paid_tool);
+      const alts = Array.isArray(entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+        ? (entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+        : [];
+      return alts.some((alt) => slugify(alt) === paid_tool);
     });
 
     return {
@@ -46,10 +53,39 @@ export async function getStaticPaths() {
   });
 }
 
+const { paid_tool } = Astro.params;
 const { paidToolName, matchingTools } = Astro.props;
+const siteUrl = (Astro.site ?? new URL("https://libreaideck.com")).toString().replace(/\/$/, "");
+const pageDescription = `Compare open-source and local AI alternatives to ${paidToolName}, including offline support, licensing, and VRAM/RAM requirements.`;
+
+const alternativesSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `Best Open-Source Alternatives to ${paidToolName}`,
+  description: pageDescription,
+  url: `${siteUrl}/alternatives/${paid_tool}`,
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: matchingTools.length,
+    itemListElement: matchingTools.map((entry, index) => {
+      const slug = entry.data.slug ?? entry.slug ?? toSlug(entry.data.name ?? entry.id);
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: entry.data.name,
+        url: `${siteUrl}/tool/${slug}`,
+      };
+    }),
+  },
+};
 ---
 
-<BaseLayout title={`${paidToolName} Open-Source Alternatives | LibreAIDeck`}>
+<BaseLayout
+  title={`${paidToolName} Open-Source Alternatives | LibreAIDeck`}
+  description={pageDescription}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(alternativesSchema)} />
+
   <section class="mb-8">
     <p class="text-sm text-emerald-400 font-medium mb-2">Open-Source Alternatives</p>
     <h1 class="text-3xl font-bold tracking-tight mb-2">

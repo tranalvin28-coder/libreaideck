@@ -4,14 +4,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const tools = await getCollection("tools");
 const categories = [...new Set(tools.map((t) => t.data.category))].sort();
-const paidTools = [...new Set(tools.flatMap((t) => t.data.alternative_to))].sort();
+const paidTools = [...new Set(tools.flatMap((t) => t.data.alternative_to ?? []))].sort();
 const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const siteUrl = (Astro.site ?? new URL("https://libreaideck.com")).toString().replace(/\/$/, "");
+const directorySchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "LibreAIDeck — Open-Source & Local AI Tools Directory",
+  description:
+    "Filter local and open-source AI tools by category, offline execution, zero signup, no watermark, and minimum VRAM.",
+  url: `${siteUrl}/`,
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: tools.length,
+    itemListElement: tools.map(({ data }, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: data.name,
+      url: `${siteUrl}/tool/${data.slug}`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="LibreAIDeck — Open-Source & Local AI Tools Directory"
   description="Filter local and open-source AI tools by category, offline execution, zero signup, no watermark, and minimum VRAM."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(directorySchema)} />
+
   <section class="mb-8">
     <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
       Local &amp; Open-Source AI Tools
@@ -77,7 +99,7 @@ const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replac
         data-tagline={data.tagline.toLowerCase()}
         data-category={data.category.toLowerCase()}
         data-license={data.license.toLowerCase()}
-        data-alternatives={data.alternative_to.join(", ").toLowerCase()}
+        data-alternatives={(data.alternative_to ?? []).join(", ").toLowerCase()}
         data-offline={String(data.runs_offline)}
         data-nosignup={String(!data.requires_signup)}
         data-nowatermark={String(!data.has_watermark)}
@@ -107,7 +129,7 @@ const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replac
           </div>
           <div class="flex items-center justify-between gap-2 pt-1">
             <div class="flex flex-wrap gap-1.5">
-              {data.alternative_to.slice(0, 2).map((alt) => (
+              {(data.alternative_to ?? []).slice(0, 2).map((alt) => (
                 <a
                   href={`/alternatives/${toSlug(alt)}`}
                   class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:bg-slate-700"
