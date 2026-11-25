@@ -11,6 +11,13 @@ function toSlug(input: unknown): string {
 }
 
 export async function getStaticPaths() {
+  const slugify = (input: unknown): string =>
+    String(input ?? "")
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
   const tools = await getCollection("tools");
   const paidToolMap = new Map<string, string>();
 
@@ -18,7 +25,7 @@ export async function getStaticPaths() {
     const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
     if (Array.isArray(alts)) {
       for (const alt of alts) {
-        const slug = toSlug(alt);
+        const slug = slugify(alt);
         if (slug && !paidToolMap.has(slug)) {
           paidToolMap.set(slug, String(alt));
         }
@@ -29,7 +36,7 @@ export async function getStaticPaths() {
   return Array.from(paidToolMap.entries()).map(([paid_tool, paidToolName]) => {
     const matchingTools = tools.filter((entry) => {
       const alts = entry.data.alternatives_to ?? entry.data.replaces ?? [];
-      return Array.isArray(alts) && alts.some((alt) => toSlug(alt) === paid_tool);
+      return Array.isArray(alts) && alts.some((alt) => slugify(alt) === paid_tool);
     });
 
     return {
@@ -42,46 +49,41 @@ export async function getStaticPaths() {
 const { paidToolName, matchingTools } = Astro.props;
 ---
 
-<BaseLayout
-  title={`Open-Source & Local Alternatives to ${label} — LibreAIDeck`}
-  description={`Compare self-hosted, offline, and open-source AI alternatives to ${label}.`}
->
-  <div class="mb-6">
-    <a href="/" class="text-sm text-emerald-400 hover:text-emerald-300">← Back to Directory</a>
-  </div>
-
-  <header class="mb-8">
-    <h1 class="text-3xl font-bold text-white mb-2">
-      Open-Source &amp; Local Alternatives to {label}
+<BaseLayout title={`${paidToolName} Open-Source Alternatives | LibreAIDeck`}>
+  <section class="mb-8">
+    <p class="text-sm text-emerald-400 font-medium mb-2">Open-Source Alternatives</p>
+    <h1 class="text-3xl font-bold tracking-tight mb-2">
+      Best Self-Hosted &amp; Open-Source Alternatives to {paidToolName}
     </h1>
-    <p class="text-slate-400">
-      {tools.length} tool{tools.length > 1 ? "s" : ""} matched for replacing {label} without ongoing subscription fees.
+    <p class="text-slate-300">
+      Compare local and open-source tools that can replace {paidToolName}, including hardware and VRAM requirements.
     </p>
-  </header>
+  </section>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    {tools.map(({ data }) => (
-      <article class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between text-xs mb-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              {data.category}
-            </span>
-            <span class="text-slate-400">{data.license}</span>
+  <div class="grid gap-4 md:grid-cols-2">
+    {matchingTools.map((entry) => {
+      const data = entry.data;
+      const slug = data.slug ?? entry.slug ?? toSlug(data.name ?? entry.id);
+      return (
+        <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-semibold mb-1">
+              <a href={`/tool/${slug}`} class="hover:text-emerald-400 transition">{data.name}</a>
+            </h2>
+            <p class="text-sm text-slate-300 mb-4">{data.tagline}</p>
           </div>
-          <h2 class="text-xl font-semibold text-white mb-1.5">
-            <a href={`/tool/${data.slug}`} class="hover:text-emerald-400 transition">{data.name}</a>
-          </h2>
-          <p class="text-sm text-slate-300 mb-4">{data.tagline}</p>
-        </div>
 
-        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-          <span>Min VRAM: <strong class="text-slate-200">{data.min_vram_gb} GB</strong> · RAM: <strong class="text-slate-200">{data.min_ram_gb} GB</strong></span>
-          <a href={`/tool/${data.slug}`} class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
-            View Spec →
-          </a>
-        </div>
-      </article>
-    ))}
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <span>
+              Min VRAM: <strong class="text-slate-200">{data.min_vram_gb} GB</strong> · RAM:{" "}
+              <strong class="text-slate-200">{data.min_ram_gb} GB</strong>
+            </span>
+            <a href={`/tool/${slug}`} class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
+              View Spec →
+            </a>
+          </div>
+        </article>
+      );
+    })}
   </div>
 </BaseLayout>
