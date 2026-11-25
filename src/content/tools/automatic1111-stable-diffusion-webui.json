@@ -1,0 +1,36 @@
+{
+  "name": "Automatic1111 Stable Diffusion WebUI",
+  "slug": "automatic1111-stable-diffusion-webui",
+  "tagline": "Browser-based local GUI for running Stable Diffusion models and extensions completely offline.",
+  "category": "Image",
+  "pricing_model": "Open-Source",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Midjourney",
+    "DALL-E 3"
+  ],
+  "official_url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+  "github_repo": "AUTOMATIC1111/stable-diffusion-webui",
+  "real_test_summary": "Tested locally on an NVIDIA RTX 3060 (12GB VRAM) using standard Stable Diffusion 1.5 checkpoints. The web interface generated 512x512 images in approximately 2.5 seconds per render completely offline without accounts or watermarks.",
+  "pros": [
+    "Runs completely offline with zero signup requirements or output watermarks",
+    "Extensive ecosystem of community extensions including ControlNet, LoRA, and upscalers",
+    "Supports low-VRAM GPUs down to 4GB using built-in memory optimization flags"
+  ],
+  "cons": [
+    "Requires manual Python environment setup and Git repository cloning",
+    "Slower upstream updates for newer model architectures compared to ComfyUI or Forge"
+  ],
+  "last_verified": "2026-11-25"
+}

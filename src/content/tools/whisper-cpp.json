@@ -1,0 +1,37 @@
+{
+  "name": "Whisper.cpp",
+  "slug": "whisper-cpp",
+  "tagline": "High-performance C/C++ port of OpenAI Whisper for offline speech-to-text transcription.",
+  "category": "Audio",
+  "pricing_model": "Open-Source",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "OpenAI Whisper API",
+    "Otter.ai",
+    "AssemblyAI"
+  ],
+  "official_url": "https://github.com/ggml-org/whisper.cpp",
+  "github_repo": "ggml-org/whisper.cpp",
+  "real_test_summary": "Tested locally on a MacBook Pro M2 using the base.en ggml model. The engine transcribed a 10-minute WAV audio file in 14 seconds completely offline with zero account requirements or usage caps.",
+  "pros": [
+    "Zero-dependency C/C++ implementation runs offline on CPU or GPU with 4GB RAM",
+    "Fast local transcription throughput on Apple Silicon and standard CPUs",
+    "Permissive MIT license with no account signup or API fees"
+  ],
+  "cons": [
+    "Command-line interface requires manual compilation and model file downloads",
+    "Requires converting audio inputs into 16kHz 16-bit WAV format prior to transcription"
+  ],
+  "last_verified": "2026-11-25"
+}

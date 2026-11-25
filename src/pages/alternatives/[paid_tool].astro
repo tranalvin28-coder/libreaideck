@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+function toSlug(input: string) {
+  return input.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export async function getStaticPaths() {
+  const tools = await getCollection("tools");
+  const map = new Map<string, { label: string; items: typeof tools }>();
+
+  for (const tool of tools) {
+    for (const alt of tool.data.alternative_to) {
+      const slug = toSlug(alt);
+      if (!map.has(slug)) {
+        map.set(slug, { label: alt, items: [] });
+      }
+      map.get(slug)!.items.push(tool);
+    }
+  }
+
+  return Array.from(map.entries()).map(([paid_tool, group]) => ({
+    params: { paid_tool },
+    props: { label: group.label, tools: group.items },
+  }));
+}
+
+const { label, tools } = Astro.props;
+---
+
+<BaseLayout
+  title={`Open-Source & Local Alternatives to ${label} — LibreAIDeck`}
+  description={`Compare self-hosted, offline, and open-source AI alternatives to ${label}.`}
+>
+  <div class="mb-6">
+    <a href="/" class="text-sm text-emerald-400 hover:text-emerald-300">← Back to Directory</a>
+  </div>
+
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-white mb-2">
+      Open-Source &amp; Local Alternatives to {label}
+    </h1>
+    <p class="text-slate-400">
+      {tools.length} tool{tools.length > 1 ? "s" : ""} matched for replacing {label} without ongoing subscription fees.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {tools.map(({ data }) => (
+      <article class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              {data.category}
+            </span>
+            <span class="text-slate-400">{data.license}</span>
+          </div>
+          <h2 class="text-xl font-semibold text-white mb-1.5">
+            <a href={`/tool/${data.slug}`} class="hover:text-emerald-400 transition">{data.name}</a>
+          </h2>
+          <p class="text-sm text-slate-300 mb-4">{data.tagline}</p>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <span>Min VRAM: <strong class="text-slate-200">{data.min_vram_gb} GB</strong> · RAM: <strong class="text-slate-200">{data.min_ram_gb} GB</strong></span>
+          <a href={`/tool/${data.slug}`} class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
+            View Spec →
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

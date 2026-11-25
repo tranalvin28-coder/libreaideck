@@ -1,16 +1,198 @@
 ---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const tools = await getCollection("tools");
+const categories = [...new Set(tools.map((t) => t.data.category))].sort();
+const paidTools = [...new Set(tools.flatMap((t) => t.data.alternative_to))].sort();
+const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="LibreAIDeck — Open-Source & Local AI Tools Directory"
+  description="Filter local and open-source AI tools by category, offline execution, zero signup, no watermark, and minimum VRAM."
+>
+  <section class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+      Local &amp; Open-Source AI Tools
+    </h1>
+    <p class="text-slate-400 max-w-2xl">
+      Practical hardware specs, offline capability, and real-world test notes for running AI on your own machine.
+    </p>
+  </section>
+
+  <section class="bg-slate-900 border border-slate-800 rounded-xl p-4 mb-8 space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search tool, license, or alternative (e.g. ComfyUI, Whisper, Midjourney)..."
+        class="md:col-span-2 w-full rounded-lg bg-slate-950 border border-slate-700 px-3.5 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400"
+      />
+      <select
+        id="category-filter"
+        class="w-full rounded-lg bg-slate-950 border border-slate-700 px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-400"
+      >
+        <option value="">All Categories</option>
+        {categories.map((cat) => (
+          <option value={cat.toLowerCase()}>{cat}</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4 text-sm text-slate-300">
+      <label class="inline-flex items-center gap-2 cursor-pointer">
+        <input id="filter-offline" type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500" />
+        <span>Runs Offline</span>
+      </label>
+      <label class="inline-flex items-center gap-2 cursor-pointer">
+        <input id="filter-no-signup" type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500" />
+        <span>No Sign-up</span>
+      </label>
+      <label class="inline-flex items-center gap-2 cursor-pointer">
+        <input id="filter-no-watermark" type="checkbox" class="rounded border-slate-700 bg-slate-950 text-emerald-500" />
+        <span>No Watermark</span>
+      </label>
+      <div class="flex items-center gap-2 ml-auto">
+        <label for="max-vram" class="text-slate-400">Max VRAM (GB):</label>
+        <select
+          id="max-vram"
+          class="rounded-lg bg-slate-950 border border-slate-700 px-2.5 py-1.5 text-sm text-white focus:outline-none focus:border-emerald-400"
+        >
+          <option value="">Any</option>
+          <option value="0">0 GB (CPU / RAM only)</option>
+          <option value="4">Up to 4 GB</option>
+          <option value="8">Up to 8 GB</option>
+          <option value="12">Up to 12 GB</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {tools.map(({ data }) => (
+      <article
+        class="tool-card bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-xl p-5 flex flex-col justify-between transition"
+        data-name={data.name.toLowerCase()}
+        data-tagline={data.tagline.toLowerCase()}
+        data-category={data.category.toLowerCase()}
+        data-license={data.license.toLowerCase()}
+        data-alternatives={data.alternative_to.join(", ").toLowerCase()}
+        data-offline={String(data.runs_offline)}
+        data-nosignup={String(!data.requires_signup)}
+        data-nowatermark={String(!data.has_watermark)}
+        data-vram={String(data.min_vram_gb)}
+      >
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              {data.category}
+            </span>
+            <span class="text-xs text-slate-400">{data.license}</span>
+          </div>
+          <h2 class="text-xl font-semibold text-white mb-1.5">
+            <a href={`/tool/${data.slug}`} class="hover:text-emerald-400 transition">
+              {data.name}
+            </a>
+          </h2>
+          <p class="text-sm text-slate-300 mb-4">{data.tagline}</p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-slate-800/80">
+          <div class="flex flex-wrap gap-3 text-xs text-slate-400">
+            <span>VRAM: <strong class="text-slate-200">{data.min_vram_gb} GB</strong></span>
+            <span>RAM: <strong class="text-slate-200">{data.min_ram_gb} GB</strong></span>
+            <span>Offline: <strong class="text-slate-200">{data.runs_offline ? "Yes" : "No"}</strong></span>
+            <span>No Sign-up: <strong class="text-slate-200">{!data.requires_signup ? "Yes" : "No"}</strong></span>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-1">
+            <div class="flex flex-wrap gap-1.5">
+              {data.alternative_to.slice(0, 2).map((alt) => (
+                <a
+                  href={`/alternatives/${toSlug(alt)}`}
+                  class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:bg-slate-700"
+                >
+                  vs {alt}
+                </a>
+              ))}
+            </div>
+            <a href={`/tool/${data.slug}`} class="text-sm font-medium text-emerald-400 hover:text-emerald-300">
+              Details →
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  {paidTools.length > 0 && (
+    <section class="mt-12 pt-8 border-t border-slate-800">
+      <h2 class="text-lg font-semibold text-white mb-3">Browse by Paid Tool Alternative</h2>
+      <div class="flex flex-wrap gap-2">
+        {paidTools.map((alt) => (
+          <a
+            href={`/alternatives/${toSlug(alt)}`}
+            class="text-xs px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500/50 text-slate-300"
+          >
+            Alternatives to {alt}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <script>
+    const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
+    const categoryFilter = document.getElementById("category-filter") as HTMLSelectElement | null;
+    const filterOffline = document.getElementById("filter-offline") as HTMLInputElement | null;
+    const filterNoSignup = document.getElementById("filter-no-signup") as HTMLInputElement | null;
+    const filterNoWatermark = document.getElementById("filter-no-watermark") as HTMLInputElement | null;
+    const maxVram = document.getElementById("max-vram") as HTMLSelectElement | null;
+    const cards = Array.from(document.querySelectorAll(".tool-card")) as HTMLElement[];
+
+    function applyFilters() {
+      const q = (searchInput?.value || "").trim().toLowerCase();
+      const cat = (categoryFilter?.value || "").toLowerCase();
+      const needOffline = Boolean(filterOffline?.checked);
+      const needNoSignup = Boolean(filterNoSignup?.checked);
+      const needNoWatermark = Boolean(filterNoWatermark?.checked);
+      const vramLimit = maxVram?.value ? Number(maxVram.value) : null;
+
+      for (const card of cards) {
+        const name = card.dataset.name || "";
+        const tagline = card.dataset.tagline || "";
+        const category = card.dataset.category || "";
+        const license = card.dataset.license || "";
+        const alternatives = card.dataset.alternatives || "";
+        const offline = card.dataset.offline === "true";
+        const noSignup = card.dataset.nosignup === "true";
+        const noWatermark = card.dataset.nowatermark === "true";
+        const minVram = Number(card.dataset.vram || "0");
+
+        const matchesQuery =
+          !q ||
+          name.includes(q) ||
+          tagline.includes(q) ||
+          category.includes(q) ||
+          license.includes(q) ||
+          alternatives.includes(q);
+
+        const matchesCategory = !cat || category === cat;
+        const matchesOffline = !needOffline || offline;
+        const matchesNoSignup = !needNoSignup || noSignup;
+        const matchesNoWatermark = !needNoWatermark || noWatermark;
+        const matchesVram = vramLimit === null || minVram <= vramLimit;
+
+        card.style.display =
+          matchesQuery && matchesCategory && matchesOffline && matchesNoSignup && matchesNoWatermark && matchesVram
+            ? ""
+            : "none";
+      }
+    }
+
+    [searchInput, categoryFilter, filterOffline, filterNoSignup, filterNoWatermark, maxVram].forEach((el) => {
+      el?.addEventListener("input", applyFilters);
+      el?.addEventListener("change", applyFilters);
+    });
+  </script>
+</BaseLayout>

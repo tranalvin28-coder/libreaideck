@@ -1,0 +1,133 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const tools = await getCollection("tools");
+  return tools.map((tool) => ({
+    params: { slug: tool.data.slug },
+    props: { tool: tool.data },
+  }));
+}
+
+const { tool } = Astro.props;
+const toSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: tool.name,
+  description: tool.tagline,
+  applicationCategory: tool.category,
+  operatingSystem: tool.platforms.join(", "),
+  license: tool.license,
+  url: tool.official_url,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+---
+
+<BaseLayout title={`${tool.name} — LibreAIDeck`} description={tool.tagline}>
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+
+  <div class="mb-6">
+    <a href="/" class="text-sm text-emerald-400 hover:text-emerald-300">← Back to Directory</a>
+  </div>
+
+  <article class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-8">
+    <header class="border-b border-slate-800 pb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            {tool.category}
+          </span>
+          <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300">
+            {tool.pricing_model} · {tool.license}
+          </span>
+          <span class="text-xs text-slate-400">Verified: {tool.last_verified}</span>
+        </div>
+        <h1 class="text-3xl font-bold text-white mb-2">{tool.name}</h1>
+        <p class="text-slate-300 max-w-3xl">{tool.tagline}</p>
+      </div>
+
+      <div class="flex flex-wrap gap-3 shrink-0">
+        <a
+          href={tool.official_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition"
+        >
+          Official Site
+        </a>
+        {tool.github_repo && (
+          <a
+            href={`https://github.com/${tool.github_repo}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-sm transition"
+          >
+            GitHub
+          </a>
+        )}
+      </div>
+    </header>
+
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 mb-1">Min VRAM</div>
+        <div class="text-lg font-semibold text-white">{tool.min_vram_gb} GB</div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 mb-1">Min RAM</div>
+        <div class="text-lg font-semibold text-white">{tool.min_ram_gb} GB</div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 mb-1">Runs Offline</div>
+        <div class="text-lg font-semibold text-white">{tool.runs_offline ? "Yes" : "No"}</div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div class="text-xs text-slate-400 mb-1">Sign-up / Watermark</div>
+        <div class="text-sm font-semibold text-white">
+          {tool.requires_signup ? "Sign-up req." : "No sign-up"} · {tool.has_watermark ? "Watermark" : "No watermark"}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-950/70 border border-slate-800 rounded-xl p-5">
+      <h2 class="text-lg font-semibold text-white mb-2">Real-World Test Summary</h2>
+      <p class="text-slate-300 leading-relaxed">{tool.real_test_summary}</p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-5">
+        <h2 class="text-base font-semibold text-emerald-400 mb-3">Pros</h2>
+        <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+          {tool.pros.map((pro) => <li>{pro}</li>)}
+        </ul>
+      </div>
+      <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-5">
+        <h2 class="text-base font-semibold text-amber-400 mb-3">Cons</h2>
+        <ul class="space-y-2 text-sm text-slate-300 list-disc list-inside">
+          {tool.cons.map((con) => <li>{con}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-sm">
+      <div>
+        <span class="text-slate-400 mr-2">Platforms:</span>
+        <span class="text-slate-200">{tool.platforms.join(", ")}</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-slate-400">Alternative to:</span>
+        {tool.alternative_to.map((alt) => (
+          <a
+            href={`/alternatives/${toSlug(alt)}`}
+            class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs"
+          >
+            {alt}
+          </a>
+        ))}
+      </div>
+    </section>
+  </article>
+</BaseLayout>
