@@ -2,7 +2,7 @@
 
 Live searchable hardware matrix & benchmarks: **[https://libreaideck.com](https://libreaideck.com)**
 
-Filter **51+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
+Filter **52+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
 
 ## Quick Hardware Tier Links
 * [0 GB VRAM (CPU-Only AI Tools)](https://libreaideck.com/vram/cpu-only)
@@ -11,61 +11,62 @@ Filter **51+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 * [≤ 8 GB VRAM AI Tools](https://libreaideck.com/vram/8gb)
 * [Open-Source Alternatives to Paid AI Subscriptions](https://libreaideck.com/alternatives/)
 
-## Full VRAM & Hardware Benchmark Matrix (51 Tools)
+## Full VRAM & Hardware Benchmark Matrix (52 Tools)
 
 | Tool | Category | Min VRAM | Min RAM | Replaces Paid Tools |
 | :--- | :--- | :--- | :--- | :--- |
-| [Crawl4AI](https://libreaideck.com/tool/crawl4ai) | RAG | **0 GB (CPU-Only)** | 4 GB | — |
-| [Docling](https://libreaideck.com/tool/docling) | OCR | **0 GB (CPU-Only)** | 8 GB | — |
-| [KoboldCpp](https://libreaideck.com/tool/koboldcpp) | LLM | **0 GB (CPU-Only)** | 8 GB | — |
-| [Kokoro TTS](https://libreaideck.com/tool/kokoro-tts) | Audio | **0 GB (CPU-Only)** | 4 GB | — |
-| [llama.cpp](https://libreaideck.com/tool/llama-cpp) | LLM | **0 GB (CPU-Only)** | 4 GB | — |
-| [Open WebUI](https://libreaideck.com/tool/open-webui) | LLM | **0 GB (CPU-Only)** | 4 GB | — |
-| [PaddleOCR](https://libreaideck.com/tool/paddleocr) | OCR | **0 GB (CPU-Only)** | 4 GB | — |
-| [Piper](https://libreaideck.com/tool/piper) | Audio | **0 GB (CPU-Only)** | 2 GB | — |
-| [Whisper.cpp](https://libreaideck.com/tool/whisper-cpp) | Audio | **0 GB (CPU-Only)** | 4 GB | — |
-| [Faster-Whisper](https://libreaideck.com/tool/faster-whisper) | Audio | **2 GB VRAM** | 4 GB | — |
-| [ACE-Step](https://libreaideck.com/tool/ace-step) | Audio | **4 GB VRAM** | 8 GB | — |
-| [AnythingLLM](https://libreaideck.com/tool/anythingllm) | RAG | **4 GB VRAM** | 8 GB | — |
-| [Automatic1111 Stable Diffusion WebUI](https://libreaideck.com/tool/automatic1111-stable-diffusion-webui) | Image | **4 GB VRAM** | 8 GB | — |
-| [Bark](https://libreaideck.com/tool/bark) | Audio | **4 GB VRAM** | 8 GB | — |
-| [ComfyUI](https://libreaideck.com/tool/comfyui) | Image | **4 GB VRAM** | 8 GB | — |
-| [Continue](https://libreaideck.com/tool/continue) | Coding | **4 GB VRAM** | 8 GB | — |
-| [F5-TTS](https://libreaideck.com/tool/f5-tts) | Audio | **4 GB VRAM** | 8 GB | — |
-| [Flowise](https://libreaideck.com/tool/flowise) | RAG | **4 GB VRAM** | 8 GB | — |
-| [Fooocus](https://libreaideck.com/tool/fooocus) | Image | **4 GB VRAM** | 8 GB | — |
-| [InvokeAI](https://libreaideck.com/tool/invokeai) | Image | **4 GB VRAM** | 8 GB | — |
-| [Jan](https://libreaideck.com/tool/jan) | LLM | **4 GB VRAM** | 8 GB | — |
-| [LibreChat](https://libreaideck.com/tool/librechat) | LLM | **4 GB VRAM** | 8 GB | — |
-| [LM Studio](https://libreaideck.com/tool/lm-studio) | LLM | **4 GB VRAM** | 8 GB | — |
-| [LobeChat](https://libreaideck.com/tool/lobechat) | LLM | **4 GB VRAM** | 8 GB | — |
-| [LocalAI](https://libreaideck.com/tool/localai) | LLM | **4 GB VRAM** | 8 GB | — |
-| [Marker](https://libreaideck.com/tool/marker) | OCR | **4 GB VRAM** | 8 GB | — |
-| [MLC LLM](https://libreaideck.com/tool/mlc-llm) | LLM | **4 GB VRAM** | 8 GB | — |
-| [Msty](https://libreaideck.com/tool/msty) | LLM | **4 GB VRAM** | 8 GB | — |
-| [Ollama](https://libreaideck.com/tool/ollama) | LLM | **4 GB VRAM** | 8 GB | — |
-| [Perplexica](https://libreaideck.com/tool/perplexica) | RAG | **4 GB VRAM** | 8 GB | — |
-| [PrivateGPT](https://libreaideck.com/tool/privategpt) | RAG | **4 GB VRAM** | 8 GB | — |
-| [Stable Diffusion WebUI Forge](https://libreaideck.com/tool/stable-diffusion-webui-forge) | Image | **4 GB VRAM** | 8 GB | — |
-| [Surya](https://libreaideck.com/tool/surya) | OCR | **4 GB VRAM** | 8 GB | — |
-| [SwarmUI](https://libreaideck.com/tool/swarmui) | Image | **4 GB VRAM** | 8 GB | — |
-| [Tabby](https://libreaideck.com/tool/tabby) | Coding | **4 GB VRAM** | 8 GB | — |
-| [WhisperX](https://libreaideck.com/tool/whisperx) | Audio | **4 GB VRAM** | 8 GB | — |
-| [Dify](https://libreaideck.com/tool/dify) | RAG | **6 GB VRAM** | 16 GB | — |
-| [ExLlamaV2](https://libreaideck.com/tool/exllamav2) | LLM | **6 GB VRAM** | 16 GB | — |
-| [FramePack](https://libreaideck.com/tool/framepack) | Video | **6 GB VRAM** | 16 GB | — |
-| [TripoSR](https://libreaideck.com/tool/triposr) | 3D | **6 GB VRAM** | 16 GB | — |
-| [Aider](https://libreaideck.com/tool/aider) | Coding | **8 GB VRAM** | 16 GB | — |
-| [Cline](https://libreaideck.com/tool/cline) | Coding | **8 GB VRAM** | 16 GB | — |
-| [CogVideoX](https://libreaideck.com/tool/cogvideox) | Video | **8 GB VRAM** | 16 GB | — |
-| [FLUX.1 Schnell](https://libreaideck.com/tool/flux-1-schnell) | Image | **8 GB VRAM** | 16 GB | — |
-| [Hunyuan3D-2](https://libreaideck.com/tool/hunyuan3d-2) | 3D | **8 GB VRAM** | 16 GB | — |
-| [InstantMesh](https://libreaideck.com/tool/instantmesh) | 3D | **8 GB VRAM** | 16 GB | — |
-| [LMDeploy](https://libreaideck.com/tool/lmdeploy) | LLM | **8 GB VRAM** | 16 GB | — |
-| [LTX-Video](https://libreaideck.com/tool/ltx-video) | Video | **8 GB VRAM** | 16 GB | — |
-| [OpenHands](https://libreaideck.com/tool/openhands) | Coding | **8 GB VRAM** | 16 GB | — |
-| [Wan2.1](https://libreaideck.com/tool/wan2-1) | Video | **8 GB VRAM** | 16 GB | — |
-| [YuE](https://libreaideck.com/tool/yue) | Audio | **8 GB VRAM** | 16 GB | — |
+| [Crawl4AI](https://libreaideck.com/tool/crawl4ai) | RAG | **0 GB (CPU-Only)** | 4 GB | Perplexity |
+| [Docling](https://libreaideck.com/tool/docling) | OCR | **0 GB (CPU-Only)** | 8 GB | Adobe Acrobat OCR |
+| [KoboldCpp](https://libreaideck.com/tool/koboldcpp) | LLM | **0 GB (CPU-Only)** | 8 GB | ChatGPT, Claude |
+| [Kokoro TTS](https://libreaideck.com/tool/kokoro-tts) | Audio | **0 GB (CPU-Only)** | 4 GB | ElevenLabs |
+| [Kokoro-82M](https://libreaideck.com/tool/kokoro-82m) | Audio | **0 GB (CPU-Only)** | 4 GB | ElevenLabs, Murf.ai, Play.ht |
+| [llama.cpp](https://libreaideck.com/tool/llama-cpp) | LLM | **0 GB (CPU-Only)** | 4 GB | OpenAI API, ChatGPT |
+| [PaddleOCR](https://libreaideck.com/tool/paddleocr) | OCR | **0 GB (CPU-Only)** | 4 GB | Adobe Acrobat OCR |
+| [Piper](https://libreaideck.com/tool/piper) | Audio | **0 GB (CPU-Only)** | 2 GB | ElevenLabs |
+| [Whisper.cpp](https://libreaideck.com/tool/whisper-cpp) | Audio | **0 GB (CPU-Only)** | 4 GB | OpenAI Whisper API, Otter.ai, AssemblyAI |
+| [Faster-Whisper](https://libreaideck.com/tool/faster-whisper) | Audio | **2 GB VRAM** | 4 GB | OpenAI API |
+| [ACE-Step](https://libreaideck.com/tool/ace-step) | Audio | **4 GB VRAM** | 8 GB | Suno, Udio |
+| [AnythingLLM](https://libreaideck.com/tool/anythingllm) | RAG | **4 GB VRAM** | 8 GB | ChatGPT, Notion AI |
+| [Automatic1111 Stable Diffusion WebUI](https://libreaideck.com/tool/automatic1111-stable-diffusion-webui) | Image | **4 GB VRAM** | 8 GB | Midjourney, DALL-E 3 |
+| [Bark](https://libreaideck.com/tool/bark) | Audio | **4 GB VRAM** | 8 GB | ElevenLabs |
+| [ComfyUI](https://libreaideck.com/tool/comfyui) | Image | **4 GB VRAM** | 8 GB | Midjourney, Adobe Firefly |
+| [Continue](https://libreaideck.com/tool/continue) | Coding | **4 GB VRAM** | 8 GB | Cursor, GitHub Copilot |
+| [F5-TTS](https://libreaideck.com/tool/f5-tts) | Audio | **4 GB VRAM** | 8 GB | ElevenLabs, Resemble AI, Descript Overdub |
+| [Flowise](https://libreaideck.com/tool/flowise) | RAG | **4 GB VRAM** | 8 GB | ChatGPT, Perplexity |
+| [Fooocus](https://libreaideck.com/tool/fooocus) | Image | **4 GB VRAM** | 8 GB | Midjourney |
+| [InvokeAI](https://libreaideck.com/tool/invokeai) | Image | **4 GB VRAM** | 8 GB | Midjourney, Adobe Firefly |
+| [Jan](https://libreaideck.com/tool/jan) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [LibreChat](https://libreaideck.com/tool/librechat) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [LM Studio](https://libreaideck.com/tool/lm-studio) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [LobeChat](https://libreaideck.com/tool/lobechat) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [LocalAI](https://libreaideck.com/tool/localai) | LLM | **4 GB VRAM** | 8 GB | OpenAI API |
+| [Marker](https://libreaideck.com/tool/marker) | OCR | **4 GB VRAM** | 8 GB | Adobe Acrobat OCR |
+| [MLC LLM](https://libreaideck.com/tool/mlc-llm) | LLM | **4 GB VRAM** | 8 GB | OpenAI API, ChatGPT |
+| [Msty](https://libreaideck.com/tool/msty) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [Ollama](https://libreaideck.com/tool/ollama) | LLM | **4 GB VRAM** | 8 GB | ChatGPT, Claude |
+| [Perplexica](https://libreaideck.com/tool/perplexica) | RAG | **4 GB VRAM** | 8 GB | Perplexity, ChatGPT |
+| [PrivateGPT](https://libreaideck.com/tool/privategpt) | RAG | **4 GB VRAM** | 8 GB | ChatGPT, Notion AI |
+| [Stable Diffusion WebUI Forge](https://libreaideck.com/tool/stable-diffusion-webui-forge) | Image | **4 GB VRAM** | 8 GB | Midjourney, DALL-E 3 |
+| [Surya](https://libreaideck.com/tool/surya) | OCR | **4 GB VRAM** | 8 GB | Adobe Acrobat OCR |
+| [SwarmUI](https://libreaideck.com/tool/swarmui) | Image | **4 GB VRAM** | 8 GB | Midjourney, Adobe Firefly |
+| [Tabby](https://libreaideck.com/tool/tabby) | Coding | **4 GB VRAM** | 8 GB | GitHub Copilot, Cursor |
+| [WhisperX](https://libreaideck.com/tool/whisperx) | Audio | **4 GB VRAM** | 8 GB | OpenAI Whisper API |
+| [Dify](https://libreaideck.com/tool/dify) | RAG | **6 GB VRAM** | 16 GB | ChatGPT, Notion AI |
+| [ExLlamaV2](https://libreaideck.com/tool/exllamav2) | LLM | **6 GB VRAM** | 16 GB | OpenAI API |
+| [FramePack](https://libreaideck.com/tool/framepack) | Video | **6 GB VRAM** | 16 GB | Runway, Kling AI |
+| [TripoSR](https://libreaideck.com/tool/triposr) | 3D | **6 GB VRAM** | 16 GB | Meshy, Tripo AI |
+| [Aider](https://libreaideck.com/tool/aider) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
+| [Cline](https://libreaideck.com/tool/cline) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
+| [CogVideoX](https://libreaideck.com/tool/cogvideox) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
+| [FLUX.1 Schnell](https://libreaideck.com/tool/flux-1-schnell) | Image | **8 GB VRAM** | 16 GB | Midjourney, DALL-E 3 |
+| [Hunyuan3D-2](https://libreaideck.com/tool/hunyuan3d-2) | 3D | **8 GB VRAM** | 16 GB | Meshy, Tripo AI |
+| [InstantMesh](https://libreaideck.com/tool/instantmesh) | 3D | **8 GB VRAM** | 16 GB | Meshy, Tripo AI |
+| [LMDeploy](https://libreaideck.com/tool/lmdeploy) | LLM | **8 GB VRAM** | 16 GB | OpenAI API |
+| [LTX-Video](https://libreaideck.com/tool/ltx-video) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
+| [OpenHands](https://libreaideck.com/tool/openhands) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
+| [Wan 2.1](https://libreaideck.com/tool/wan-2-1) | Video | **8 GB VRAM** | 16 GB | Sora, Runway Gen-3, Kling AI |
+| [Wan2.1](https://libreaideck.com/tool/wan2-1) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
+| [YuE](https://libreaideck.com/tool/yue) | Audio | **8 GB VRAM** | 16 GB | Suno, Udio |
 
 ---
 *Built with Astro & Tailwind CSS. Hardware tests verified on Apple Silicon (M-series) and consumer NVIDIA GPUs.*

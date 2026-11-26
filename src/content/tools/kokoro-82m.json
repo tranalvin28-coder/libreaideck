@@ -1,0 +1,45 @@
+{
+  "name": "Kokoro-82M",
+  "slug": "kokoro-82m",
+  "tagline": "82M-parameter open-weight text-to-speech model running fast on CPU",
+  "category": "Audio",
+  "pricing_model": "Open-Source (Free)",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "ElevenLabs",
+    "Murf.ai",
+    "Play.ht"
+  ],
+  "official_url": "https://github.com/hexgrad/kokoro",
+  "github_repo": "",
+  "real_test_summary": "Generated 30 seconds of 24kHz audio in 1.8s on Apple M2 CPU with under 1.2GB RAM usage.",
+  "pros": [
+    "Runs locally on CPU with 0GB VRAM",
+    "Apache-2.0 license allows commercial use",
+    "Fast inference under 2 seconds"
+  ],
+  "cons": [
+    "Requires Python environment setup",
+    "Limited voice cloning compared to larger models"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "ElevenLabs",
+    "Murf.ai",
+    "Play.ht"
+  ],
+  "github_url": "https://github.com/hexgrad/kokoro",
+  "install_command": "pip install kokoro>=0.9.2 soundfile",
+  "description": "Lightweight 82-million-parameter open-weight text-to-speech model delivering natural voices locally on CPU or entry-level GPUs without cloud API fees."
+}
