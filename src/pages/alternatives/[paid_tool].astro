@@ -10,11 +10,6 @@ function toSlug(input: unknown): string {
     .replace(/^-+|-+$/g, "");
 }
 
-function getAlts(data: Record<string, unknown>): unknown[] {
-  const raw = data.alternative_to ?? data.alternatives_to ?? data.replaces ?? [];
-  return Array.isArray(raw) ? raw : [];
-}
-
 export async function getStaticPaths() {
   const slugify = (input: unknown): string =>
     String(input ?? "")
@@ -39,12 +34,14 @@ export async function getStaticPaths() {
   }
 
   return Array.from(paidToolMap.entries()).map(([paid_tool, paidToolName]) => {
-    const matchingTools = tools.filter((entry) => {
-      const alts = Array.isArray(entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
-        ? (entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
-        : [];
-      return alts.some((alt) => slugify(alt) === paid_tool);
-    });
+    const matchingTools = tools
+      .filter((entry) => {
+        const alts = Array.isArray(entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+          ? (entry.data.alternative_to ?? entry.data.alternatives_to ?? entry.data.replaces)
+          : [];
+        return alts.some((alt) => slugify(alt) === paid_tool);
+      })
+      .sort((a, b) => a.data.min_vram_gb - b.data.min_vram_gb);
 
     return {
       params: { paid_tool },
@@ -56,17 +53,25 @@ export async function getStaticPaths() {
 const { paid_tool } = Astro.params;
 const { paidToolName, matchingTools } = Astro.props;
 const siteUrl = (Astro.site ?? new URL("https://libreaideck.com")).toString().replace(/\/$/, "");
-const pageDescription = `Compare open-source and local AI alternatives to ${paidToolName}, including offline support, licensing, and VRAM/RAM requirements.`;
+const pageUrl = `${siteUrl}/alternatives/${paid_tool}`;
+
+const count = matchingTools.length;
+const lowestVram = count > 0 ? Math.min(...matchingTools.map((t) => t.data.min_vram_gb)) : 0;
+const vramHook = lowestVram === 0 ? "CPU-Only & GPU" : `From ${lowestVram}GB VRAM`;
+const topNames = matchingTools.slice(0, 3).map((t) => t.data.name).join(", ");
+
+const seoTitle = `${count} Best Free & Local Alternatives to ${paidToolName} (2026)`;
+const pageDescription = `Compare ${count} open-source and offline alternatives to ${paidToolName} (${vramHook}), including ${topNames}. Full VRAM, RAM, and license specs.`;
 
 const alternativesSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: `Best Open-Source Alternatives to ${paidToolName}`,
+  name: seoTitle,
   description: pageDescription,
-  url: `${siteUrl}/alternatives/${paid_tool}`,
+  url: pageUrl,
   mainEntity: {
     "@type": "ItemList",
-    numberOfItems: matchingTools.length,
+    numberOfItems: count,
     itemListElement: matchingTools.map((entry, index) => {
       const slug = entry.data.slug ?? entry.slug ?? toSlug(entry.data.name ?? entry.id);
       return {
@@ -78,23 +83,74 @@ const alternativesSchema = {
     }),
   },
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Directory", item: `${siteUrl}/` },
+    { "@type": "ListItem", position: 2, name: `${paidToolName} Alternatives`, item: pageUrl },
+  ],
+};
 ---
 
 <BaseLayout
-  title={`${paidToolName} Open-Source Alternatives | LibreAIDeck`}
+  title={seoTitle}
   description={pageDescription}
 >
   <script type="application/ld+json" set:html={JSON.stringify(alternativesSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-sm text-slate-400">
+    <a href="/" class="text-emerald-400 hover:text-emerald-300">Directory</a>
+    <span>/</span>
+    <span class="text-slate-200">{paidToolName} Alternatives</span>
+  </nav>
 
   <section class="mb-8">
-    <p class="text-sm text-emerald-400 font-medium mb-2">Open-Source Alternatives</p>
+    <p class="text-sm text-emerald-400 font-medium mb-2">
+      {count} Verified Local &amp; Open-Source Options · {vramHook}
+    </p>
     <h1 class="text-3xl font-bold tracking-tight mb-2">
-      Best Self-Hosted &amp; Open-Source Alternatives to {paidToolName}
+      Best Free &amp; Local Alternatives to {paidToolName} (2026)
     </h1>
-    <p class="text-slate-300">
-      Compare local and open-source tools that can replace {paidToolName}, including hardware and VRAM requirements.
+    <p class="text-slate-300 max-w-3xl">
+      Compare self-hosted and offline tools that replace {paidToolName} without subscriptions, sorted from lowest to highest VRAM requirements.
     </p>
   </section>
+
+  {count > 1 && (
+    <section class="mb-10 overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50">
+      <table class="w-full text-left text-sm">
+        <thead class="border-b border-slate-800 bg-slate-900 text-xs uppercase text-slate-400">
+          <tr>
+            <th class="px-4 py-3">Tool</th>
+            <th class="px-4 py-3">Min VRAM</th>
+            <th class="px-4 py-3">Min RAM</th>
+            <th class="px-4 py-3">License</th>
+            <th class="px-4 py-3">Offline</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/80 text-slate-300">
+          {matchingTools.map((entry) => {
+            const d = entry.data;
+            const slug = d.slug ?? entry.slug ?? toSlug(d.name ?? entry.id);
+            return (
+              <tr class="hover:bg-slate-800/40 transition">
+                <td class="px-4 py-3 font-medium text-white">
+                  <a href={`/tool/${slug}`} class="hover:text-emerald-400">{d.name}</a>
+                </td>
+                <td class="px-4 py-3">{d.min_vram_gb === 0 ? "0 GB (CPU)" : `${d.min_vram_gb} GB`}</td>
+                <td class="px-4 py-3">{d.min_ram_gb} GB</td>
+                <td class="px-4 py-3">{d.license}</td>
+                <td class="px-4 py-3 text-emerald-400">{d.runs_offline ? "Yes" : "No"}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </section>
+  )}
 
   <div class="grid gap-4 md:grid-cols-2">
     {matchingTools.map((entry) => {
@@ -103,6 +159,10 @@ const alternativesSchema = {
       return (
         <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col justify-between">
           <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+              <span class="text-emerald-400 font-medium">{data.category}</span>
+              <span>{data.license}</span>
+            </div>
             <h2 class="text-xl font-semibold mb-1">
               <a href={`/tool/${slug}`} class="hover:text-emerald-400 transition">{data.name}</a>
             </h2>
