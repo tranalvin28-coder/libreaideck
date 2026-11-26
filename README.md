@@ -2,7 +2,7 @@
 
 Live searchable hardware matrix & benchmarks: **[https://libreaideck.com](https://libreaideck.com)**
 
-Filter **54+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
+Filter **56+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
 
 ## Quick Hardware Tier Links
 * [0 GB VRAM (CPU-Only AI Tools)](https://libreaideck.com/vram/cpu-only)
@@ -11,7 +11,7 @@ Filter **54+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 * [≤ 8 GB VRAM AI Tools](https://libreaideck.com/vram/8gb)
 * [Open-Source Alternatives to Paid AI Subscriptions](https://libreaideck.com/alternatives/)
 
-## Full VRAM & Hardware Benchmark Matrix (54 Tools)
+## Full VRAM & Hardware Benchmark Matrix (56 Tools)
 
 | Tool | Category | Min VRAM | Min RAM | Replaces Paid Tools |
 | :--- | :--- | :--- | :--- | :--- |
@@ -53,6 +53,7 @@ Filter **54+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 | [SwarmUI](https://libreaideck.com/tool/swarmui) | Image | **4 GB VRAM** | 8 GB | Midjourney, Adobe Firefly |
 | [Tabby](https://libreaideck.com/tool/tabby) | Coding | **4 GB VRAM** | 8 GB | GitHub Copilot, Cursor |
 | [WhisperX](https://libreaideck.com/tool/whisperx) | Audio | **4 GB VRAM** | 8 GB | OpenAI Whisper API |
+| [DeepSeek-R1](https://libreaideck.com/tool/deepseek-r1) | LLM | **6 GB VRAM** | 8 GB | OpenAI o1, OpenAI o3-mini, Claude Pro |
 | [Dify](https://libreaideck.com/tool/dify) | RAG | **6 GB VRAM** | 16 GB | ChatGPT, Notion AI |
 | [ExLlamaV2](https://libreaideck.com/tool/exllamav2) | LLM | **6 GB VRAM** | 16 GB | OpenAI API |
 | [FramePack](https://libreaideck.com/tool/framepack) | Video | **6 GB VRAM** | 16 GB | Runway, Kling AI |
@@ -60,6 +61,7 @@ Filter **54+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 | [Aider](https://libreaideck.com/tool/aider) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
 | [Cline](https://libreaideck.com/tool/cline) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
 | [CogVideoX](https://libreaideck.com/tool/cogvideox) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
+| [FLUX.1](https://libreaideck.com/tool/flux-1) | Image | **8 GB VRAM** | 16 GB | Midjourney, DALL-E 3, Adobe Firefly |
 | [FLUX.1 Schnell](https://libreaideck.com/tool/flux-1-schnell) | Image | **8 GB VRAM** | 16 GB | Midjourney, DALL-E 3 |
 | [Hunyuan3D-2](https://libreaideck.com/tool/hunyuan3d-2) | 3D | **8 GB VRAM** | 16 GB | Meshy, Tripo AI |
 | [InstantMesh](https://libreaideck.com/tool/instantmesh) | 3D | **8 GB VRAM** | 16 GB | Meshy, Tripo AI |

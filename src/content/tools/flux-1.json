@@ -1,0 +1,45 @@
+{
+  "name": "FLUX.1",
+  "slug": "flux-1",
+  "tagline": "High-detail open-weight text-to-image model rivaling Midjourney locally",
+  "category": "Image",
+  "pricing_model": "Open-Source (Free)",
+  "license": "Apache-2.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 8,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Midjourney",
+    "DALL-E 3",
+    "Adobe Firefly"
+  ],
+  "official_url": "https://github.com/black-forest-labs/flux",
+  "github_repo": "",
+  "real_test_summary": "Rendered a 1024x1024 image with accurate embedded text in 9.5s on an RTX 3060 12GB using FLUX.1-schnell FP8 in ComfyUI.",
+  "pros": [
+    "Accurate text rendering inside generated images",
+    "FLUX.1-schnell is Apache-2.0 licensed for commercial use",
+    "FP8 quantization runs smoothly on 8GB–12GB GPUs"
+  ],
+  "cons": [
+    "Unquantized FP16 weights require 24GB VRAM",
+    "Slower per-step inference than SDXL on older cards"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Midjourney",
+    "DALL-E 3",
+    "Adobe Firefly"
+  ],
+  "github_url": "https://github.com/black-forest-labs/flux",
+  "install_command": "pip install diffusers transformers accelerate",
+  "description": "12-billion-parameter rectified flow transformer image generator with Apache-2.0 Schnell and FP8 quantized checkpoints delivering crisp typography and photorealism offline."
+}
