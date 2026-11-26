@@ -25,7 +25,8 @@ const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", "mainE
 <BaseLayout title={pageTitle} description={pageDesc}>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <main class="max-w-5xl mx-auto px-4 py-10">
-    <nav class="text-xs text-slate-400 mb-6 flex gap-2"><a href="/">Home</a><span>/</span><a href="/compare/">Compare</a><span>/</span><span>{toolA.name} vs {toolB.name}</span></nav>
+    <nav class="text-xs text-slate-400 mb-6 flex gap-2"><a href="/">Home</a><span>/</span><a href="/compare/">Compare</a>
+        <a href="/best-offline-ai-tools/" class="text-sm font-medium text-slate-300 hover:text-white transition">All Tools</a><span>/</span><span>{toolA.name} vs {toolB.name}</span></nav>
     <h1 class="text-3xl md:text-4xl font-extrabold mb-3">{toolA.name} vs {toolB.name}: Local VRAM &amp; Speed Comparison</h1>
     <p class="text-slate-300 mb-8"><strong>Verdict:</strong> Pick <a href={`/tool/${toolA.slug}`} class="text-emerald-400 underline">{toolA.name}</a> ({toolA.min_vram_gb}GB VRAM) for {toolA.tagline.toLowerCase()}. Pick <a href={`/tool/${toolB.slug}`} class="text-sky-400 underline">{toolB.name}</a> ({toolB.min_vram_gb}GB VRAM) for {toolB.tagline.toLowerCase()}.</p>
     <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/80 mb-8">

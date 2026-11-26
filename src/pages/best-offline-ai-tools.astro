@@ -1,0 +1,213 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allTools = await getCollection('tools');
+const totalCount = allTools.length;
+
+const categoryMeta: Record<string, { title: string; desc: string }> = {
+  LLM: {
+    title: 'Best Offline Local LLMs & Chat Engines',
+    desc: 'Self-hosted inference engines, desktop chat clients, and quantized model runners for private text generation without cloud APIs.'
+  },
+  Image: {
+    title: 'Best Offline AI Image Generators & Upscalers',
+    desc: 'Node-based workflows, WebUIs, and local diffusion pipelines for photorealistic rendering, inpainting, and batch upscaling.'
+  },
+  Audio: {
+    title: 'Best Offline Speech-to-Text, TTS & Voice Cloning Tools',
+    desc: 'CPU-friendly Whisper engines, neural voice synthesizers, and real-time audio separation tools with zero API latency.'
+  },
+  Video: {
+    title: 'Best Offline AI Video Generation & Face-Swap Tools',
+    desc: 'Local video diffusion models, frame interpolators, and motion synthesis tools benchmarked for consumer and workstation GPUs.'
+  },
+  Code: {
+    title: 'Best Offline AI Coding Assistants & IDE Copilots',
+    desc: 'Air-gapped autocomplete engines, local repository indexers, and terminal coding agents that keep proprietary source code on-device.'
+  },
+  Agent: {
+    title: 'Best Offline AI Agents, RAG & Workflow Automation',
+    desc: 'Local document Q&A pipelines, browser automation agents, and multi-agent orchestrators connected to local LLM backends.'
+  }
+};
+
+const grouped = allTools.reduce((acc, entry) => {
+  const cat = entry.data.category || 'Other';
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(entry);
+  return acc;
+}, {} as Record<string, typeof allTools>);
+
+for (const cat of Object.keys(grouped)) {
+  grouped[cat].sort((a, b) => (a.data.minVramGb ?? 0) - (b.data.minVramGb ?? 0));
+}
+
+const orderedCats = Object.keys(categoryMeta).filter(c => grouped[c]?.length > 0);
+for (const c of Object.keys(grouped)) {
+  if (!orderedCats.includes(c)) orderedCats.push(c);
+}
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Best Offline Open-Source AI Tools (2026 Hardware Benchmark Directory)`,
+  description: `Complete categorized directory of ${totalCount} offline, open-source AI tools indexed by minimum GPU VRAM, system RAM, license, and OS support.`,
+  numberOfItems: totalCount,
+  itemListElement: allTools.map((tool, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: tool.data.name,
+    url: `https://libreaideck.com/tool/${tool.slug}/`
+  }))
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Which offline AI tools can run on 0GB VRAM (CPU and system RAM only)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Tools such as Whisper.cpp, LocalAI, Ollama (with small quantized GGUF models), and llama.cpp run reliably on CPU-only laptops with 8GB to 16GB of system RAM.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the best local AI stack for an 8GB VRAM GPU like RTX 3060 Ti or RTX 4060?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'With 8GB VRAM, you can run 7B–8B quantized LLMs via Ollama or LM Studio, generate SDXL images in ComfyUI, and transcribe audio locally with Whisper.cpp without cloud subscriptions.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Are all tools listed on LibreAIDeck free and open-source?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Every entry in the LibreAIDeck directory runs locally offline with no mandatory cloud signup or watermarks, and displays its exact open-source license (MIT, Apache-2.0, GPL-3.0, or AGPL-3.0).'
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title={`Best Offline AI Tools (2026): ${totalCount} Open-Source Apps by VRAM & RAM | LibreAIDeck`}
+  description={`Compare all ${totalCount} offline, open-source AI tools across LLM, Image, Audio, Video, Code, and Agents—sorted by exact GPU VRAM, RAM, and commercial license.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <main class="max-w-6xl mx-auto px-4 py-12 text-slate-200">
+    <header class="mb-10 border-b border-slate-800 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
+        2026 Hardware-Indexed Pillar Directory • {totalCount} Verified Offline Tools
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Best Offline &amp; Open-Source AI Tools (Sorted by VRAM)
+      </h1>
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed mb-6">
+        Every tool below runs 100% locally on your own hardware without cloud subscriptions, usage limits, or watermarks. Jump directly to a task category or filter by your exact GPU budget.
+      </p>
+
+      <div class="flex flex-wrap gap-3 text-sm">
+        <a href="/can-i-run-it/" class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition">
+          Check Hardware Compatibility (/can-i-run-it/)
+        </a>
+        <a href="/compare/" class="px-4 py-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 border border-slate-700 transition">
+          Head-to-Head Comparisons (/compare/)
+        </a>
+        <a href="/vram/0gb/" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">0GB VRAM (CPU)</a>
+        <a href="/vram/4gb/" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">4GB VRAM</a>
+        <a href="/vram/8gb/" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">8GB VRAM</a>
+        <a href="/vram/12gb/" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 transition">12GB+ VRAM</a>
+      </div>
+    </header>
+
+    <nav aria-label="Category Jump Links" class="mb-12 p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-wrap gap-3">
+      <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold self-center mr-2">Jump to Category:</span>
+      {orderedCats.map(cat => (
+        <a href={`#cat-${cat.toLowerCase()}`} class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-sm font-medium text-slate-200 transition">
+          {cat} ({grouped[cat].length})
+        </a>
+      ))}
+    </nav>
+
+    <div class="space-y-14">
+      {orderedCats.map(cat => {
+        const meta = categoryMeta[cat] || { title: `Best Offline ${cat} AI Tools`, desc: `Open-source ${cat} software benchmarked for local execution.` };
+        const tools = grouped[cat];
+        return (
+          <section id={`cat-${cat.toLowerCase()}`} class="scroll-mt-20">
+            <div class="mb-4">
+              <h2 class="text-2xl font-bold text-white">{meta.title}</h2>
+              <p class="text-slate-400 text-sm mt-1">{meta.desc}</p>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/50">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-slate-800 bg-slate-900 text-slate-400 text-xs uppercase">
+                    <th class="py-3 px-4 font-semibold">Tool</th>
+                    <th class="py-3 px-4 font-semibold">Min VRAM</th>
+                    <th class="py-3 px-4 font-semibold">Min RAM</th>
+                    <th class="py-3 px-4 font-semibold">License</th>
+                    <th class="py-3 px-4 font-semibold">OS Support</th>
+                    <th class="py-3 px-4 font-semibold">Benchmark / Notes</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/80">
+                  {tools.map(t => (
+                    <tr class="hover:bg-slate-800/40 transition">
+                      <td class="py-3 px-4 font-semibold text-white whitespace-nowrap">
+                        <a href={`/tool/${t.slug}/`} class="text-emerald-400 hover:underline">
+                          {t.data.name}
+                        </a>
+                      </td>
+                      <td class="py-3 px-4 font-mono text-xs text-amber-300 whitespace-nowrap">
+                        {t.data.minVramGb === 0 ? '0 GB (CPU)' : `${t.data.minVramGb} GB`}
+                      </td>
+                      <td class="py-3 px-4 font-mono text-xs text-slate-300 whitespace-nowrap">
+                        {t.data.minRamGb} GB
+                      </td>
+                      <td class="py-3 px-4 text-xs text-slate-300 whitespace-nowrap">
+                        {t.data.license || 'Open-Source'}
+                      </td>
+                      <td class="py-3 px-4 text-xs text-slate-400">
+                        {Array.isArray(t.data.os) ? t.data.os.join(', ') : (t.data.os || 'Win, macOS, Linux')}
+                      </td>
+                      <td class="py-3 px-4 text-xs text-slate-400 max-w-md">
+                        {t.data.tagline || t.data.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+
+    <section class="mt-16 pt-10 border-t border-slate-800">
+      <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions About Offline AI Hardware</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <h3 class="font-semibold text-white mb-2">Can I run AI offline with 0GB VRAM?</h3>
+          <p class="text-sm text-slate-400">Yes. CPU-optimized engines like <a href="/tool/whisper-cpp/" class="text-emerald-400 hover:underline">Whisper.cpp</a>, <a href="/tool/localai/" class="text-emerald-400 hover:underline">LocalAI</a>, and <a href="/tool/ollama/" class="text-emerald-400 hover:underline">Ollama</a> run smoothly using 8GB–16GB of system RAM.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <h3 class="font-semibold text-white mb-2">What is the sweet spot GPU for local AI?</h3>
+          <p class="text-sm text-slate-400">An 8GB to 12GB VRAM card (such as RTX 3060 12GB or RTX 4060) unlocks SDXL rendering in <a href="/tool/comfyui/" class="text-emerald-400 hover:underline">ComfyUI</a> and fast 8B–14B LLM inference.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <h3 class="font-semibold text-white mb-2">What if my laptop lacks enough VRAM?</h3>
+          <p class="text-sm text-slate-400">Use our <a href="/can-i-run-it/" class="text-emerald-400 hover:underline">Can I Run It?</a> hardware filter to find lightweight alternatives or rent on-demand cloud GPUs per minute.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
