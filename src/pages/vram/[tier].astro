@@ -1,0 +1,151 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const tools = await getCollection("tools");
+  const tiers = [
+    {
+      tier: "cpu-only",
+      maxVram: 0,
+      label: "0 GB VRAM (CPU-Only)",
+      headline: "Best Offline AI Tools That Run on CPU Only (0 GB VRAM)",
+      sub: "No dedicated graphics card required. Run these open-source LLMs, speech-to-text, TTS, and OCR models using system RAM alone.",
+    },
+    {
+      tier: "4gb",
+      maxVram: 4,
+      label: "Up to 4 GB VRAM",
+      headline: "Best Local & Open-Source AI Tools for 4 GB VRAM GPUs",
+      sub: "Lightweight local AI software verified to run smoothly on entry-level 4 GB VRAM laptops and older graphics cards.",
+    },
+    {
+      tier: "6gb",
+      maxVram: 6,
+      label: "Up to 6 GB VRAM",
+      headline: "Best Local & Open-Source AI Tools for 6 GB VRAM GPUs",
+      sub: "Run local LLMs, image diffusion, video generation, and 3D reconstruction within a 6 GB VRAM budget.",
+    },
+    {
+      tier: "8gb",
+      maxVram: 8,
+      label: "Up to 8 GB VRAM",
+      headline: "Best Local & Open-Source AI Tools for 8 GB VRAM GPUs",
+      sub: "Full directory of offline AI models and interfaces compatible with mainstream 8 GB VRAM GPUs (RTX 3060, 4060, Apple Silicon).",
+    },
+  ];
+
+  return tiers.map((t) => {
+    const matchingTools = tools
+      .filter((entry) => entry.data.min_vram_gb <= t.maxVram)
+      .sort((a, b) => a.data.min_vram_gb - b.data.min_vram_gb || a.data.name.localeCompare(b.data.name));
+
+    return {
+      params: { tier: t.tier },
+      props: { ...t, matchingTools },
+    };
+  });
+}
+
+const { tier, maxVram, label, headline, sub, matchingTools } = Astro.props;
+const siteUrl = (Astro.site ?? new URL("https://libreaideck.com")).toString().replace(/\/$/, "");
+const pageUrl = `${siteUrl}/vram/${tier}`;
+const count = matchingTools.length;
+
+const seoTitle = `${count} ${headline} (2026)`;
+const seoDescription = `Browse ${count} free, offline AI tools that run with ${label.toLowerCase()}. Filter by category, RAM, and open-source license with real test specs.`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      name: seoTitle,
+      description: seoDescription,
+      url: pageUrl,
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: count,
+        itemListElement: matchingTools.map((entry, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: entry.data.name,
+          url: `${siteUrl}/tool/${entry.data.slug}`,
+        })),
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Directory", item: `${siteUrl}/` },
+        { "@type": "ListItem", position: 2, name: label, item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-sm text-slate-400">
+    <a href="/" class="text-emerald-400 hover:text-emerald-300">Directory</a>
+    <span>/</span>
+    <span class="text-slate-200">{label}</span>
+  </nav>
+
+  <section class="mb-8">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {[
+        { slug: "cpu-only", text: "0 GB (CPU-Only)" },
+        { slug: "4gb", text: "Up to 4 GB VRAM" },
+        { slug: "6gb", text: "Up to 6 GB VRAM" },
+        { slug: "8gb", text: "Up to 8 GB VRAM" },
+      ].map((tab) => (
+        <a
+          href={`/vram/${tab.slug}`}
+          class={`px-3 py-1.5 rounded-lg text-xs font-medium border transition ${
+            tab.slug === tier
+              ? "bg-emerald-500 text-slate-950 border-emerald-400 font-semibold"
+              : "bg-slate-900 text-slate-300 border-slate-800 hover:border-slate-700"
+          }`}
+        >
+          {tab.text}
+        </a>
+      ))}
+    </div>
+
+    <p class="text-sm text-emerald-400 font-medium mb-2">{count} Compatible Offline AI Tools</p>
+    <h1 class="text-3xl font-bold tracking-tight mb-2">{headline}</h1>
+    <p class="text-slate-300 max-w-3xl">{sub}</p>
+  </section>
+
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {matchingTools.map((entry) => {
+      const d = entry.data;
+      return (
+        <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
+              <span class="text-emerald-400 font-medium">{d.category}</span>
+              <span>{d.license}</span>
+            </div>
+            <h2 class="text-lg font-semibold mb-1">
+              <a href={`/tool/${d.slug}`} class="hover:text-emerald-400 transition">{d.name}</a>
+            </h2>
+            <p class="text-xs text-slate-300 mb-4">{d.tagline}</p>
+          </div>
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <span>
+              VRAM: <strong class="text-slate-200">{d.min_vram_gb} GB</strong> · RAM:{" "}
+              <strong class="text-slate-200">{d.min_ram_gb} GB</strong>
+            </span>
+            <a href={`/tool/${d.slug}`} class="font-medium text-emerald-400 hover:text-emerald-300">
+              Details →
+            </a>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</BaseLayout>
