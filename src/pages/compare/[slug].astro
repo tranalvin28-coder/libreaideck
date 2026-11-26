@@ -1,0 +1,52 @@
+---
+import fs from "node:fs";
+import pairs from "./_pairs.json";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  const all = fs.readdirSync("src/content/tools").filter(f => f.endsWith(".json")).map(f => {
+    const r = JSON.parse(fs.readFileSync("src/content/tools/" + f, "utf8"));
+    return { ...r, slug: r.slug || f.replace(".json", "") };
+  });
+  return pairs.map(pair => ({
+    params: { slug: pair.slug },
+    props: { pair, toolA: all.find(t => t.slug === pair.slugA), toolB: all.find(t => t.slug === pair.slugB) }
+  }));
+}
+
+const { pair, toolA, toolB } = Astro.props;
+const maxVram = Math.max(Number(toolA.min_vram_gb || 0), Number(toolB.min_vram_gb || 0));
+const lighter = Number(toolA.min_vram_gb || 0) <= Number(toolB.min_vram_gb || 0) ? toolA : toolB;
+const pageTitle = `${toolA.name} vs ${toolB.name} (2026): VRAM & Offline Comparison | LibreAIDeck`;
+const pageDesc = `Compare ${toolA.name} (${toolA.min_vram_gb}GB VRAM) vs ${toolB.name} (${toolB.min_vram_gb}GB VRAM) hardware requirements and local speed.`;
+const amazonUrl = maxVram === 0 ? "https://www.amazon.com/s?k=32GB+DDR5+RAM&tag=libreaideck-20" : maxVram <= 8 ? "https://www.amazon.com/s?k=RTX+3060+12GB&tag=libreaideck-20" : "https://www.amazon.com/s?k=RTX+4070+Ti+Super+16GB&tag=libreaideck-20";
+const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": `Which uses less VRAM: ${toolA.name} or ${toolB.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `${toolA.name} needs ${toolA.min_vram_gb}GB VRAM (${toolA.min_ram_gb}GB RAM), while ${toolB.name} needs ${toolB.min_vram_gb}GB VRAM (${toolB.min_ram_gb}GB RAM). ${lighter.name} is lighter.` } }] };
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <nav class="text-xs text-slate-400 mb-6 flex gap-2"><a href="/">Home</a><span>/</span><a href="/compare/">Compare</a><span>/</span><span>{toolA.name} vs {toolB.name}</span></nav>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">{toolA.name} vs {toolB.name}: Local VRAM &amp; Speed Comparison</h1>
+    <p class="text-slate-300 mb-8"><strong>Verdict:</strong> Pick <a href={`/tool/${toolA.slug}`} class="text-emerald-400 underline">{toolA.name}</a> ({toolA.min_vram_gb}GB VRAM) for {toolA.tagline.toLowerCase()}. Pick <a href={`/tool/${toolB.slug}`} class="text-sky-400 underline">{toolB.name}</a> ({toolB.min_vram_gb}GB VRAM) for {toolB.tagline.toLowerCase()}.</p>
+    <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/80 mb-8">
+      <table class="w-full text-left text-sm">
+        <thead><tr class="border-b border-slate-800"><th class="p-4 text-slate-400">Spec</th><th class="p-4 text-emerald-400">{toolA.name}</th><th class="p-4 text-sky-400">{toolB.name}</th></tr></thead>
+        <tbody class="divide-y divide-slate-800">
+          <tr><td class="p-4 text-slate-400">Min VRAM</td><td class="p-4 font-bold">{toolA.min_vram_gb === 0 ? "0 GB (CPU)" : `${toolA.min_vram_gb} GB`}</td><td class="p-4 font-bold">{toolB.min_vram_gb === 0 ? "0 GB (CPU)" : `${toolB.min_vram_gb} GB`}</td></tr>
+          <tr><td class="p-4 text-slate-400">Min RAM</td><td class="p-4">{toolA.min_ram_gb} GB</td><td class="p-4">{toolB.min_ram_gb} GB</td></tr>
+          <tr><td class="p-4 text-slate-400">License</td><td class="p-4">{toolA.license}</td><td class="p-4">{toolB.license}</td></tr>
+          <tr><td class="p-4 text-slate-400">Benchmark</td><td class="p-4 text-xs text-slate-300">{toolA.real_test_summary}</td><td class="p-4 text-xs text-slate-300">{toolB.real_test_summary}</td></tr>
+          <tr><td class="p-4 text-slate-400">Install</td><td class="p-4"><code class="text-xs text-emerald-300">{toolA.install_command}</code></td><td class="p-4"><code class="text-xs text-sky-300">{toolB.install_command}</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+      <div><h3 class="font-bold text-white">Test Your Exact GPU or MacBook</h3><p class="text-sm text-slate-400">Check compatibility or run heavy models in the cloud.</p></div>
+      <div class="flex flex-wrap gap-2.5">
+        <a href="/can-i-run-it/" class="px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-600 text-white">Check My VRAM</a>
+        <a href={amazonUrl} target="_blank" rel="sponsored noopener noreferrer" class="px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 text-slate-950">Hardware on Amazon</a>
+        <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="sponsored noopener noreferrer" class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white">Run on RunPod</a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
