@@ -163,6 +163,29 @@ const directorySchema = {
     </section>
   )}
 
+  
+  <section class="mt-12 pt-8 border-t border-slate-800">
+    <h2 class="text-lg font-semibold text-white mb-3">Browse Offline AI Tools by Hardware &amp; VRAM</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+      <a href="/vram/cpu-only" class="rounded-xl border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 p-4 transition">
+        <div class="text-xs font-medium text-emerald-400 mb-1">0 GB VRAM</div>
+        <div class="text-sm font-semibold text-white">CPU-Only AI Tools →</div>
+      </a>
+      <a href="/vram/4gb" class="rounded-xl border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 p-4 transition">
+        <div class="text-xs font-medium text-emerald-400 mb-1">Entry-Level GPU</div>
+        <div class="text-sm font-semibold text-white">Up to 4 GB VRAM →</div>
+      </a>
+      <a href="/vram/6gb" class="rounded-xl border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 p-4 transition">
+        <div class="text-xs font-medium text-emerald-400 mb-1">Mid-Range Laptop</div>
+        <div class="text-sm font-semibold text-white">Up to 6 GB VRAM →</div>
+      </a>
+      <a href="/vram/8gb" class="rounded-xl border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 p-4 transition">
+        <div class="text-xs font-medium text-emerald-400 mb-1">Mainstream GPU</div>
+        <div class="text-sm font-semibold text-white">Up to 8 GB VRAM →</div>
+      </a>
+    </div>
+  </section>
+
   <script>
     const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
     const categoryFilter = document.getElementById("category-filter") as HTMLSelectElement | null;
