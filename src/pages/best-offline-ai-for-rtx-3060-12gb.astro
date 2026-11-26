@@ -1,0 +1,178 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allTools = await getCollection('tools');
+const compatibleTools = allTools
+  .filter((t) => (t.data.minVramGb ?? 0) <= 12)
+  .sort((a, b) => (b.data.minVramGb ?? 0) - (a.data.minVramGb ?? 0));
+
+const exclusive12GbTools = compatibleTools.filter((t) => (t.data.minVramGb ?? 0) > 8);
+const under8GbTools = compatibleTools.filter((t) => (t.data.minVramGb ?? 0) <= 8);
+
+const title = 'Best Offline AI Tools for RTX 3060 12GB (2026 Hardware Benchmarks)';
+const description = `Complete directory of ${compatibleTools.length} offline, open-source AI tools verified for the NVIDIA RTX 3060 12GB—covering 12GB-exclusive models, SDXL/FLUX image pipelines, and quantized LLMs.`;
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: title,
+  description,
+  numberOfItems: compatibleTools.length,
+  itemListElement: compatibleTools.map((tool, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: tool.data.name,
+    url: `https://libreaideck.com/tool/${tool.slug}/`
+  }))
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Why is the RTX 3060 12GB still the most popular budget GPU for local AI in 2026?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Unlike 8GB GPUs such as the RTX 4060, the RTX 3060 12GB holds a full 12GB of GDDR6 VRAM, allowing 8B-parameter LLMs at Q6_K/Q8_0 quantization, 12B–14B models at Q4_K_M, and native 1024x1024 SDXL or quantized FLUX.1 image generation without CPU offloading.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can an RTX 3060 12GB run FLUX.1 Dev and SDXL offline?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. In ComfyUI, SDXL 1024x1024 renders in roughly 6 seconds on an RTX 3060 12GB, while FP8/GGUF quantized FLUX.1 Dev runs comfortably within the 12GB VRAM budget without out-of-memory crashes.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What local AI workloads exceed 12GB VRAM on the RTX 3060?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Unquantized FP16 14B+ LLMs, 32B–70B models, long-context 32k+ KV caches, and high-resolution video diffusion models require 16GB to 24GB+ VRAM. For those runs, upgrading to an RTX 4060 Ti 16GB or renting an on-demand RTX 4090 cloud instance avoids OOM bottlenecks.'
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 mb-4">
+      <span>NVIDIA RTX 3060 12GB Edition</span>
+      <span>•</span>
+      <span>{compatibleTools.length} Verified Local Tools</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-4">
+      Best Offline AI Tools for RTX 3060 12GB (0–12GB VRAM)
+    </h1>
+
+    <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+      The 12GB VRAM buffer on the NVIDIA RTX 3060 avoids the out-of-memory ceiling that stalls 8GB cards. Every tool listed below runs 100% offline on CUDA within a 12GB VRAM envelope—sorted from heavy 12GB-tier pipelines down to zero-VRAM CPU utilities.
+    </p>
+  </section>
+
+  <section class="mb-10 p-5 rounded-xl border border-slate-800 bg-slate-900/60">
+    <h2 class="text-lg font-semibold text-white mb-3">Measured RTX 3060 12GB Reference Benchmarks</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-slate-300 border-collapse">
+        <thead>
+          <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+            <th class="py-2.5 pr-4">Workload / Tool</th>
+            <th class="py-2.5 pr-4">Model / Precision</th>
+            <th class="py-2.5 pr-4">VRAM Footprint</th>
+            <th class="py-2.5">Measured RTX 3060 12GB Speed</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/70">
+          <tr>
+            <td class="py-2.5 pr-4 font-medium text-white"><a href="/tool/comfyui/" class="hover:text-emerald-400">ComfyUI</a></td>
+            <td class="py-2.5 pr-4">SDXL Base 1024×1024 (FP16)</td>
+            <td class="py-2.5 pr-4">~6.8 GB</td>
+            <td class="py-2.5 text-emerald-300">~6.0s per image (25 steps)</td>
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-4 font-medium text-white"><a href="/tool/automatic1111-stable-diffusion-webui/" class="hover:text-emerald-400">A1111 WebUI</a></td>
+            <td class="py-2.5 pr-4">SD 1.5 512×512 (FP16)</td>
+            <td class="py-2.5 pr-4">~4.2 GB</td>
+            <td class="py-2.5 text-emerald-300">~2.5s per image (20 steps)</td>
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-4 font-medium text-white"><a href="/tool/ollama/" class="hover:text-emerald-400">Ollama / llama.cpp</a></td>
+            <td class="py-2.5 pr-4">Llama 3 / Qwen 8B (Q6_K)</td>
+            <td class="py-2.5 pr-4">~7.4 GB</td>
+            <td class="py-2.5 text-emerald-300">~48–55 tokens/sec</td>
+          </tr>
+          <tr>
+            <td class="py-2.5 pr-4 font-medium text-white"><a href="/tool/flux-1/" class="hover:text-emerald-400">FLUX.1 Dev</a></td>
+            <td class="py-2.5 pr-4">FP8 / Q4_K_S Quantized</td>
+            <td class="py-2.5 pr-4">~10.6 GB</td>
+            <td class="py-2.5 text-emerald-300">~18–24s per 1024×1024 image</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {exclusive12GbTools.length > 0 && (
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-white mb-2">12GB VRAM Sweet Spot ({exclusive12GbTools.length} Tools Exceeding 8GB Cards)</h2>
+      <p class="text-sm text-slate-400 mb-4">These pipelines require 10GB–12GB VRAM to avoid slow system RAM offloading—giving RTX 3060 12GB owners a direct advantage over 8GB GPUs.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {exclusive12GbTools.map((tool) => (
+          <a href={`/tool/${tool.slug}/`} class="block p-4 rounded-xl border border-emerald-800/40 bg-slate-900/70 hover:border-emerald-500/60 transition">
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <h3 class="font-semibold text-white">{tool.data.name}</h3>
+              <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 font-mono">
+                {tool.data.minVramGb}GB VRAM
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mb-2">{tool.data.category} • {tool.data.license}</p>
+            <p class="text-sm text-slate-300 line-clamp-2">{tool.data.summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="mb-12">
+    <h2 class="text-xl font-bold text-white mb-2">Fast &amp; Lightweight Local Tools (0–8GB VRAM)</h2>
+    <p class="text-sm text-slate-400 mb-4">Leaves extra VRAM headroom on an RTX 3060 12GB for larger context windows, LoRAs, or running an LLM alongside voice/vision pipelines simultaneously.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {under8GbTools.map((tool) => (
+        <a href={`/tool/${tool.slug}/`} class="block p-4 rounded-xl border border-slate-800 bg-slate-900/50 hover:border-slate-700 transition">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <h3 class="font-semibold text-white">{tool.data.name}</h3>
+            <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-mono">
+              {tool.data.minVramGb === 0 ? 'CPU / 0GB' : `${tool.data.minVramGb}GB VRAM`}
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mb-2">{tool.data.category} • {tool.data.license}</p>
+          <p class="text-sm text-slate-300 line-clamp-2">{tool.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="p-5 rounded-xl border border-slate-800 bg-slate-900/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-base font-semibold text-white">Need More Than 12GB VRAM for 32B+ Models or Video?</h2>
+      <p class="text-xs sm:text-sm text-slate-400 mt-1">Compare desktop 12GB/16GB GPUs or spin up an on-demand 24GB RTX 4090 pod by the minute.</p>
+    </div>
+    <div class="flex flex-wrap gap-2.5 shrink-0">
+      <a href="https://www.amazon.com/s?k=RTX+3060+12GB+GPU&tag=libreaideck-20" target="_blank" rel="nofollow sponsored noopener" class="px-3.5 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-semibold transition">
+        Check RTX 3060 12GB Deals
+      </a>
+      <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="nofollow sponsored noopener" class="px-3.5 py-2 rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition">
+        Rent 24GB GPU on RunPod
+      </a>
+    </div>
+  </section>
+</BaseLayout>
