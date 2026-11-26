@@ -1,0 +1,43 @@
+{
+  "name": "Real-ESRGAN",
+  "slug": "real-esrgan",
+  "tagline": "Fast CLI and Vulkan AI image super-resolution engine for batch upscaling",
+  "category": "Image",
+  "pricing_model": "Open-Source (Free)",
+  "license": "BSD-3-Clause",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Topaz Photo AI",
+    "Magnific AI"
+  ],
+  "official_url": "https://github.com/xinntao/Real-ESRGAN",
+  "github_repo": "",
+  "real_test_summary": "Upscaled 50 product thumbnails by 4x via realesrgan-ncnn-vulkan CLI on a 4GB VRAM laptop GPU in 19 seconds.",
+  "pros": [
+    "Standalone portable Vulkan binaries need zero Python setup",
+    "BSD-3-Clause permissive license",
+    "Ideal for automated CLI batch pipelines"
+  ],
+  "cons": [
+    "Command-line interface only (use Upscayl for GUI)",
+    "Can over-smooth fine skin textures on default settings"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Topaz Photo AI",
+    "Magnific AI"
+  ],
+  "github_url": "https://github.com/xinntao/Real-ESRGAN",
+  "install_command": "pip install realesrgan",
+  "description": "Practical blind image restoration and 4x anime/photo upscaling model with portable NCNN-Vulkan binaries that run offline without Python or CUDA."
+}

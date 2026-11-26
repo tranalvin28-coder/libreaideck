@@ -18,8 +18,7 @@
   "min_ram_gb": 16,
   "alternative_to": [
     "Suno",
-    "Udio",
-    "Soundraw"
+    "Udio"
   ],
   "official_url": "https://github.com/facebookresearch/audiocraft",
   "github_repo": "",
@@ -36,8 +35,7 @@
   "last_verified": "2026-11-26",
   "paid_alternatives": [
     "Suno",
-    "Udio",
-    "Soundraw"
+    "Udio"
   ],
   "github_url": "https://github.com/facebookresearch/audiocraft",
   "install_command": "pip install -U audiocraft",

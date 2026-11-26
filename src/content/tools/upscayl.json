@@ -18,8 +18,7 @@
   "min_ram_gb": 8,
   "alternative_to": [
     "Topaz Photo AI",
-    "Magnific AI",
-    "Let's Enhance"
+    "Magnific AI"
   ],
   "official_url": "https://github.com/upscayl/upscayl",
   "github_repo": "",
@@ -36,8 +35,7 @@
   "last_verified": "2026-11-26",
   "paid_alternatives": [
     "Topaz Photo AI",
-    "Magnific AI",
-    "Let's Enhance"
+    "Magnific AI"
   ],
   "github_url": "https://github.com/upscayl/upscayl",
   "install_command": "brew install --cask upscayl",

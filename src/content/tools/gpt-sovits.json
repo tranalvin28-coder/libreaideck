@@ -1,0 +1,45 @@
+{
+  "name": "GPT-SoVITS",
+  "slug": "gpt-sovits",
+  "tagline": "Few-shot voice cloning and multilingual text-to-speech studio runnable offline",
+  "category": "Audio",
+  "pricing_model": "Open-Source (Free)",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ElevenLabs",
+    "Resemble AI",
+    "Descript Overdub"
+  ],
+  "official_url": "https://github.com/RVC-Boss/GPT-SoVITS",
+  "github_repo": "",
+  "real_test_summary": "Cloned a 5-second English voice sample and synthesized clean 24kHz narration on an RTX 3060 12GB with ~3.8GB VRAM usage.",
+  "pros": [
+    "5-second instant voice cloning plus optional fine-tuning",
+    "Supports cross-lingual synthesis (English, Japanese, Chinese, Korean)",
+    "MIT open-source license with full WebUI"
+  ],
+  "cons": [
+    "WebUI has many training parameters for beginners",
+    "Requires 4GB+ NVIDIA VRAM for fast inference"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "ElevenLabs",
+    "Resemble AI",
+    "Descript Overdub"
+  ],
+  "github_url": "https://github.com/RVC-Boss/GPT-SoVITS",
+  "install_command": "git clone https://github.com/RVC-Boss/GPT-SoVITS.git && python webui.py",
+  "description": "Zero-shot and few-shot voice conversion and TTS framework capable of cloning natural timbre and prosody from a 5-second audio sample locally."
+}

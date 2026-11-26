@@ -18,7 +18,7 @@
   "min_ram_gb": 4,
   "alternative_to": [
     "Character.ai",
-    "ChatGPT Plus",
+    "ChatGPT",
     "Poe"
   ],
   "official_url": "https://github.com/SillyTavern/SillyTavern",
@@ -36,7 +36,7 @@
   "last_verified": "2026-11-26",
   "paid_alternatives": [
     "Character.ai",
-    "ChatGPT Plus",
+    "ChatGPT",
     "Poe"
   ],
   "github_url": "https://github.com/SillyTavern/SillyTavern",

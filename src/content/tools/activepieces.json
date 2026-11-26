@@ -1,0 +1,45 @@
+{
+  "name": "Activepieces",
+  "slug": "activepieces",
+  "tagline": "MIT-licensed open-source AI automation builder replacing Zapier and Make",
+  "category": "Agents",
+  "pricing_model": "Open-Source (Free)",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "Zapier",
+    "Make",
+    "Relevance AI"
+  ],
+  "official_url": "https://github.com/activepieces/activepieces",
+  "github_repo": "",
+  "real_test_summary": "Deployed self-hosted Docker container on macOS M2 and ran automated webhook-to-Ollama summarization flows using ~420MB RAM.",
+  "pros": [
+    "Permissive MIT license for commercial self-hosting",
+    "Clean no-code builder similar to Zapier",
+    "Built-in AI agent and MCP tool connectors"
+  ],
+  "cons": [
+    "Fewer niche enterprise connectors than n8n",
+    "Requires Docker for local deployment"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Zapier",
+    "Make",
+    "Relevance AI"
+  ],
+  "github_url": "https://github.com/activepieces/activepieces",
+  "install_command": "docker run -d -p 8080:80 activepieces/activepieces:latest",
+  "description": "No-code workflow automation tool with native AI agent steps, human-in-the-loop approvals, and local Ollama support runnable self-hosted via Docker."
+}
