@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const allTools = typeof tools !== "undefined" ? (Array.isArray(tools) ? tools : Object.values(tools)) : [];
+
+const altMap = new Map();
+for (const tool of allTools) {
+  for (const alt of tool.paid_alternatives || []) {
+    const slug = alt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    if (!altMap.has(slug)) altMap.set(slug, { name: alt, slug, count: 0 });
+    altMap.get(slug).count++;
+  }
+}
+const alternatives = Array.from(altMap.values()).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Best Free & Open-Source AI Alternatives (2026)",
+  "description": "Directory of free, offline, and open-source alternatives to paid AI subscriptions like Midjourney, ChatGPT, ElevenLabs, and Sora.",
+  "url": "https://libreaideck.com/alternatives/"
+};
+---
+<BaseLayout
+  title="Best Free & Open-Source AI Alternatives (2026) — LibreAIDeck"
+  description="Browse free, offline, and open-source alternatives to Midjourney, ChatGPT, ElevenLabs, Sora, and 20+ paid AI subscriptions."
+  canonical="https://libreaideck.com/alternatives/"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <nav class="text-xs text-slate-400 mb-4">
+      <a href="/" class="hover:text-white">Home</a> <span class="mx-1">/</span> <span class="text-slate-200">Alternatives</span>
+    </nav>
+    <h1 class="text-3xl font-bold text-white mb-3">Open-Source Alternatives to Paid AI Tools (2026)</h1>
+    <p class="text-slate-400 mb-8">Replace monthly AI subscriptions with local, private, open-source software verified by VRAM and hardware requirements.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {alternatives.map((alt) => (
+        <a href={`/alternatives/${alt.slug}`} class="rounded-xl border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 p-4 transition flex items-center justify-between">
+          <span class="font-semibold text-white">{alt.name} Alternatives</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{alt.count} {alt.count === 1 ? "tool" : "tools"}</span>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
