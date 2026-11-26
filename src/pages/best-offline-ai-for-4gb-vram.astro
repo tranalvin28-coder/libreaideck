@@ -1,0 +1,143 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allTools = await getCollection("tools");
+const filteredTools = allTools.filter(t => (t.data.minVramGb ?? 0) <= 4).sort((a, b) => (a.data.minVramGb ?? 0) - (b.data.minVramGb ?? 0));
+const totalCount = filteredTools.length;
+
+const categoryMeta: Record<string, { title: string; desc: string }> = {
+  LLM: { title: "Offline Local LLMs & Chat Engines", desc: "Self-hosted inference engines and quantized model runners for private text generation." },
+  Image: { title: "Offline AI Image Generators & Upscalers", desc: "Local diffusion pipelines and WebUIs for photorealistic rendering and upscaling." },
+  Audio: { title: "Offline Speech-to-Text, TTS & Voice Cloning", desc: "Fast Whisper transcription engines and neural voice synthesizers with zero API fees." },
+  Video: { title: "Offline AI Video Generation & Frame Interpolation", desc: "Local video synthesis and motion pipelines benchmarked for consumer hardware." },
+  Code: { title: "Offline AI Coding Assistants & IDE Copilots", desc: "Air-gapped autocomplete engines and local repository indexers for private codebases." },
+  Agent: { title: "Offline AI Agents, RAG & Workflow Automation", desc: "Local document Q&A pipelines and multi-agent orchestrators." }
+};
+
+const grouped = filteredTools.reduce((acc, entry) => {
+  const cat = entry.data.category || "Other";
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(entry);
+  return acc;
+}, {} as Record<string, typeof filteredTools>);
+
+const canonicalUrl = "https://libreaideck.com/best-offline-ai-for-4gb-vram/";
+const faqs = [{"q":"What AI models run best on a 4GB VRAM GPU?","a":"Quantized 3B to 4B parameter LLMs (Llama 3.2 3B, Phi-3.5 Mini, Qwen 2.5 3B in Q4_K_M GGUF format) and Stable Diffusion 1.5 with --medvram or --lowvram flags run smoothly within 4GB of VRAM."},{"q":"Can I run offline AI with 0GB VRAM (CPU only)?","a":"Yes. Tools built on llama.cpp, Ollama, LocalAI, and Whisper.cpp run completely on system RAM and CPU cores, though token generation speeds are slower than dedicated GPU inference."},{"q":"How do I avoid Out-Of-Memory (OOM) errors on 4GB VRAM?","a":"Use 4-bit quantized GGUF models, keep context windows between 2048 and 4096 tokens, close hardware-accelerated browser tabs, and offload partial layers to system RAM when needed."}];
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Offline AI Tools for 4GB VRAM & Entry-Level GPUs",
+  "description": "Verified open-source LLMs, image generators, speech-to-text engines, and coding copilots that run locally on 0GB to 4GB VRAM without cloud subscriptions.",
+  "url": canonicalUrl,
+  "numberOfItems": totalCount,
+  "itemListElement": filteredTools.map((tool, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": tool.data.name || tool.data.title || tool.slug,
+    "url": `https://libreaideck.com/tools/${tool.slug}/`
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+<BaseLayout title="Best Offline AI Tools for 4GB VRAM & Low-End GPUs (2026) | LibreAIDeck" description="Verified open-source LLMs, image generators, speech-to-text engines, and coding copilots that run locally on 0GB to 4GB VRAM without cloud subscriptions.">
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <main class="max-w-6xl mx-auto px-4 py-12 text-slate-100">
+    <nav class="flex flex-wrap gap-2 text-xs text-slate-400 mb-6">
+      <a href="/" class="hover:text-cyan-400">Home</a>
+      <span>/</span>
+      <a href="/best-offline-ai-tools/" class="hover:text-cyan-400">All 62 Offline AI Tools</a>
+      <span>/</span>
+      <span class="text-cyan-300">0GB - 4GB VRAM Tier</span>
+    </nav>
+    <header class="mb-10 border-b border-slate-800 pb-8">
+      <div class="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider uppercase rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/60">
+        {totalCount} Verified Tools • 0GB - 4GB VRAM Tier
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Best Offline AI Tools for 4GB VRAM & Entry-Level GPUs</h1>
+      <p class="text-lg text-slate-300 max-w-3xl leading-relaxed">Verified open-source LLMs, image generators, speech-to-text engines, and coding copilots that run locally on 0GB to 4GB VRAM without cloud subscriptions.</p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <a href="/best-offline-ai-tools/" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">All Hardware Tiers (62)</a>
+        <a href="/best-offline-ai-for-4gb-vram/" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-800/50 transition">4GB VRAM &amp; CPU</a>
+        <a href="/best-offline-ai-for-8gb-vram/" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-800/50 transition">8GB VRAM GPUs</a>
+        <a href="/best-offline-ai-for-mac/" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-800/50 transition">Mac Apple Silicon</a>
+      </div>
+    </header>
+    {Object.entries(grouped).map(([cat, items]) => (
+      <section class="mb-12" id={cat.toLowerCase()}>
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-white">{categoryMeta[cat]?.title || cat} ({items.length})</h2>
+          <p class="text-sm text-slate-400 mt-1">{categoryMeta[cat]?.desc || `Open-source ${cat} software verified for local hardware.`}</p>
+        </div>
+        <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/60">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900 text-slate-400 uppercase text-xs">
+                <th class="py-3.5 px-4">Tool</th>
+                <th class="py-3.5 px-4">Min VRAM</th>
+                <th class="py-3.5 px-4">Min RAM</th>
+                <th class="py-3.5 px-4">License</th>
+                <th class="py-3.5 px-4">Platforms</th>
+                <th class="py-3.5 px-4 text-right">Specs</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/70">
+              {items.map((tool) => {
+                const name = tool.data.name || tool.data.title || tool.slug;
+                const vram = tool.data.minVramGb ?? 0;
+                const ram = tool.data.minRamGb ?? 8;
+                const license = tool.data.license || "Open Source";
+                const platforms = Array.isArray(tool.data.platforms) ? tool.data.platforms.join(", ") : (tool.data.platforms || "Windows, macOS, Linux");
+                return (
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3.5 px-4 font-semibold text-white">
+                      <a href={`/tools/${tool.slug}/`} class="hover:text-cyan-400 transition">{name}</a>
+                      {tool.data.tagline && <p class="text-xs font-normal text-slate-400 mt-0.5 line-clamp-1">{tool.data.tagline}</p>}
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-cyan-300">{vram === 0 ? "0 GB (CPU)" : `${vram} GB`}</td>
+                    <td class="py-3.5 px-4 font-mono text-slate-300">{ram} GB</td>
+                    <td class="py-3.5 px-4 text-slate-300">{license}</td>
+                    <td class="py-3.5 px-4 text-slate-400 text-xs">{platforms}</td>
+                    <td class="py-3.5 px-4 text-right">
+                      <a href={`/tools/${tool.slug}/`} class="inline-block px-3 py-1.5 text-xs font-medium rounded-md bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 border border-cyan-500/30 transition">Benchmark</a>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+    <aside class="my-12 p-6 rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950">
+      <h2 class="text-xl font-bold text-white mb-2">Need More VRAM for Larger Models?</h2>
+      <p class="text-sm text-slate-300 mb-5 max-w-2xl">Running 32B+ parameter LLMs, Flux Dev, or local video generation requires 12GB to 24GB+ VRAM. Compare local GPU upgrades or rent on-demand cloud GPUs by the hour:</p>
+      <div class="flex flex-wrap gap-4 text-sm font-medium">
+        <a href="https://www.amazon.com/s?k=RTX+3060+12GB+GPU&tag=libreaideck-20" target="_blank" rel="nofollow sponsored noopener" class="px-4 py-2.5 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/40 hover:bg-amber-500/25 transition">Check RTX 3060 12GB / 4060 Ti 16GB Prices on Amazon &rarr;</a>
+        <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="nofollow sponsored noopener" class="px-4 py-2.5 rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/40 hover:bg-purple-500/25 transition">Rent RTX 4090 / A100 Cloud GPU on RunPod ($0.34/hr) &rarr;</a>
+      </div>
+    </aside>
+    <section class="mt-12 border-t border-slate-800 pt-10">
+      <h2 class="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="p-5 rounded-xl border border-slate-800 bg-slate-900/50">
+            <h3 class="font-semibold text-white mb-2">{faq.q}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
