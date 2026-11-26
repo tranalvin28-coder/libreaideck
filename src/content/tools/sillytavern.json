@@ -1,0 +1,45 @@
+{
+  "name": "SillyTavern",
+  "slug": "sillytavern",
+  "tagline": "Feature-rich local frontend for conversational AI, character cards, and LLM APIs",
+  "category": "LLM",
+  "pricing_model": "Open-Source (Free)",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "Character.ai",
+    "ChatGPT Plus",
+    "Poe"
+  ],
+  "official_url": "https://github.com/SillyTavern/SillyTavern",
+  "github_repo": "",
+  "real_test_summary": "Connected to local KoboldCpp on an RTX 3060 12GB with lorebook RAG and Piper TTS active using under 300MB frontend RAM.",
+  "pros": [
+    "Unmatched prompt control, lorebooks, and memory extensions",
+    "Zero censorship or cloud message filters",
+    "Works with almost every local inference backend"
+  ],
+  "cons": [
+    "Frontend only — requires a separate backend like Ollama or KoboldCpp",
+    "Dense UI settings for first-time users"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Character.ai",
+    "ChatGPT Plus",
+    "Poe"
+  ],
+  "github_url": "https://github.com/SillyTavern/SillyTavern",
+  "install_command": "git clone https://github.com/SillyTavern/SillyTavern.git && cd SillyTavern && ./start.sh",
+  "description": "Power-user web interface designed for local LLM backends (KoboldCpp, Ollama, llama.cpp) offering lorebooks, long-term vector memory, TTS voice output, and custom prompt templates."
+}

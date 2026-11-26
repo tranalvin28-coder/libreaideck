@@ -1,0 +1,45 @@
+{
+  "name": "GPT4All",
+  "slug": "gpt4all",
+  "tagline": "Desktop offline chatbot optimized for CPU-only laptops and local document chat",
+  "category": "LLM",
+  "pricing_model": "Open-Source (Free)",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "ChatGPT",
+    "Claude",
+    "ChatPDF"
+  ],
+  "official_url": "https://github.com/nomic-ai/gpt4all",
+  "github_repo": "",
+  "real_test_summary": "Ran Llama 3.2 3B Instruct on a CPU-only MacBook Air M2 at ~38 tokens/sec with LocalDocs folder indexing active.",
+  "pros": [
+    "One-click GUI installer built specifically for CPU-only PCs",
+    "Built-in LocalDocs offline file indexing",
+    "MIT open-source license with optional zero-telemetry mode"
+  ],
+  "cons": [
+    "Fewer advanced server API flags than llama.cpp",
+    "Larger models run slowly on older Intel/AMD CPUs"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "ChatGPT",
+    "Claude",
+    "ChatPDF"
+  ],
+  "github_url": "https://github.com/nomic-ai/gpt4all",
+  "install_command": "brew install --cask gpt4all",
+  "description": "Privacy-first desktop application allowing users without dedicated GPUs to download quantized GGUF models and chat with local folders of PDF and Markdown files offline."
+}

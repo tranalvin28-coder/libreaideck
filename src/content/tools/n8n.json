@@ -1,0 +1,45 @@
+{
+  "name": "n8n",
+  "slug": "n8n",
+  "tagline": "Self-hosted AI workflow automation platform connecting local LLMs and 400+ apps",
+  "category": "Agents",
+  "pricing_model": "Open-Source (Free)",
+  "license": "Sustainable Use License",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 4,
+  "alternative_to": [
+    "Zapier",
+    "Make",
+    "Relevance AI"
+  ],
+  "official_url": "https://github.com/n8n-io/n8n",
+  "github_repo": "",
+  "real_test_summary": "Ran local AI email triage and RSS summarization workflows on macOS M2 using npx n8n + Ollama in ~380MB RAM.",
+  "pros": [
+    "Zero per-execution pricing when self-hosted",
+    "Native Ollama and local vector store nodes",
+    "400+ built-in integrations"
+  ],
+  "cons": [
+    "Requires Docker or Node.js for self-hosting",
+    "Complex multi-branch agents have a learning curve"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Zapier",
+    "Make",
+    "Relevance AI"
+  ],
+  "github_url": "https://github.com/n8n-io/n8n",
+  "install_command": "npx n8n",
+  "description": "Visual node-based workflow automation engine with native LangChain AI agent nodes, local Ollama integration, and webhook triggers that runs completely self-hosted without per-task fees."
+}

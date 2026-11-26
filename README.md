@@ -16,15 +16,16 @@ Filter **56+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 | Tool | Category | Min VRAM | Min RAM | Replaces Paid Tools |
 | :--- | :--- | :--- | :--- | :--- |
 | [Browser-use](https://libreaideck.com/tool/browser-use) | Agents | **0 GB (CPU-Only)** | 8 GB | OpenAI Operator, Claude Computer Use, MultiOn |
-| [Continue](https://libreaideck.com/tool/continue-dev) | Coding | **0 GB (CPU-Only)** | 8 GB | GitHub Copilot, Cursor Pro, Tabnine |
 | [Crawl4AI](https://libreaideck.com/tool/crawl4ai) | RAG | **0 GB (CPU-Only)** | 4 GB | Perplexity |
 | [Docling](https://libreaideck.com/tool/docling) | OCR | **0 GB (CPU-Only)** | 8 GB | Adobe Acrobat OCR |
+| [GPT4All](https://libreaideck.com/tool/gpt4all) | LLM | **0 GB (CPU-Only)** | 8 GB | ChatGPT, Claude, ChatPDF |
 | [KoboldCpp](https://libreaideck.com/tool/koboldcpp) | LLM | **0 GB (CPU-Only)** | 8 GB | ChatGPT, Claude |
 | [Kokoro TTS](https://libreaideck.com/tool/kokoro-tts) | Audio | **0 GB (CPU-Only)** | 4 GB | ElevenLabs |
-| [Kokoro-82M](https://libreaideck.com/tool/kokoro-82m) | Audio | **0 GB (CPU-Only)** | 4 GB | ElevenLabs, Murf.ai, Play.ht |
 | [llama.cpp](https://libreaideck.com/tool/llama-cpp) | LLM | **0 GB (CPU-Only)** | 4 GB | OpenAI API, ChatGPT |
+| [n8n](https://libreaideck.com/tool/n8n) | Agents | **0 GB (CPU-Only)** | 4 GB | Zapier, Make, Relevance AI |
 | [PaddleOCR](https://libreaideck.com/tool/paddleocr) | OCR | **0 GB (CPU-Only)** | 4 GB | Adobe Acrobat OCR |
 | [Piper](https://libreaideck.com/tool/piper) | Audio | **0 GB (CPU-Only)** | 2 GB | ElevenLabs |
+| [SillyTavern](https://libreaideck.com/tool/sillytavern) | LLM | **0 GB (CPU-Only)** | 4 GB | Character.ai, ChatGPT Plus, Poe |
 | [Whisper.cpp](https://libreaideck.com/tool/whisper-cpp) | Audio | **0 GB (CPU-Only)** | 4 GB | OpenAI Whisper API, Otter.ai, AssemblyAI |
 | [Faster-Whisper](https://libreaideck.com/tool/faster-whisper) | Audio | **2 GB VRAM** | 4 GB | OpenAI API |
 | [ACE-Step](https://libreaideck.com/tool/ace-step) | Audio | **4 GB VRAM** | 8 GB | Suno, Udio |
@@ -68,7 +69,6 @@ Filter **56+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 | [LMDeploy](https://libreaideck.com/tool/lmdeploy) | LLM | **8 GB VRAM** | 16 GB | OpenAI API |
 | [LTX-Video](https://libreaideck.com/tool/ltx-video) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
 | [OpenHands](https://libreaideck.com/tool/openhands) | Coding | **8 GB VRAM** | 16 GB | Cursor, GitHub Copilot |
-| [Wan 2.1](https://libreaideck.com/tool/wan-2-1) | Video | **8 GB VRAM** | 16 GB | Sora, Runway Gen-3, Kling AI |
 | [Wan2.1](https://libreaideck.com/tool/wan2-1) | Video | **8 GB VRAM** | 16 GB | Runway, Kling AI |
 | [YuE](https://libreaideck.com/tool/yue) | Audio | **8 GB VRAM** | 16 GB | Suno, Udio |
 
