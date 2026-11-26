@@ -209,6 +209,49 @@ const breadcrumbSchema = {
       </div>
     </section>
 
+    <aside class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4 my-6">
+      <div class="text-sm">
+        <div class="font-semibold text-white mb-0.5">
+          {tool.min_vram_gb === 0
+            ? `Hardware Setup: Runs on CPU (${tool.min_ram_gb}GB+ System RAM)`
+            : `Hardware Setup: Requires ${tool.min_vram_gb}GB+ VRAM`}
+        </div>
+        <p class="text-xs text-slate-400">
+          {tool.min_vram_gb === 0
+            ? "No discrete GPU required. Smooth batch runs with a 32GB RAM upgrade or an energy-efficient Mini PC."
+            : "Upgrade your local rig for unlimited offline runs, or rent an on-demand cloud GPU by the hour."}
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <a
+          href={tool.min_vram_gb === 0 ? "/vram/cpu-only" : tool.min_vram_gb <= 4 ? "/vram/4gb" : tool.min_vram_gb <= 6 ? "/vram/6gb" : "/vram/8gb"}
+          class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition"
+        >
+          {tool.min_vram_gb === 0 ? "More CPU-Only AI" : `More ≤${tool.min_vram_gb <= 8 ? tool.min_vram_gb : 8}GB Tools`}
+        </a>
+        <a
+          href={tool.min_vram_gb === 0
+            ? `https://www.amazon.com/s?k=32GB+DDR5+RAM+kit&tag=libreaideck-20`
+            : `https://www.amazon.com/s?k=RTX+3060+12GB&tag=libreaideck-20`}
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-medium transition"
+        >
+          {tool.min_vram_gb === 0 ? "Check 32GB RAM Price →" : "Check RTX 3060 12GB →"}
+        </a>
+        {tool.min_vram_gb > 0 && (
+          <a
+            href="https://runpod.io?ref=xhjwok0s"
+            target="_blank"
+            rel="sponsored noopener noreferrer"
+            class="px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition"
+          >
+            Rent Cloud GPU →
+          </a>
+        )}
+      </div>
+    </aside>
+
     <section class="bg-slate-950/70 border border-slate-800 rounded-xl p-5">
       <h2 class="text-lg font-semibold text-white mb-2">Real-World Test Summary</h2>
       <p class="text-slate-300 leading-relaxed">{tool.real_test_summary}</p>
