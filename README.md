@@ -2,7 +2,7 @@
 
 Live searchable hardware matrix & benchmarks: **[https://libreaideck.com](https://libreaideck.com)**
 
-Filter **52+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
+Filter **54+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS, Speech-to-Text, and Agents) by exact VRAM and system RAM requirements before downloading multi-gigabyte weights.
 
 ## Quick Hardware Tier Links
 * [0 GB VRAM (CPU-Only AI Tools)](https://libreaideck.com/vram/cpu-only)
@@ -11,10 +11,12 @@ Filter **52+ verified open-source AI tools** (LLMs, Image/Video Generation, TTS,
 * [≤ 8 GB VRAM AI Tools](https://libreaideck.com/vram/8gb)
 * [Open-Source Alternatives to Paid AI Subscriptions](https://libreaideck.com/alternatives/)
 
-## Full VRAM & Hardware Benchmark Matrix (52 Tools)
+## Full VRAM & Hardware Benchmark Matrix (54 Tools)
 
 | Tool | Category | Min VRAM | Min RAM | Replaces Paid Tools |
 | :--- | :--- | :--- | :--- | :--- |
+| [Browser-use](https://libreaideck.com/tool/browser-use) | Agents | **0 GB (CPU-Only)** | 8 GB | OpenAI Operator, Claude Computer Use, MultiOn |
+| [Continue](https://libreaideck.com/tool/continue-dev) | Coding | **0 GB (CPU-Only)** | 8 GB | GitHub Copilot, Cursor Pro, Tabnine |
 | [Crawl4AI](https://libreaideck.com/tool/crawl4ai) | RAG | **0 GB (CPU-Only)** | 4 GB | Perplexity |
 | [Docling](https://libreaideck.com/tool/docling) | OCR | **0 GB (CPU-Only)** | 8 GB | Adobe Acrobat OCR |
 | [KoboldCpp](https://libreaideck.com/tool/koboldcpp) | LLM | **0 GB (CPU-Only)** | 8 GB | ChatGPT, Claude |

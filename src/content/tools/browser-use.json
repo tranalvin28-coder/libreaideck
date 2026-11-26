@@ -1,0 +1,45 @@
+{
+  "name": "Browser-use",
+  "slug": "browser-use",
+  "tagline": "Open-source browser automation agent driven by local or cloud LLMs",
+  "category": "Agents",
+  "pricing_model": "Open-Source (Free)",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "OpenAI Operator",
+    "Claude Computer Use",
+    "MultiOn"
+  ],
+  "official_url": "https://github.com/browser-use/browser-use",
+  "github_repo": "",
+  "real_test_summary": "Automated a 6-step product price extraction workflow on macOS M2 16GB RAM using Qwen 2.5 14B via Ollama without external API calls.",
+  "pros": [
+    "Works with local Ollama models for zero API cost",
+    "MIT license suitable for commercial automation",
+    "Full Playwright Chromium control"
+  ],
+  "cons": [
+    "Requires 14B+ parameter models for reliable DOM reasoning",
+    "Needs Python and Playwright installation"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "OpenAI Operator",
+    "Claude Computer Use",
+    "MultiOn"
+  ],
+  "github_url": "https://github.com/browser-use/browser-use",
+  "install_command": "pip install browser-use && playwright install chromium",
+  "description": "Python library that connects local LLMs via Ollama to Playwright browsers so AI agents can click, scrape, fill forms, and navigate multi-step web workflows locally."
+}
