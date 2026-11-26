@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "ollama-vs-lm-studio",
+    "slugA": "ollama",
+    "slugB": "lm-studio",
+    "nameA": "Ollama",
+    "nameB": "LM Studio",
+    "category": "LLM",
+    "angle": "Local LLM Runtime vs Desktop GUI"
+  },
+  {
+    "slug": "comfyui-vs-automatic1111-stable-diffusion-webui",
+    "slugA": "comfyui",
+    "slugB": "automatic1111-stable-diffusion-webui",
+    "nameA": "ComfyUI",
+    "nameB": "Automatic1111 Stable Diffusion WebUI",
+    "category": "Image",
+    "angle": "Node Workflows vs Classic WebUI"
+  },
+  {
+    "slug": "comfyui-vs-fooocus",
+    "slugA": "comfyui",
+    "slugB": "fooocus",
+    "nameA": "ComfyUI",
+    "nameB": "Fooocus",
+    "category": "Image",
+    "angle": "Advanced Pipelines vs 4GB VRAM Simplicity"
+  },
+  {
+    "slug": "whisper-cpp-vs-faster-whisper",
+    "slugA": "whisper-cpp",
+    "slugB": "faster-whisper",
+    "nameA": "Whisper.cpp",
+    "nameB": "Faster-Whisper",
+    "category": "Audio",
+    "angle": "C++ CPU/Mac Speed vs CTranslate2 GPU"
+  },
+  {
+    "slug": "kokoro-tts-vs-piper",
+    "slugA": "kokoro-tts",
+    "slugB": "piper",
+    "nameA": "Kokoro TTS",
+    "nameB": "Piper",
+    "category": "Audio",
+    "angle": "Natural 82M Prosody vs Ultra-Light Edge TTS"
+  },
+  {
+    "slug": "f5-tts-vs-gpt-sovits",
+    "slugA": "f5-tts",
+    "slugB": "gpt-sovits",
+    "nameA": "F5-TTS",
+    "nameB": "GPT-SoVITS",
+    "category": "Audio",
+    "angle": "Zero-Shot Flow Matching vs Few-Shot Cloning"
+  },
+  {
+    "slug": "n8n-vs-activepieces",
+    "slugA": "n8n",
+    "slugB": "activepieces",
+    "nameA": "n8n",
+    "nameB": "Activepieces",
+    "category": "Agents",
+    "angle": "400+ Node Workflows vs MIT No-Code Builder"
+  },
+  {
+    "slug": "dify-vs-flowise",
+    "slugA": "dify",
+    "slugB": "flowise",
+    "nameA": "Dify",
+    "nameB": "Flowise",
+    "category": "RAG",
+    "angle": "Full LLMOps Platform vs Visual LangChain Builder"
+  },
+  {
+    "slug": "cline-vs-continue",
+    "slugA": "cline",
+    "slugB": "continue",
+    "nameA": "Cline",
+    "nameB": "Continue",
+    "category": "Coding",
+    "angle": "Autonomous Coding Agent vs Inline Autocomplete"
+  },
+  {
+    "slug": "lobechat-vs-librechat",
+    "slugA": "lobechat",
+    "slugB": "librechat",
+    "nameA": "LobeChat",
+    "nameB": "LibreChat",
+    "category": "LLM",
+    "angle": "Self-Hosted ChatGPT Frontend Comparison"
+  },
+  {
+    "slug": "anythingllm-vs-privategpt",
+    "slugA": "anythingllm",
+    "slugB": "privategpt",
+    "nameA": "AnythingLLM",
+    "nameB": "PrivateGPT",
+    "category": "RAG",
+    "angle": "Desktop RAG Workspace vs Privacy Document API"
+  },
+  {
+    "slug": "upscayl-vs-real-esrgan",
+    "slugA": "upscayl",
+    "slugB": "real-esrgan",
+    "nameA": "Upscayl",
+    "nameB": "Real-ESRGAN",
+    "category": "Image",
+    "angle": "Desktop Vulkan GUI vs Portable Batch CLI"
+  }
+]

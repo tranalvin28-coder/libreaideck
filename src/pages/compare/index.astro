@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import pairs from "./_pairs.json";
+const pageTitle = "Compare Open-Source & Offline AI Tools (2026) | LibreAIDeck";
+const pageDesc = "Side-by-side VRAM, RAM, license, and local speed benchmarks comparing top offline AI tools.";
+---
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Compare Offline &amp; Open-Source AI Tools</h1>
+    <p class="text-slate-400 mb-8">Side-by-side VRAM requirements, licenses, and real-world local inference speeds.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {pairs.map((p) => (
+        <a href={`/compare/${p.slug}/`} class="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition block">
+          <span class="text-xs font-semibold uppercase text-sky-400">{p.category}</span>
+          <h2 class="text-lg font-bold text-white mt-1">{p.nameA} <span class="text-slate-500 font-normal">vs</span> {p.nameB}</h2>
+          <p class="text-xs text-slate-400 mt-2">{p.angle}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
