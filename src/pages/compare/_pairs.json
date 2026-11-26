@@ -106,5 +106,113 @@
     "nameB": "Real-ESRGAN",
     "category": "Image",
     "angle": "Desktop Vulkan GUI vs Portable Batch CLI"
+  },
+  {
+    "slug": "comfyui-vs-stable-diffusion-webui-forge",
+    "slugA": "comfyui",
+    "slugB": "stable-diffusion-webui-forge",
+    "nameA": "ComfyUI",
+    "nameB": "Stable Diffusion WebUI Forge",
+    "category": "Image",
+    "angle": "Node-Based Low-VRAM Pipeline vs Optimized A1111 Interface"
+  },
+  {
+    "slug": "flux-1-vs-flux-1-schnell",
+    "slugA": "flux-1",
+    "slugB": "flux-1-schnell",
+    "nameA": "FLUX.1 Dev",
+    "nameB": "FLUX.1 Schnell",
+    "category": "Image",
+    "angle": "High-Detail Guidance Weights vs 4-Step Fast Local Generation"
+  },
+  {
+    "slug": "aider-vs-cline",
+    "slugA": "aider",
+    "slugB": "cline",
+    "nameA": "Aider",
+    "nameB": "Cline",
+    "category": "Code",
+    "angle": "Git-Native Terminal Pair Programmer vs Autonomous VS Code Agent"
+  },
+  {
+    "slug": "continue-vs-tabby",
+    "slugA": "continue",
+    "slugB": "tabby",
+    "nameA": "Continue",
+    "nameB": "Tabby",
+    "category": "Code",
+    "angle": "Client-Side IDE Copilot Extension vs Self-Hosted Team Autocomplete Server"
+  },
+  {
+    "slug": "kokoro-tts-vs-f5-tts",
+    "slugA": "kokoro-tts",
+    "slugB": "f5-tts",
+    "nameA": "Kokoro TTS",
+    "nameB": "F5-TTS",
+    "category": "Audio",
+    "angle": "Ultra-Light 82M CPU Voice Synthesis vs Zero-Shot Voice Cloning"
+  },
+  {
+    "slug": "whisperx-vs-faster-whisper",
+    "slugA": "whisperx",
+    "slugB": "faster-whisper",
+    "nameA": "WhisperX",
+    "nameB": "Faster-Whisper",
+    "category": "Audio",
+    "angle": "Word-Level Timestamps & Diarization vs Raw CTranslate2 Speed"
+  },
+  {
+    "slug": "wan2-1-vs-cogvideox",
+    "slugA": "wan2-1",
+    "slugB": "cogvideox",
+    "nameA": "Wan 2.1",
+    "nameB": "CogVideoX",
+    "category": "Video",
+    "angle": "Consumer 8GB-VRAM Video Diffusion vs High-Motion Transformer Generation"
+  },
+  {
+    "slug": "n8n-vs-dify",
+    "slugA": "n8n",
+    "slugB": "dify",
+    "nameA": "n8n",
+    "nameB": "Dify",
+    "category": "Agent",
+    "angle": "Fair-Code Node Workflow Automation vs Open-Source LLMOps & RAG Studio"
+  },
+  {
+    "slug": "librechat-vs-lobechat",
+    "slugA": "librechat",
+    "slugB": "lobechat",
+    "nameA": "LibreChat",
+    "nameB": "LobeChat",
+    "category": "LLM",
+    "angle": "Multi-User Enterprise ChatGPT Clone vs Modern Plugin-First AI UI"
+  },
+  {
+    "slug": "jan-vs-msty",
+    "slugA": "jan",
+    "slugB": "msty",
+    "nameA": "Jan",
+    "nameB": "Msty",
+    "category": "LLM",
+    "angle": "Open-Source Offline Desktop Client vs Split-Chat Local & Knowledge Hub"
+  },
+  {
+    "slug": "docling-vs-marker",
+    "slugA": "docling",
+    "slugB": "marker",
+    "nameA": "Docling",
+    "nameB": "Marker",
+    "category": "RAG",
+    "angle": "IBM Layout-Aware Document Parser vs Fast GPU PDF-to-Markdown Converter"
+  },
+  {
+    "slug": "fooocus-vs-invokeai",
+    "slugA": "fooocus",
+    "slugB": "invokeai",
+    "nameA": "Fooocus",
+    "nameB": "InvokeAI",
+    "category": "Image",
+    "angle": "Zero-Config Midjourney-Style SDXL UI vs Unified Canvas Studio"
   }
 ]
