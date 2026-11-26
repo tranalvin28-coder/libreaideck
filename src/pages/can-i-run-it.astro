@@ -1,0 +1,236 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const toolsData = [{"name":"Activepieces","slug":"activepieces","tagline":"MIT-licensed open-source AI automation builder replacing Zapier and Make","category":"Agents","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Deployed self-hosted Docker container on macOS M2 and ran automated webhook-to-Ollama summarization flows using ~420MB RAM."},{"name":"Browser-use","slug":"browser-use","tagline":"Open-source browser automation agent driven by local or cloud LLMs","category":"Agents","min_vram_gb":0,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Automated a 6-step product price extraction workflow on macOS M2 16GB RAM using Qwen 2.5 14B via Ollama without external API calls."},{"name":"Crawl4AI","slug":"crawl4ai","tagline":"Open-source LLM-friendly web crawler and scraper that outputs clean Markdown locally for agents and RAG.","category":"RAG","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested crawling documentation pages and extracting clean Markdown without boilerplate menus or ads. Integrates smoothly with local LLMs and vector stores."},{"name":"Docling","slug":"docling","tagline":"Open-source document parsing toolkit that converts PDFs, DOCX, and PPTX into structured Markdown and JSON for local RAG.","category":"OCR","min_vram_gb":0,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested parsing multi-column technical PDFs and tables locally into clean Markdown chunks without cloud uploads. Preserves headings and table rows reliably for downstream RAG indexing."},{"name":"GPT4All","slug":"gpt4all","tagline":"Desktop offline chatbot optimized for CPU-only laptops and local document chat","category":"LLM","min_vram_gb":0,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Ran Llama 3.2 3B Instruct on a CPU-only MacBook Air M2 at ~38 tokens/sec with LocalDocs folder indexing active."},{"name":"Khoj","slug":"khoj","tagline":"Self-hosted AI second brain for semantic search across personal docs and web","category":"Agents","min_vram_gb":0,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Indexed 300 local Markdown and PDF notes on macOS M2 16GB RAM and ran semantic search queries paired with local Llama 3.2 via Ollama."},{"name":"KoboldCpp","slug":"koboldcpp","tagline":"Single-file offline GGUF inference engine with built-in chat, writing, and OpenAI-compatible local API.","category":"LLM","min_vram_gb":0,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Tested running a quantized 8B GGUF model via the standalone executable with hybrid CPU and GPU layer offloading. Launches directly with an integrated browser UI and local API without Python environment setup."},{"name":"Kokoro TTS","slug":"kokoro-tts","tagline":"Ultra-lightweight 82M-parameter open-weight text-to-speech model delivering fast, natural voices on CPU or modest GPUs.","category":"Audio","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested generating multi-paragraph narration offline via Python and ONNX runtime on CPU. Produces clear, natural pacing at faster-than-realtime speeds with minimal memory overhead."},{"name":"llama.cpp","slug":"llama-cpp","tagline":"Core C/C++ LLM inference engine powering GGUF quantization across CPUs, Apple Silicon, and consumer GPUs.","category":"LLM","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested compiling and running quantized GGUF models via llama-server on Apple Silicon and CPU-only systems. Delivers maximum hardware efficiency with zero external runtime dependencies."},{"name":"n8n","slug":"n8n","tagline":"Self-hosted AI workflow automation platform connecting local LLMs and 400+ apps","category":"Agents","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"Sustainable Use License","real_test_summary":"Ran local AI email triage and RSS summarization workflows on macOS M2 using npx n8n + Ollama in ~380MB RAM."},{"name":"PaddleOCR","slug":"paddleocr","tagline":"Lightweight multilingual OCR toolkit supporting 80+ languages, table recognition, and fast CPU deployment.","category":"OCR","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested extracting text and structured tables from scanned receipts and multi-language documents on CPU. Ultra-compact mobile models run fast without a dedicated graphics card."},{"name":"Piper","slug":"piper","tagline":"Fast, lightweight local text-to-speech engine designed for offline voice synthesis on modest hardware.","category":"Audio","min_vram_gb":0,"min_ram_gb":2,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested synthesizing speech locally from text offline with very low memory overhead. Responds quickly on lightweight hardware without requiring a dedicated GPU or cloud API calls."},{"name":"SillyTavern","slug":"sillytavern","tagline":"Feature-rich local frontend for conversational AI, character cards, and LLM APIs","category":"LLM","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Connected to local KoboldCpp on an RTX 3060 12GB with lorebook RAG and Piper TTS active using under 300MB frontend RAM."},{"name":"Whisper.cpp","slug":"whisper-cpp","tagline":"High-performance C/C++ port of OpenAI Whisper for offline speech-to-text transcription.","category":"Audio","min_vram_gb":0,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested locally on a MacBook Pro M2 using the base.en ggml model. The engine transcribed a 10-minute WAV audio file in 14 seconds completely offline with zero account requirements or usage caps."},{"name":"Faster-Whisper","slug":"faster-whisper","tagline":"Fast local speech-to-text transcription engine built on CTranslate2 for offline audio and video subtitles.","category":"Audio","min_vram_gb":2,"min_ram_gb":4,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested transcribing recorded speech and meeting audio offline with int8 quantization. Runs significantly faster with lower memory footprint than standard PyTorch Whisper pipelines."},{"name":"ACE-Step","slug":"ace-step","tagline":"Fast open-source music foundation model generating full multi-minute songs with vocals and lyrics locally.","category":"Audio","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested generating full 3-minute songs with custom lyrics and style tags locally on a 6GB VRAM GPU. Renders tracks in under 20 seconds offline with clean vocal clarity."},{"name":"AnythingLLM","slug":"anythingllm","tagline":"All-in-one desktop and self-hosted workspace for chatting with local documents using built-in RAG and vector storage.","category":"RAG","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested ingesting PDF manuals and markdown notes into isolated local workspaces using the bundled LanceDB vector store. Answers stay grounded in uploaded documents completely offline."},{"name":"Automatic1111 Stable Diffusion WebUI","slug":"automatic1111-stable-diffusion-webui","tagline":"Browser-based local GUI for running Stable Diffusion models and extensions completely offline.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Tested locally on an NVIDIA RTX 3060 (12GB VRAM) using standard Stable Diffusion 1.5 checkpoints. The web interface generated 512x512 images in approximately 2.5 seconds per render completely offline without accounts or watermarks."},{"name":"Bark","slug":"bark","tagline":"Transformer-based local text-to-audio model capable of realistic speech, laughter, sighs, and sound effects.","category":"Audio","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested generating multi-language voice clips and non-speech audio cues offline via Python. Produces expressive intonation and natural pauses without cloud API keys, though generation is slower than lightweight TTS engines."},{"name":"ComfyUI","slug":"comfyui","tagline":"Node-based local interface and backend for running Stable Diffusion and diffusion models offline.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"GPL-3.0","real_test_summary":"Tested locally on an NVIDIA RTX 3060 (12GB VRAM) using standard SDXL checkpoints. The node graph compiled cleanly and generated 1024x1024 images in approximately 6 seconds per render completely offline without cloud dependencies or watermarks."},{"name":"Continue","slug":"continue","tagline":"Open-source IDE extension for VS Code and JetBrains that connects local LLMs for autocomplete and inline code edits.","category":"Coding","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested connecting Ollama models inside VS Code for tab autocomplete and inline refactoring. Delivers low-latency local code suggestions without sending proprietary files to external servers."},{"name":"F5-TTS","slug":"f5-tts","tagline":"Zero-shot voice cloning and text-to-speech running locally offline","category":"Audio","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Cloned a 10-second reference voice and synthesized a 20-second narration in 3.4s on an RTX 3060 12GB."},{"name":"Flowise","slug":"flowise","tagline":"Drag-and-drop visual builder for creating local LLM chains, document loaders, and agent workflows.","category":"RAG","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested wiring a local embedding model, vector store, and local LLM node on the visual canvas for offline document chat. Exposes an API endpoint once the flow is saved."},{"name":"Fooocus","slug":"fooocus","tagline":"Streamlined local image generation interface focused on clean prompt results without complex node wiring.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"GPL-3.0","real_test_summary":"Tested generating images locally with minimal slider adjustments and built-in style presets. Produces consistent high-detail outputs offline with far less setup friction than complex node graphs."},{"name":"GPT-SoVITS","slug":"gpt-sovits","tagline":"Few-shot voice cloning and multilingual text-to-speech studio runnable offline","category":"Audio","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Cloned a 5-second English voice sample and synthesized clean 24kHz narration on an RTX 3060 12GB with ~3.8GB VRAM usage."},{"name":"InvokeAI","slug":"invokeai","tagline":"Professional open-source creative studio for Stable Diffusion and Flux featuring an infinite canvas and unified layer editing.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested inpainting, outpainting, and ControlNet composition locally on the unified canvas. Offers a polished layer-based workflow tailored for illustrators and designers."},{"name":"Jan","slug":"jan","tagline":"Open-source offline desktop AI assistant with built-in model hub, local chat workspace, and localhost API.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Tested as a local desktop replacement for cloud chat apps with downloaded GGUF models. Stores conversations locally on disk, works completely offline, and exposes an OpenAI-compatible local server."},{"name":"LibreChat","slug":"librechat","tagline":"Open-source AI chat workspace supporting local endpoints, custom presets, code interpreter, and plugins.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested self-hosting LibreChat connected to a local OpenAI-compatible inference endpoint with saved prompt presets and conversation branching. Keeps chat history and configurations under local control."},{"name":"LM Studio","slug":"lm-studio","tagline":"Desktop application for discovering, running, and testing local GGUF language models offline.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Proprietary","real_test_summary":"Tested running quantized local models on desktop hardware with real-time token speed and memory usage indicators. Offline chat and local server mode work smoothly without account sign-in."},{"name":"LobeChat","slug":"lobechat","tagline":"Modern open-source AI chat and agent workspace supporting local LLMs, knowledge bases, and plugin tools.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested self-hosting LobeChat connected to a local Ollama endpoint with custom assistants and local file knowledge. Offers a polished interface for daily local chat."},{"name":"LocalAI","slug":"localai","tagline":"Self-hosted drop-in OpenAI API replacement for running local LLMs, embeddings, audio, and images offline.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested running a single local server exposing chat completions, embeddings, and speech endpoints offline. Simplifies pointing existing OpenAI SDK apps to local models."},{"name":"Marker","slug":"marker","tagline":"Fast open-source PDF-to-Markdown and JSON converter with strong table, equation, and layout accuracy.","category":"OCR","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"GPL-3.0","real_test_summary":"Tested converting research papers and technical manuals into Markdown locally with equations and tables intact. Runs offline in batch mode across local document folders."},{"name":"MLC LLM","slug":"mlc-llm","tagline":"Universal machine learning compiler and local LLM runtime deploying models across GPUs, mobile, and web.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested running compiled local chat models offline with an OpenAI-compatible REST server and CLI. Targets cross-platform hardware acceleration including Metal, Vulkan, and CUDA."},{"name":"Msty","slug":"msty","tagline":"Privacy-focused local AI desktop client supporting Ollama, local models, RAG knowledge stacks, and split chat.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Proprietary","real_test_summary":"Tested running local models side-by-side in split chat panes with offline knowledge stacks. Keeps prompts and local document context on device without cloud accounts."},{"name":"Ollama","slug":"ollama","tagline":"Run open-source large language models locally on your machine with a single command and local API.","category":"LLM","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested locally with quantized 7B and 8B models via CLI and localhost API. Models pull quickly, run completely offline after download, and integrate easily with local chat interfaces and scripts."},{"name":"Perplexica","slug":"perplexica","tagline":"Open-source self-hosted AI search engine combining local LLMs with SearxNG for cited web answers.","category":"RAG","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested running Perplexica with local Ollama models and a local SearxNG instance. Retrieves real-time web sources and summarizes cited answers without tracking search history."},{"name":"PrivateGPT","slug":"privategpt","tagline":"Production-ready local document Q&A and ingestion pipeline built for 100% private offline RAG workflows.","category":"RAG","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested ingesting local PDF and text documents using Ollama as the local backend. Exposes both a Gradio chat UI and OpenAI-compatible RAG API with zero external network traffic."},{"name":"Real-ESRGAN","slug":"real-esrgan","tagline":"Fast CLI and Vulkan AI image super-resolution engine for batch upscaling","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"BSD-3-Clause","real_test_summary":"Upscaled 50 product thumbnails by 4x via realesrgan-ncnn-vulkan CLI on a 4GB VRAM laptop GPU in 19 seconds."},{"name":"Stable Diffusion WebUI Forge","slug":"stable-diffusion-webui-forge","tagline":"Memory-optimized fork of Automatic1111 designed for faster image generation on lower-VRAM GPUs.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","Linux"],"license":"AGPL-3.0","real_test_summary":"Tested generating SDXL and Flux checkpoints locally on an 8GB VRAM GPU. Custom memory management noticeably reduces out-of-memory errors and speeds up batch sampling compared to stock WebUI setups."},{"name":"Surya","slug":"surya","tagline":"Multilingual document OCR and layout analysis toolkit supporting over 90 languages with line-level text detection.","category":"OCR","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"GPL-3.0","real_test_summary":"Tested running multilingual page layout detection and line-by-line OCR on scanned documents offline. Accurately separates headers, tables, and reading order without cloud APIs."},{"name":"SwarmUI","slug":"swarmui","tagline":"Modular local image and video generation web interface powered by a ComfyUI backend with clean presets and grid tools.","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Tested running Flux and SDXL workflows locally through SwarmUI with its built-in ComfyUI engine. Combines prompt parameter grids and model presets without forcing raw node wiring."},{"name":"Tabby","slug":"tabby","tagline":"Self-hosted AI coding assistant server delivering low-latency inline code completion for teams and solo developers.","category":"Coding","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested running the Tabby server locally paired with StarCoder and Qwen2.5-Coder models in VS Code. Delivers fast ghost-text autocomplete with repository-level context indexing."},{"name":"Upscayl","slug":"upscayl","tagline":"Free offline AI image upscaler using Vulkan-accelerated Real-ESRGAN models","category":"Image","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"AGPL-3.0","real_test_summary":"Upscaled a batch of 20 1080p product images by 4x using RealESRGAN on a MacBook Air M2 in ~24 seconds completely offline."},{"name":"WhisperX","slug":"whisperx","tagline":"Fast offline speech-to-text transcription with word-level timestamps and speaker diarization.","category":"Audio","min_vram_gb":4,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"BSD-2-Clause","real_test_summary":"Tested transcribing local audio files offline with batched processing and word-level timestamp alignment. Delivers accurate transcripts and subtitle timings without per-minute cloud transcription fees."},{"name":"AudioCraft","slug":"audiocraft","tagline":"Meta open-source library for local text-to-music and sound effect generation","category":"Audio","min_vram_gb":6,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Generated a 15-second 32kHz stereo background track using musicgen-small on an RTX 3060 12GB in 9.2s with ~5.4GB VRAM peak."},{"name":"DeepSeek-R1","slug":"deepseek-r1","tagline":"Open-weight reasoning LLM runnable locally via distilled 7B and 8B checkpoints","category":"LLM","min_vram_gb":6,"min_ram_gb":8,"platforms":["Windows","macOS","Linux"],"license":"MIT","real_test_summary":"Ran deepseek-r1:8b Q4_K_M on macOS M2 16GB RAM at ~31 tokens/sec with full visible reasoning trace and zero cloud telemetry."},{"name":"Dify","slug":"dify","tagline":"Open-source LLM app development platform for building visual RAG pipelines, workflows, and local AI agents.","category":"RAG","min_vram_gb":6,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested building a local document Q&A workflow wired to a local Ollama model and knowledge base. Visual node orchestration makes testing retrieval chunks and prompt steps straightforward."},{"name":"ExLlamaV2","slug":"exllamav2","tagline":"High-speed local inference library for quantized EXL2 language models on NVIDIA GPUs.","category":"LLM","min_vram_gb":6,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"MIT","real_test_summary":"Tested running 4-bit EXL2 quantized models locally with variable bit-rate quantization and paged KV cache. Delivers fast token generation on consumer NVIDIA GPUs."},{"name":"FramePack","slug":"framepack","tagline":"Next-frame prediction video diffusion architecture that generates long local videos on 6GB VRAM laptops.","category":"Video","min_vram_gb":6,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested progressive image-to-video generation locally on a 6GB VRAM GPU. Constant context-length packing keeps memory flat regardless of target video duration."},{"name":"TripoSR","slug":"triposr","tagline":"Fast feed-forward 3D reconstruction model that converts a single 2D image into a textured 3D mesh in under a second.","category":"3D","min_vram_gb":6,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"MIT","real_test_summary":"Tested converting single product and character PNG images into textured OBJ and GLB meshes locally on a 6GB VRAM GPU. Exports usable base 3D geometry in a few seconds offline."},{"name":"Aider","slug":"aider","tagline":"Terminal-based AI pair programming tool that edits local git repositories directly using local or cloud LLMs.","category":"Coding","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested running multi-file code refactors inside a local Git repository connected to an Ollama endpoint. Automatically maps repository structure and creates clean git commits per change."},{"name":"Cline","slug":"cline","tagline":"Autonomous open-source coding agent extension for VS Code that edits files, runs terminal commands, and uses local LLMs.","category":"Coding","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested connecting Cline to a local Ollama endpoint inside VS Code for multi-file feature scaffolding. Safely asks permission before executing terminal commands or modifying files."},{"name":"CogVideoX","slug":"cogvideox","tagline":"Open-source text-to-video and image-to-video diffusion transformer supporting 6-second coherent motion clips locally.","category":"Video","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested running the quantized CogVideoX-2B and 5B pipelines locally via Diffusers and ComfyUI with CPU offloading enabled. Generates smooth 48-frame clips completely offline."},{"name":"FLUX.1","slug":"flux-1","tagline":"High-detail open-weight text-to-image model rivaling Midjourney locally","category":"Image","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Rendered a 1024x1024 image with accurate embedded text in 9.5s on an RTX 3060 12GB using FLUX.1-schnell FP8 in ComfyUI."},{"name":"FLUX.1 Schnell","slug":"flux-1-schnell","tagline":"Fast 12B-parameter rectified-flow image generation model delivering sharp prompts and clean typography in 1 to 4 steps.","category":"Image","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","macOS","Linux"],"license":"Apache-2.0","real_test_summary":"Tested the NF4 quantized checkpoint locally inside ComfyUI and Forge on an 8GB VRAM GPU. Renders crisp 1024x1024 images with accurate embedded text in 4 steps completely offline."},{"name":"Hunyuan3D-2","slug":"hunyuan3d-2","tagline":"High-resolution open-source 3D asset generation system synthesizing detailed geometry and PBR textures from images or text.","category":"3D","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Tencent Hunyuan Community License","real_test_summary":"Tested the shape-only and textured 3D generation pipelines locally via Gradio and ComfyUI. Produces clean manifold meshes with sharp surface detail suitable for 3D printing or scenes."},{"name":"InstantMesh","slug":"instantmesh","tagline":"Feed-forward 3D mesh generation framework creating textured 3D assets from a single image via multi-view diffusion.","category":"3D","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested generating multi-view consistent 3D OBJ and GLB assets locally from single reference images. Produces cleaner back-side geometry than single-step reconstruction models."},{"name":"LMDeploy","slug":"lmdeploy","tagline":"High-throughput local LLM serving and compression toolkit with TurboMind engine and OpenAI-compatible API.","category":"LLM","min_vram_gb":8,"min_ram_gb":16,"platforms":["Linux","Windows"],"license":"Apache-2.0","real_test_summary":"Tested serving quantized chat models locally via lmdeploy serve api_server with persistent KV cache. Delivers strong tokens-per-second throughput for local inference."},{"name":"LTX-Video","slug":"ltx-video","tagline":"Real-time DiT-based local video generation model producing 24fps clips faster than playback duration on consumer GPUs.","category":"Video","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested quantized LTX-Video workflows locally inside ComfyUI for both text-to-video and image-to-video prompts. Generates 5-second 24fps drafts rapidly for fast visual iteration."},{"name":"OpenHands","slug":"openhands","tagline":"Open-source AI software development agent platform that writes code, runs commands, and browses locally.","category":"Coding","min_vram_gb":8,"min_ram_gb":16,"platforms":["Linux","macOS","Windows"],"license":"MIT","real_test_summary":"Tested running an isolated workspace agent paired with a local OpenAI-compatible model endpoint. Executes shell commands, edits repository files, and iterates on test output."},{"name":"Wan2.1","slug":"wan2-1","tagline":"Open-source text-to-video and image-to-video diffusion model family capable of running on consumer 8GB VRAM GPUs.","category":"Video","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested the 1.3B parameter text-to-video checkpoint locally via ComfyUI on consumer hardware. Generates clean, watermark-free vertical and landscape clips completely offline."},{"name":"YuE","slug":"yue","tagline":"Open-source full-song music generation model producing structured verse-chorus tracks with expressive vocals offline.","category":"Audio","min_vram_gb":8,"min_ram_gb":16,"platforms":["Windows","Linux"],"license":"Apache-2.0","real_test_summary":"Tested quantized YuE checkpoints locally to generate full-length vocal tracks from structured lyrics. Separates vocal and instrumental stems cleanly offline."}];
+---
+
+<BaseLayout title="Can I Run It? Local AI VRAM & Hardware Checker | LibreAIDeck" description="Select your GPU or MacBook specs to instantly filter 62+ offline AI tools that run smoothly on your hardware.">
+<main class="max-w-6xl mx-auto px-4 py-10">
+  <header class="mb-8">
+    <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
+      Interactive Hardware Compatibility Checker
+    </span>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
+      Can I Run It? Local AI VRAM &amp; MacBook Checker
+    </h1>
+    <p class="text-slate-400 max-w-3xl text-base md:text-lg">
+      Select your GPU or Apple Silicon MacBook below to filter all <strong>62 verified offline AI tools</strong> by exact VRAM and system RAM limits—before downloading multi-gigabyte weights.
+    </p>
+  </header>
+
+  <!-- Quick Hardware Presets -->
+  <section class="mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2.5">1. Quick Select Your Machine:</p>
+    <div class="flex flex-wrap gap-2" id="preset-buttons">
+      <button type="button" data-vram="0" data-ram="8" data-label="CPU-Only Laptop (0GB VRAM / 8GB RAM)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        💻 CPU-Only Laptop (8GB RAM)
+      </button>
+      <button type="button" data-vram="6" data-ram="16" data-label="MacBook Air M1/M2/M3 (16GB Unified)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        🍎 MacBook Air M1/M2 (16GB)
+      </button>
+      <button type="button" data-vram="4" data-ram="16" data-label="Entry Gaming Laptop (RTX 3050 / GTX 1650 4GB)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        🎮 RTX 3050 / 4GB VRAM
+      </button>
+      <button type="button" data-vram="8" data-ram="16" data-label="Mid-Range GPU (RTX 4060 / 3070 8GB)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        ⚡ RTX 4060 / 3070 (8GB VRAM)
+      </button>
+      <button type="button" data-vram="12" data-ram="32" data-label="Sweet-Spot AI Rig (RTX 3060 / 4070 12GB)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-500/50 transition">
+        🔥 RTX 3060 / 4070 (12GB VRAM)
+      </button>
+      <button type="button" data-vram="24" data-ram="64" data-label="Workstation GPU (RTX 3090 / 4090 24GB)" class="preset-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        🚀 RTX 3090 / 4090 (24GB VRAM)
+      </button>
+    </div>
+  </section>
+
+  <!-- Fine-Tune Sliders & Category Filter -->
+  <section class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div>
+      <div class="flex justify-between text-sm font-medium mb-2">
+        <label for="vram-slider">Available GPU VRAM</label>
+        <span id="vram-display" class="text-emerald-400 font-bold">12 GB VRAM</span>
+      </div>
+      <input id="vram-slider" type="range" min="0" max="24" step="2" value="12" class="w-full accent-emerald-500 cursor-pointer" />
+      <div class="flex justify-between text-xs text-slate-500 mt-1">
+        <span>0GB (CPU)</span><span>6GB</span><span>12GB</span><span>24GB+</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex justify-between text-sm font-medium mb-2">
+        <label for="ram-slider">System RAM</label>
+        <span id="ram-display" class="text-sky-400 font-bold">32 GB RAM</span>
+      </div>
+      <input id="ram-slider" type="range" min="4" max="64" step="4" value="32" class="w-full accent-sky-500 cursor-pointer" />
+      <div class="flex justify-between text-xs text-slate-500 mt-1">
+        <span>4GB</span><span>16GB</span><span>32GB</span><span>64GB</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="category-select" class="block text-sm font-medium mb-2">AI Task Category</label>
+      <select id="category-select" class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-sm focus:outline-none focus:border-emerald-500">
+        <option value="ALL">All Categories (62 Tools)</option>
+        <option value="LLM">LLM &amp; Chat</option>
+        <option value="Image">Image Generation &amp; Upscaling</option>
+        <option value="Video">Video Generation</option>
+        <option value="Audio">Audio, TTS &amp; Music</option>
+        <option value="Agents">AI Agents &amp; Automation</option>
+        <option value="Coding">Coding Assistants</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Summary Banner -->
+  <div id="status-banner" class="p-4 rounded-xl bg-slate-900 border border-slate-800 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <p class="text-sm text-slate-400">Active Profile: <strong id="profile-label" class="text-white">RTX 3060 / 4070 (12GB VRAM)</strong></p>
+      <p class="text-lg font-bold mt-0.5">
+        <span id="compatible-count" class="text-emerald-400">0</span> tools run locally &bull; 
+        <span id="heavy-count" class="text-amber-400">0</span> require hardware upgrade or Cloud GPU
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2.5">
+      <a id="amazon-upgrade-btn" href="https://www.amazon.com/s?k=RTX+4070+12GB+GPU&tag=libreaideck-20" target="_blank" rel="sponsored noopener noreferrer" class="px-4 py-2 rounded-lg text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 transition">
+        Upgrade GPU on Amazon
+      </a>
+      <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="sponsored noopener noreferrer" class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">
+        Rent 24GB GPU on RunPod
+      </a>
+    </div>
+  </div>
+
+  <!-- Compatible Tools Grid -->
+  <section class="mb-12">
+    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+      Ready to Run Locally on Your Hardware
+    </h2>
+    <div id="compatible-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </section>
+
+  <!-- Heavy Tools Grid (Monetization Trigger) -->
+  <section id="heavy-section" class="hidden">
+    <div class="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/20 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+          <span>⚠️</span> Exceeds Your Current VRAM / RAM
+        </h2>
+        <p class="text-sm text-slate-400 mt-1">
+          Running these models locally may trigger Out-Of-Memory (OOM) errors. Run them instantly on an on-demand cloud GPU or upgrade your local hardware.
+        </p>
+      </div>
+      <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="sponsored noopener noreferrer" class="shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">
+        Launch on RunPod ($0.20/hr+) →
+      </a>
+    </div>
+    <div id="heavy-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </section>
+</main>
+
+<script define:vars={{ toolsData }}>
+  const vramSlider = document.getElementById("vram-slider");
+  const ramSlider = document.getElementById("ram-slider");
+  const categorySelect = document.getElementById("category-select");
+  const vramDisplay = document.getElementById("vram-display");
+  const ramDisplay = document.getElementById("ram-display");
+  const profileLabel = document.getElementById("profile-label");
+  const compatibleCount = document.getElementById("compatible-count");
+  const heavyCount = document.getElementById("heavy-count");
+  const compatibleGrid = document.getElementById("compatible-grid");
+  const heavyGrid = document.getElementById("heavy-grid");
+  const heavySection = document.getElementById("heavy-section");
+  const amazonBtn = document.getElementById("amazon-upgrade-btn");
+
+  function getAmazonUpgradeUrl(vram, ram) {
+    if (ram < 16) return "https://www.amazon.com/s?k=32GB+DDR5+RAM+kit&tag=libreaideck-20";
+    if (vram < 8) return "https://www.amazon.com/s?k=RTX+3060+12GB+graphics+card&tag=libreaideck-20";
+    if (vram < 16) return "https://www.amazon.com/s?k=RTX+4070+Ti+Super+16GB+GPU&tag=libreaideck-20";
+    return "https://www.amazon.com/s?k=RTX+4090+24GB+GPU&tag=libreaideck-20";
+  }
+
+  function renderCard(tool, isCompatible) {
+    const vramBadge = tool.min_vram_gb === 0
+      ? '<span class="px-2 py-0.5 text-xs font-semibold rounded bg-emerald-500/15 text-emerald-300">0GB (CPU-Only)</span>'
+      : `<span class="px-2 py-0.5 text-xs font-semibold rounded ${isCompatible ? 'bg-sky-500/15 text-sky-300' : 'bg-amber-500/15 text-amber-300'}">${tool.min_vram_gb}GB VRAM</span>`;
+
+    const actionHtml = isCompatible
+      ? `<a href="/tool/${tool.slug}" class="inline-block mt-3 text-sm font-semibold text-emerald-400 hover:text-emerald-300">View Install &amp; Benchmark →</a>`
+      : `<div class="mt-3 flex items-center gap-3 text-xs font-semibold">
+           <a href="https://runpod.io?ref=xhjwok0s" target="_blank" rel="sponsored noopener noreferrer" class="text-indigo-400 hover:text-indigo-300">Run on RunPod →</a>
+           <a href="/tool/${tool.slug}" class="text-slate-400 hover:text-slate-200">Specs</a>
+         </div>`;
+
+    return `
+      <article class="p-4 rounded-xl bg-slate-900 border ${isCompatible ? 'border-slate-800 hover:border-emerald-500/40' : 'border-amber-500/20'} transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-medium text-slate-400">${tool.category}</span>
+            <div class="flex items-center gap-1.5">
+              ${vramBadge}
+              <span class="px-2 py-0.5 text-xs rounded bg-slate-800 text-slate-300">${tool.min_ram_gb}GB RAM</span>
+            </div>
+          </div>
+          <h3 class="text-base font-bold text-white">
+            <a href="/tool/${tool.slug}" class="hover:underline">${tool.name}</a>
+          </h3>
+          <p class="text-xs text-slate-400 mt-1 line-clamp-2">${tool.tagline}</p>
+        </div>
+        ${actionHtml}
+      </article>
+    `;
+  }
+
+  function updateView() {
+    const vram = Number(vramSlider.value);
+    const ram = Number(ramSlider.value);
+    const cat = categorySelect.value;
+
+    vramDisplay.textContent = vram === 0 ? "0 GB (CPU-Only)" : `${vram} GB VRAM`;
+    ramDisplay.textContent = `${ram} GB RAM`;
+    amazonBtn.href = getAmazonUpgradeUrl(vram, ram);
+
+    const filtered = toolsData.filter(t => cat === "ALL" || t.category === cat);
+    const compatible = filtered.filter(t => t.min_vram_gb <= vram && t.min_ram_gb <= ram);
+    const heavy = filtered.filter(t => t.min_vram_gb > vram || t.min_ram_gb > ram);
+
+    compatibleCount.textContent = compatible.length;
+    heavyCount.textContent = heavy.length;
+
+    compatibleGrid.innerHTML = compatible.length
+      ? compatible.map(t => renderCard(t, true)).join("")
+      : '<p class="text-sm text-slate-400 col-span-full">No tools match this exact RAM/VRAM filter. Try increasing System RAM or switching category.</p>';
+
+    if (heavy.length > 0) {
+      heavySection.classList.remove("hidden");
+      heavyGrid.innerHTML = heavy.map(t => renderCard(t, false)).join("");
+    } else {
+      heavySection.classList.add("hidden");
+    }
+  }
+
+  document.querySelectorAll(".preset-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      vramSlider.value = btn.dataset.vram;
+      ramSlider.value = btn.dataset.ram;
+      profileLabel.textContent = btn.dataset.label;
+      document.querySelectorAll(".preset-btn").forEach(b => {
+        b.classList.remove("bg-emerald-600/20", "text-emerald-300", "border-emerald-500/50");
+        b.classList.add("bg-slate-800", "border-slate-700");
+      });
+      btn.classList.remove("bg-slate-800", "border-slate-700");
+      btn.classList.add("bg-emerald-600/20", "text-emerald-300", "border-emerald-500/50");
+      updateView();
+    });
+  });
+
+  [vramSlider, ramSlider].forEach(el => {
+    el.addEventListener("input", () => {
+      profileLabel.textContent = `Custom Build (${vramSlider.value}GB VRAM / ${ramSlider.value}GB RAM)`;
+      updateView();
+    });
+  });
+
+  categorySelect.addEventListener("change", updateView);
+  updateView();
+</script>
+</BaseLayout>
