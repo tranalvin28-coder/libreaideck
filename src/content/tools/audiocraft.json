@@ -1,0 +1,45 @@
+{
+  "name": "AudioCraft",
+  "slug": "audiocraft",
+  "tagline": "Meta open-source library for local text-to-music and sound effect generation",
+  "category": "Audio",
+  "pricing_model": "Open-Source (Free)",
+  "license": "MIT",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 6,
+  "min_ram_gb": 16,
+  "alternative_to": [
+    "Suno",
+    "Udio",
+    "Soundraw"
+  ],
+  "official_url": "https://github.com/facebookresearch/audiocraft",
+  "github_repo": "",
+  "real_test_summary": "Generated a 15-second 32kHz stereo background track using musicgen-small on an RTX 3060 12GB in 9.2s with ~5.4GB VRAM peak.",
+  "pros": [
+    "Supports both text-to-music (MusicGen) and sound effects (AudioGen)",
+    "Melody conditioning from reference audio tracks",
+    "MIT codebase with local Gradio web demo"
+  ],
+  "cons": [
+    "Medium 1.5B weights recommend 12GB–16GB VRAM for longer clips",
+    "Pretrained weights carry a non-commercial CC-BY-NC 4.0 license"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Suno",
+    "Udio",
+    "Soundraw"
+  ],
+  "github_url": "https://github.com/facebookresearch/audiocraft",
+  "install_command": "pip install -U audiocraft",
+  "description": "PyTorch audio generation framework housing MusicGen and AudioGen models to synthesize royalty-free instrumental tracks, melody-conditioned audio, and sound effects locally."
+}

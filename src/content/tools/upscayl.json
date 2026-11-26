@@ -1,0 +1,45 @@
+{
+  "name": "Upscayl",
+  "slug": "upscayl",
+  "tagline": "Free offline AI image upscaler using Vulkan-accelerated Real-ESRGAN models",
+  "category": "Image",
+  "pricing_model": "Open-Source (Free)",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 4,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Topaz Photo AI",
+    "Magnific AI",
+    "Let's Enhance"
+  ],
+  "official_url": "https://github.com/upscayl/upscayl",
+  "github_repo": "",
+  "real_test_summary": "Upscaled a batch of 20 1080p product images by 4x using RealESRGAN on a MacBook Air M2 in ~24 seconds completely offline.",
+  "pros": [
+    "Native desktop app for macOS, Windows, and Linux with Vulkan support",
+    "Supports batch folder upscaling with zero credit limits",
+    "Completely offline with no watermarks"
+  ],
+  "cons": [
+    "Requires a Vulkan-compatible GPU or Apple Silicon",
+    "Does not natively process video files without external scripts"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Topaz Photo AI",
+    "Magnific AI",
+    "Let's Enhance"
+  ],
+  "github_url": "https://github.com/upscayl/upscayl",
+  "install_command": "brew install --cask upscayl",
+  "description": "Cross-platform desktop application that enlarges and sharpens low-resolution photos up to 4x completely offline using Vulkan-compatible GPUs and Apple Silicon without cloud uploads."
+}

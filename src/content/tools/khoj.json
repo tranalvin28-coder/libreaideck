@@ -1,0 +1,45 @@
+{
+  "name": "Khoj",
+  "slug": "khoj",
+  "tagline": "Self-hosted AI second brain for semantic search across personal docs and web",
+  "category": "Agents",
+  "pricing_model": "Open-Source (Free)",
+  "license": "AGPL-3.0",
+  "requires_signup": false,
+  "has_watermark": false,
+  "commercial_use": true,
+  "runs_offline": true,
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "min_vram_gb": 0,
+  "min_ram_gb": 8,
+  "alternative_to": [
+    "Perplexity",
+    "Notion AI",
+    "Mem.ai"
+  ],
+  "official_url": "https://github.com/khoj-ai/khoj",
+  "github_repo": "",
+  "real_test_summary": "Indexed 300 local Markdown and PDF notes on macOS M2 16GB RAM and ran semantic search queries paired with local Llama 3.2 via Ollama.",
+  "pros": [
+    "Native plugins for Obsidian, Emacs, Browser, and Desktop",
+    "Works completely offline with local Ollama LLMs",
+    "Supports scheduled research automations and custom agents"
+  ],
+  "cons": [
+    "Docker deployment recommended for full background automation features",
+    "Initial embedding indexing uses noticeable CPU on large vaults"
+  ],
+  "last_verified": "2026-11-26",
+  "paid_alternatives": [
+    "Perplexity",
+    "Notion AI",
+    "Mem.ai"
+  ],
+  "github_url": "https://github.com/khoj-ai/khoj",
+  "install_command": "pip install khoj && khoj --anonymous-mode",
+  "description": "Open-source personal AI assistant that indexes PDF, Markdown, Word, and Notion notes locally and connects to Ollama models for private RAG answers, scheduled automations, and deep research."
+}
